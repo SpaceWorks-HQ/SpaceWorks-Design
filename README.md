@@ -17,6 +17,7 @@ git submodule add https://github.com/SpaceWorks-HQ/SpaceWorks-Design.git design
 | `fonts/` | Self-hostable web fonts: Gilroy ExtraBold + Light (official free release), Outfit and Unbounded (OFL), with licences in `fonts/LICENSES/` |
 | `tokens/` | `tokens.css` (`@font-face` + light/dark colour variables as RGB triplets) and `tokens.json` (the same colours as hex, plus the seven brand colours) |
 | `docs/` | `ui-brand-spec.md` (token derivations, contrast ratios, states, status pills, type scale, logo use), `ux-yuyu-spec.md` (UX patterns from Yuyu, reusable layouts, navigation, screen specs), `ux-screens-longtail.md` (remaining screens) |
+| `references/yuyu/` | Reference boards from [Yuyu](https://github.com/twilighty-abhi/yuyu) that the UX patterns and layouts are modelled on |
 
 ## Brand at a glance
 
@@ -45,9 +46,8 @@ Add the class `dark` to `<html>` for dark mode. The font URLs in `tokens.css` ar
 
 ## Credits
 
-The UX patterns, layouts and interaction details are modelled on [Yuyu](https://github.com/twilighty-abhi/yuyu).
-The Yuyu reference boards are not distributed in this repository; keep local copies in `references/yuyu/`
-(gitignored) when comparing designs. The visual identity — colour, type, logo, icons and voice — comes only from the Space Works
+The UX patterns, layouts and interaction details are modelled on [Yuyu](https://github.com/twilighty-abhi/yuyu)
+(reference boards in `references/yuyu/`). The visual identity — colour, type, logo, icons and voice — comes only from the Space Works
 brand guidelines in `brand/`.
 
 ## Licences
