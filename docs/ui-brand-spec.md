@@ -3,14 +3,14 @@
 Research only. No app code has been changed.
 
 **Binding source rule (owner).** Every visual decision comes from exactly two sources: the brand PDF
-(`docs/brand/space-works-brand-guidelines-v1.pdf`) for visual identity, and the reference boards
-(`scratchpad/crops/*.png`, summarised in `ux-spec.md`) for layout and UX. All existing app
+(`docs/brand/space-works-brand-guidelines-v1.pdf`) for visual identity, and the Yuyu boards
+(`scratchpad/crops/*.png`, summarised in `ux-yuyu-spec.md`) for layout and UX. All existing app
 functionality is kept and re-themed. Every token below names its source:
 
 - **brand**: a verbatim brand hex, or white (p.4 and p.16 draw white cards).
 - **brand-mix**: a per-channel sRGB mix of brand colours (Deep Ink, Warm Cream, white, or a brand
   accent with one of those). The mix is stated.
-- **reference**: a pixel-sampled reference colour. **reference-mix**: a sampled reference colour mixed with a brand neutral.
+- **Yuyu**: a pixel-sampled Yuyu colour. **Yuyu-mix**: a sampled Yuyu colour mixed with a brand neutral.
 
 Nothing else (no OKLCH shifts, no black, no invented hues).
 
@@ -23,7 +23,7 @@ Nothing else (no OKLCH shifts, no black, no invented hues).
 | `pdf2svg.py`, `logo_list.py`, `logo_build.py` | vector extraction to SVG |
 | `brand_tokens_v2.py` | the token derivation and every contrast ratio |
 | `brand_contract_v2.py` | the tenant contract plus a 4,096-colour sweep |
-| `png.py`, `sample_reference.py` | reference pixel sampling |
+| `png.py`, `sample_yuyu.py` | Yuyu pixel sampling |
 | `otfinfo.py` | font metrics |
 
 The maths is WCAG 2.x relative luminance. It reproduces the PDF's own tested pairs exactly:
@@ -58,12 +58,12 @@ The maths is WCAG 2.x relative luminance. It reproduces the PDF's own tested pai
 | D1 | The light canvas is Warm Cream with white cards. Dark mode is built **only from the brand's reversed pairings**: `bg` = Deep Ink, raised surfaces = Ink mixed with 3/6/11 % Cream, text = Warm Cream, accents = brand. **No black.** | brand p.7 (reversed on Ink / Teal); owner rule |
 | D2 | `accent` = **Maker Teal** in light. In dark it is **Teal + 34 % Cream** (#579C90) with Deep Ink labels. | brand-mix. Brand teal on Deep Ink is 2.36:1, under the 3:1 a selected-state fill needs (SC 1.4.11). |
 | D3 | `secondary` is renamed **`brand`** (the action colour of a stranger-facing surface; default = accent; tenant-overridable). **`emphasis` = Workshop Orange**: Space Works' own, never tenant-overridable, one bold moment per layout. | brand p.9 "teal = primary · actions; orange = energy · emphasis"; p.13 "use one bold moment" |
-| D4 | **Danger comes from reference**, because the brand has no red: `#B91C1C` text/fill, `#991B1B` hover, `#FCA5A5` card border (dark text). | reference org5 danger zone (sampled, C.0) |
+| D4 | **Danger comes from Yuyu**, because the brand has no red: `#B91C1C` text/fill, `#991B1B` hover, `#FCA5A5` card border (dark text). | Yuyu org5 danger zone (sampled, C.0) |
 | D5 | Solid `*-soft` tokens replace every `bg-{tone}/NN`. **Translucent text is banned.** | Codex (1): `text-on-accent/75` on teal = 3.90:1 |
-| D6 | Status = **word** (mandatory) on a soft pill. Light mode uses the brand-tested solid pastel + ink pairs; dark mode uses soft + tone-ink. Icons are optional. | brand p.10 "add a word or icon to every status"; reference P10 tinted pills |
+| D6 | Status = **word** (mandatory) on a soft pill. Light mode uses the brand-tested solid pastel + ink pairs; dark mode uses soft + tone-ink. Icons are optional. | brand p.10 "add a word or icon to every status"; Yuyu P10 tinted pills |
 | D7 | **Fonts (owner-binding, permanent):** `font-display` = **Gilroy ExtraBold 800** (the official free release, Tinkov Free Font EULA) for every heading, title, card title, stat number and date-chip numeral. `font-sans` = **Outfit** (OFL; 400/500/600/700) for body, labels, buttons, inputs, tables, meta, nav and IDs (`tabular-nums`). `font-accent` = **Unbounded** (OFL) for the one accent phrase per layout. No Gilroy licence will be bought. | owner; brand p.11–12 |
-| D8 | Shape follows the brand's own product mock (p.16, measured): controls r 10, window/cards r 16, tags fully round, **no shadows**, hairlines = Deep Ink @ 18 %. reference asks for pill buttons; one token switches it. | brand p.16 vector; reference P11 |
-| D9 | Light-mode sidebar = **Citron field** with Deep Ink labels and a filled teal active item. Dark-mode sidebar = Deep Ink. **The nav is text-only.** Neither the brand mock (p.16) nor reference (org5) puts icons in the sidebar. | brand p.16; reference org5 |
+| D8 | Shape follows the brand's own product mock (p.16, measured): controls r 10, window/cards r 16, tags fully round, **no shadows**, hairlines = Deep Ink @ 18 %. Yuyu asks for pill buttons; one token switches it. | brand p.16 vector; Yuyu P11 |
+| D9 | Light-mode sidebar = **Citron field** with Deep Ink labels and a filled teal active item. Dark-mode sidebar = Deep Ink. **The nav is text-only.** Neither the brand mock (p.16) nor Yuyu (org5) puts icons in the sidebar. | brand p.16; Yuyu org5 |
 | D10 | Attention counters and low-stock tags use `emphasis` (orange + ink; p.16 "2 left" is an orange tag). `danger` is reserved for destructive actions and errors. | brand p.16 |
 | D11 | **No "System" theme option.** The existing Light/Dark toggle stays as it is. | owner |
 | D12 | Logo artwork is **extracted verbatim** from the PDF vectors into `research/logo-extract/` (section F). The reversed horizontal lockup does not exist in the PDF; an assembled preview exists for reference only and is **not used** (PLAN §10.2). | brand |
@@ -121,11 +121,11 @@ The maths is WCAG 2.x relative luminance. It reproduces the PDF's own tested pai
 | `on-info` | `20 44 42` #142C2A | brand (tested pair) | `20 44 42` #142C2A | brand (tested pair) |
 | `info-soft` | `246 249 255` #F6F9FF | brand-mix: panel + 12% info | `52 74 77` #344A4D | brand-mix: panel + 12% info |
 | `info-ink` | `81 105 123` #51697B | brand-mix: Sky + 62% Ink | `181 205 255` #B5CDFF | brand |
-| `danger` | `185 28 28` #B91C1C | reference (sampled #B91C1C) | `252 165 165` #FCA5A5 | reference (sampled #FCA5A5) |
-| `danger-hover` | `153 27 27` #991B1B | reference (sampled #991B1B) | `253 185 182` #FDB9B6 | reference-mix: #FCA5A5 + 25% Cream |
-| `danger-active` | `133 30 29` #851E1D | reference-mix: #991B1B + 15% Ink | `253 201 195` #FDC9C3 | reference-mix: #FCA5A5 + 45% Cream |
+| `danger` | `185 28 28` #B91C1C | Yuyu (sampled #B91C1C) | `252 165 165` #FCA5A5 | Yuyu (sampled #FCA5A5) |
+| `danger-hover` | `153 27 27` #991B1B | Yuyu (sampled #991B1B) | `253 185 182` #FDB9B6 | Yuyu-mix: #FCA5A5 + 25% Cream |
+| `danger-active` | `133 30 29` #851E1D | Yuyu-mix: #991B1B + 15% Ink | `253 201 195` #FDC9C3 | Yuyu-mix: #FCA5A5 + 45% Cream |
 | `on-danger` | `255 244 232` #FFF4E8 | brand | `20 44 42` #142C2A | brand |
-| `danger-line` | `252 165 165` #FCA5A5 | reference (sampled, danger-zone card border) | `124 98 97` #7C6261 | reference-mix: Ink + 45% #FCA5A5 |
+| `danger-line` | `252 165 165` #FCA5A5 | Yuyu (sampled, danger-zone card border) | `124 98 97` #7C6261 | Yuyu-mix: Ink + 45% #FCA5A5 |
 | `sidebar` | `223 255 143` #DFFF8F | brand (p.16 sidebar) | `20 44 42` #142C2A | brand (Deep Ink) |
 | `sidebar-hover` | `242 255 210` #F2FFD2 | brand-mix: Citron + 60% white | `46 66 63` #2E423F | = hover |
 | `sidebar-active` | `0 110 99` #006E63 | brand (p.16 active item) | `87 156 144` #579C90 | = accent |
@@ -167,7 +167,7 @@ The worst cell in the whole matrix is **4.65 in light** (`info-ink` on `hover`) 
 | `focus` | 5.68 / 5.28 / 6.16 / 5.52 | 7.83 / 7.21 / 6.61 / 7.83 |
 | `outline` (form-control boundary) | 3.27 / 3.04 / 3.55 | 3.62 / 3.33 / 3.06 |
 | `accent` as a selected fill (nav pill, tab underline) | 5.68 / 5.28 / 6.16 / 5.52 | 4.61 / 4.25 / 3.89 / 4.61 |
-| `danger-line` (decorative card border, reference) | 1.90 vs panel | 2.24 vs panel |
+| `danger-line` (decorative card border, Yuyu) | 1.90 vs panel | 2.24 vs panel |
 | `line` (decorative hairline) | 1.42 / 1.32 / 1.54 | ink on line 8.67 |
 
 Banned translucent cases (measured): `on-accent/75` on teal is 3.90 and `/80` is 4.22. Cream at 80 % on
@@ -321,17 +321,17 @@ The button family stays closed (`desk-button*`). Every variant keeps `min-h-11` 
 |---|---|---|---|---|---|
 | `desk-button-primary` (staff main) | `bg-accent text-on-accent` | `bg-accent-hover` | `bg-accent-active` | 5.68 / 6.24 / 6.78 | 4.61 / 5.22 / 5.89 |
 | `desk-button-brand` (ex `-secondary`; public/member main) | `bg-brand text-on-brand border-brand-boundary` | `bg-brand-hover` | `bg-brand-active` | default = primary; tenants proven by H.5 | |
-| `desk-button` (neutral; the reference outline "secondary") | `bg-panel text-ink border-line` | `bg-hover` | `bg-line` | 14.75 / 11.95 / 9.60 | 11.49 / 9.84 / 8.67 |
+| `desk-button` (neutral; the Yuyu outline "secondary") | `bg-panel text-ink border-line` | `bg-hover` | `bg-line` | 14.75 / 11.95 / 9.60 | 11.49 / 9.84 / 8.67 |
 | `desk-button-ghost` | `text-accent-ink`, no fill | `bg-accent-soft` | `bg-accent-soft text-ink` | 6.16 / 5.16 / 12.37 | 6.61 / 5.60 / 9.72 |
 | `desk-button-emphasis` (new; the one bold public CTA, never in staff chrome) | `bg-emphasis text-on-emphasis` | `-hover` | `-active` | 5.51 / 5.99 / 6.55 | same |
 | `desk-button-danger` (final confirm) | `bg-danger text-on-danger` | `bg-danger-hover` | `bg-danger-active` | 5.96 / 7.66 / 8.80 | 7.77 / 8.99 / 10.06 |
-| `desk-button-danger-outline` (new; reference "Delete organisation…") | `bg-panel text-danger border-danger` | `text-danger-hover border-danger-hover` | same + `bg-hover` | 6.47 / 8.31 / 6.73 | 6.57 / 7.79 / 6.68 |
+| `desk-button-danger-outline` (new; Yuyu "Delete organisation…") | `bg-panel text-danger border-danger` | `text-danger-hover border-danger-hover` | same + `bg-hover` | 6.47 / 8.31 / 6.73 | 6.57 / 7.79 / 6.68 |
 | `desk-button-success` / `-warn` (kept in Phase 1, folded into primary/neutral in Phase 6) | `bg-success\|warn text-on-*` | `-hover` | `-active` | 13.23/10.99/8.99 · 10.37/8.66/7.11 | same |
 
 | Element | Rest | Hover | Selected / current | Ratios (light · dark) |
 |---|---|---|---|---|
 | Sidebar item (text-only, D9) | `text-ink` on `sidebar` | `bg-sidebar-hover` | `bg-sidebar-active text-on-accent font-semibold`, `aria-current="page"` | 13.23 / 14.06 / 5.68 (pill vs field 5.52) · 13.60 / 9.84 / 4.61 (pill vs field 4.61) |
-| Sidebar sub-item (reference org5: indented, smaller) | `text-muted` 14/20 | `text-ink` | `text-ink font-semibold`, no fill | 5.23 · 7.92 |
+| Sidebar sub-item (Yuyu org5: indented, smaller) | `text-muted` 14/20 | `text-ink` | `text-ink font-semibold`, no fill | 5.23 · 7.92 |
 | Underline tab | `text-muted` | `text-ink` | `text-ink font-semibold` + 2 px `accent` underline | underline 5.68 · 4.61 |
 | Segmented control | track `bg-surface border-line` | `text-ink` | thumb `bg-panel border-outline text-ink` | thumb boundary 3.55 · 3.06 |
 | Table / list row | `bg-panel` | `bg-hover` | `bg-accent-soft` + checked box | 14.75 / 11.95 / 12.37 · 11.49 / 9.84 / 9.72 |
@@ -347,7 +347,7 @@ Counters (unread, cart): `bg-emphasis text-on-emphasis` (5.51), at full opacity.
 
 ## C. Status pills
 
-**C.0 reference samples** (from `crops/org5-settings.png` using `png.py`; exact pixel values):
+**C.0 Yuyu samples** (from `crops/org5-settings.png` using `png.py`; exact pixel values):
 
 | Colour | Where | Matches |
 |---|---|---|
@@ -358,7 +358,7 @@ Counters (unread, cart): `bg-emphasis text-on-emphasis` (5.51), at full opacity.
 
 The greens are **not used**: Citron covers success (owner preference).
 
-**Shape** (reference P10 + brand p.16): fully round, 24 px tall (32 on public), 12/16 semibold, horizontal
+**Shape** (Yuyu P10 + brand p.16): fully round, 24 px tall (32 on public), 12/16 semibold, horizontal
 padding 8–10. The **word is mandatory and the icon is optional.** Neither source shows icons in pills.
 
 | Tone | Light | Dark |
@@ -368,7 +368,7 @@ padding 8–10. The **word is mandatory and the icon is optional.** Neither sour
 | info | `bg-info text-on-info` (9.23) | `bg-info-soft text-info-ink` (5.89) |
 | emphasis | `bg-emphasis text-on-emphasis` (5.51) | same |
 | accent | `bg-accent-soft text-accent-ink` (5.16) | same (5.60) |
-| danger (reference danger-zone vocabulary) | `bg-panel border border-danger-line text-danger` (6.47) | same (6.57) |
+| danger (Yuyu danger-zone vocabulary) | `bg-panel border border-danger-line text-danger` (6.47) | same (6.57) |
 | neutral | `bg-surface border border-line text-ink` (12.64) | same (12.52) |
 
 | Domain · status (backend value) → tone · word |
@@ -520,11 +520,11 @@ Measured from the p.16 vector mock (the 1312 × 493 product frame):
 | Sidebar | 245 wide, 20 px inset, labels inset 19 |
 | Nav | text-only |
 
-reference (org5) shows the same pattern: a text-only nav, an active item filled warm grey, sub-items indented, and danger as a white card with a red-300 border.
+Yuyu (org5) shows the same pattern: a text-only nav, an active item filled warm grey, sub-items indented, and danger as a white card with a red-300 border.
 
 | Token | Value | Notes |
 |---|---|---|
-| `--radius-control` | **10px** (brand). Owner may switch it to `9999px` for reference pill buttons. | buttons, nav items, inputs, segmented thumb |
+| `--radius-control` | **10px** (brand). Owner may switch it to `9999px` for Yuyu pill buttons. | buttons, nav items, inputs, segmented thumb |
 | `borderRadius` sm / DEFAULT / md / lg / xl / 2xl / full | 6 / 8 / 10 / 12 / **16** / 20 / 9999 | `xl` = cards and panels (was 18). `md` (273 uses) 12→10. `lg` (93) 14→12. |
 | Borders | 1px `line` on cards and dividers. 1px `outline` on form controls. 2px only for the tab underline and the focus ring. | |
 | Shadow | cards none. `shadow-overlay` = `0 2px 6px rgb(var(--shadow-color)/.06), 0 12px 32px rgb(var(--shadow-color)/.10)` for popovers, menus, modals, drawers and toasts only. | `soft`, `soft-lg`, `brutal*` and `elev-*` deleted |
@@ -642,8 +642,8 @@ always labelled. **`lucide-react` is acceptable only as the implementation of th
 a 24 grid with 2 px stroke and round caps and joins. Pin the exact version. Render at 20/16 with default
 (relative) stroke. Icon-only buttons need `aria-label` plus a tooltip, and the SVG gets `aria-hidden`.
 
-**Source observations.** Neither the p.16 brand mock nor the reference sidebar (org5, org1) uses nav icons; both
-nav lists are **text-only**. reference uses icons only for "View public page ↗", the switcher chevrons,
+**Source observations.** Neither the p.16 brand mock nor the Yuyu sidebar (org5, org1) uses nav icons; both
+nav lists are **text-only**. Yuyu uses icons only for "View public page ↗", the switcher chevrons,
 callouts and back arrows.
 
 **Default: no icons in the sidebar or member tabs.** Icons appear only where a source shows them:
@@ -679,7 +679,7 @@ This replaces `components/icons.tsx` and `staffNavIcons.tsx`. The old nav-icon s
 | `features/inventory/ProductCard.tsx:71`, `ProductQuickViewModal.tsx:52` | `text-ink/15` decorative initials | `text-line` + `aria-hidden` |
 | `styles/chrome.css` `.material-chrome` | panel @0.8 + blur | delete |
 | `components.css` ghost/nav `hover:bg-accent/15`; the `.desk-shell .bg-secondary/10\|15` color-mix block | alpha tints | `hover:bg-accent-soft`; `bg-brand-soft`; delete the color-mix block |
-| **119 `bg-{tone}/NN` occurrences in 58 files** (12 of them `hover:`) | alpha tints | `/5`, `/10`, `/15` → `bg-{tone}-soft` (`secondary` → `brand-soft`). **`bg-danger/NN` → `bg-panel border border-danger-line`** (the reference danger card; there is no danger-soft) |
+| **119 `bg-{tone}/NN` occurrences in 58 files** (12 of them `hover:`) | alpha tints | `/5`, `/10`, `/15` → `bg-{tone}-soft` (`secondary` → `brand-soft`). **`bg-danger/NN` → `bg-panel border border-danger-line`** (the Yuyu danger card; there is no danger-soft) |
 | `border-{tone}/20–40` (≈40) | decorative | allowed; `border-danger/40` → `border-danger-line` |
 | `disabled:opacity-50` (14) | WCAG-exempt | allowed outside the button family |
 
@@ -790,7 +790,7 @@ PINs (keep `tracking-widest`), versions and public codes. They include 8 inputs:
 ### H.7 Other corrections
 
 - `statusToneMap`: `issued` and `checked_out` change `danger` → `accent`. Add every status in C.
-- The dashboard and stats tiles become `StatCard`: a neutral panel with the tone carried by the number (reference P4).
+- The dashboard and stats tiles become `StatCard`: a neutral panel with the tone carried by the number (Yuyu P4).
 - `OperationsReportCharts` marks need ≥3:1 on panel. Light: teal 6.16, info-ink 5.74, success-ink 5.75,
   warn-ink 5.78, danger 6.47. Dark: the brand fills. Orange and the pastels in light mode only appear with a 1 px ink stroke.
 - The PLAN's "theme (Light/Dark/System)" in the user menu becomes **Light/Dark** (D11).
@@ -809,7 +809,7 @@ PINs (keep `tracking-widest`), versions and public codes. They include 8 inputs:
 | new `test_sidebar` | ink, muted and accent-ink on `sidebar` and `sidebar-hover` ≥4.5; `sidebar-active` vs `sidebar` ≥3; `on-accent` on `sidebar-active` ≥4.5 |
 | `test_focus…` | ≥3 on bg, surface, panel, hover and sidebar |
 | new `test_control_boundary` | `outline` ≥3 on bg, surface and panel |
-| new `test_token_provenance` | parse the A.1 values. Every neutral must equal an integer-percent mix of `20 44 42` with `255 244 232` or white (re-derive and compare). Every fill must be a brand hex or one of the 3 reference reds. Fails on any off-source colour. |
+| new `test_token_provenance` | parse the A.1 values. Every neutral must equal an integer-percent mix of `20 44 42` with `255 244 232` or white (re-derive and compare). Every fill must be a brand hex or one of the 3 Yuyu reds. Fails on any off-source colour. |
 | new source guards (scan `frontend/src`, excluding `*.test.*`) | `\btext-[\w-]+/\d+`; `\bbg-(accent\|brand\|emphasis\|success\|warn\|info\|danger)/\d+`; `\btext-(accent\|brand\|emphasis\|success\|warn\|info)(?![\w-])`; `\bfont-mono\b`; `warning\|accent-bright\|secondary` colour utilities; `brand-` utilities under `features/staff/` (except `MakerspaceThemeSettings.tsx`); `#[0-9a-fA-F]{6}` hex literals outside `lib/brandColours.ts`, `SpaceWorksLogo` and the filament swatches |
 | Parser | unchanged (`:root {` / `:root.dark {`, comments stripped) |
 
@@ -885,8 +885,8 @@ these tests live only in the main checkout (they are gitignored), so the updated
 
 ## J. Owner decisions still open
 
-1. Control radius: 10 px (brand p.16) or pill (reference).
-2. Citron sidebar (brand p.16) or the reference warm-neutral sidebar.
+1. Control radius: 10 px (brand p.16) or pill (Yuyu).
+2. Citron sidebar (brand p.16) or the Yuyu warm-neutral sidebar.
 3. ~~Approve the assembled reversed horizontal~~ — resolved: not used; dark placements use `lockup-stacked-reversed` / `symbol-reversed` masters (PLAN §10.2). Small favicons use the symbol master, legibility-tested at 16/32 px.
 4. Tenant mid-tone primaries: accept the 15.8 % rejection (audit stored palettes first), or allow black as a functional-only label.
 5. Gilroy free-EULA (f) versus a public repo and self-hoster images: accepted by the owner. Record it in the release notes.

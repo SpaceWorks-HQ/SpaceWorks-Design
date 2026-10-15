@@ -1,6 +1,6 @@
-# UX spec: long-tail screens (reference patterns across all of SpaceWorks)
+# UX spec: long-tail screens (Yuyu patterns across all of SpaceWorks)
 
-Status: research only, no app code. Companion to `ux-spec.md`, which covers the core screens and
+Status: research only, no app code. Companion to `ux-yuyu-spec.md`, which covers the core screens and
 **defines the closed set of page layouts**. This document covers every other screen, so that after the
 revamp nothing is left in the old `Panel`-and-stacked-forms style.
 
@@ -11,7 +11,7 @@ Branch `feature/design-revamp`. Visual identity (colour, type, logo) comes from 
 
 ## 0. How to read this doc
 
-### 0.1 Layouts are the closed set from `ux-spec.md`
+### 0.1 Layouts are the closed set from `ux-yuyu-spec.md`
 
 Every screen below is written as **"Layout X, slots filled by …"**. No screen gets its own page
 structure. The layouts are:
@@ -20,7 +20,7 @@ structure. The layouts are:
 `SettingsLayout` · `FlowLayout` (wizard) · `AuthLayout` · `CenteredCardLayout` · `PublicLayout` ·
 `PublicDetailLayout` · `KioskLayout`.
 
-The slot names below are what this doc assumes each layout exposes. **Where `ux-spec.md` names a slot
+The slot names below are what this doc assumes each layout exposes. **Where `ux-yuyu-spec.md` names a slot
 differently, its names win.** The mapping is one-to-one, so a rename does not change any screen spec.
 
 | Layout | Slots assumed here |
@@ -41,10 +41,10 @@ differently, its names win.** The mapping is one-to-one, so a rename does not ch
 - **One primary action per page.** Actions are ranked as primary (dark/teal pill), secondary (outline
   pill, at most one or two) and the rest in a **More menu** (`[More v]`, an outline icon button; it opens a
   menu of labelled items). Exports (CSV/XLSX) always go in More as "Export CSV" / "Export Excel".
-- **Row actions:** one inline text action at the right of the row (reference "Send invites", "Undo"). Every
+- **Row actions:** one inline text action at the right of the row (Yuyu "Send invites", "Undo"). Every
   other row action goes in a row overflow `[...]` menu. Destructive items sit last in red and always
   confirm.
-- **Inline Undo** (reference mgr2/att11) is used for reversible one-click state changes that the API already
+- **Inline Undo** (Yuyu mgr2/att11) is used for reversible one-click state changes that the API already
   supports reversing. Where the API has no reverse, use a confirm dialog and do not fake an Undo.
 - **Contextual callout** (warm yellow, icon, bold lead sentence, action link on the right) replaces
   today's `bg-warn` boxes, read-only notices and disclosure paragraphs. There is at most **two per page**.
@@ -62,7 +62,7 @@ differently, its names win.** The mapping is one-to-one, so a rename does not ch
   `machines` may carry a path segment, and that stays true.
 - **States voice** (brand: clear, warm, specific, says the next step):
   - Empty: "No {things} yet. {Do the next thing}." The primary action is repeated as a button inside the
-    empty card (dashed border, reference org4/org6).
+    empty card (dashed border, Yuyu org4/org6).
   - Filtered empty: "Nothing matches these filters." + "Clear filters" link.
   - Loading: skeleton rows or skeleton stat cards that match the final layout. No "Loading..." text
     except in `aria-live` status.
@@ -81,9 +81,9 @@ differently, its names win.** The mapping is one-to-one, so a rename does not ch
   payload" label, "Search and commands", "Sign out", "Station PIN". If a name must change, the matching
   test changes in the same commit.
 
-### 0.3 Reference screens cited
+### 0.3 Yuyu reference screens cited
 
-| ID | reference board / screen | Pattern it contributes |
+| ID | Yuyu board / screen | Pattern it contributes |
 |---|---|---|
 | org1 | Organiser workspace · Home | greeting + date, "Your organisations" cards, dashed "+ New" card, "Coming up" date-chip rows, Recent activity rail |
 | org2 | Organiser workspace · Events | title + 1 primary + 1 outline, yellow callout with link, 4 stat cards, underline tabs with counts, date-chip card rows, inline row action, dashed draft row, activity rail + "See all →" |
@@ -133,7 +133,7 @@ Screens are grouped by layout so each batch composes the same primitives.
   `RefundReceiptAmendDialog`, `payments/PaymentDocuments.tsx`). Gate: `view_finance` or `record_payment`
   (`forRecording` mode = record-only actor).
 - **Job:** see what money is owed, record cash/bank receipts, waive or refund, find a receipt.
-- **reference:** org2 (stats + tabs + card rows), mgr1 ("At a glance"), mgr2 (Undo).
+- **Yuyu:** org2 (stats + tabs + card rows), mgr1 ("At a glance"), mgr2 (Undo).
 - **Layout:** `ListLayout`.
   - `title` "Payments", `subtitle` "Money owed to {space}, and how it was paid."
   - `actions`: primary **none by default** (nothing is created here). Outline secondary: "Receipts &
@@ -189,7 +189,7 @@ Money owed to Fab Lab, and how it was paid.
 ### A2. Ledger — tab `ledger`
 - **Route** `/admin/ledger` · `panels/Ledger.tsx`, `LedgerParts.tsx`. Gate `view_inventory`.
 - **Job:** answer "what is out right now, with whom, and what is late?"
-- **reference:** org2 (stats + list), mgr1 (latest list).
+- **Yuyu:** org2 (stats + list), mgr1 (latest list).
 - **Layout:** `ListLayout`.
   - `title` "Ledger", `subtitle` "Everything that's out right now."
   - `actions`: no primary (read-only). More: Export CSV, Export Excel. Superadmin: a toggle chip "All
@@ -221,7 +221,7 @@ Everything that's out right now.
 - **Route** `/admin/transfers` · `panels/StockTransferPanel.tsx`, `StockTransferTable.tsx`. Gate
   `edit_inventory` or superadmin.
 - **Job:** move stock between containers or makerspaces, with a reason, and see the history.
-- **reference:** org2 list + org3 (form in its own surface, not above the list).
+- **Yuyu:** org2 list + org3 (form in its own surface, not above the list).
 - **Layout:** `ListLayout` for history. The create form moves out of the page top into a **`FlowLayout`
   dialog** "New transfer" (two steps: *From and to* → *What's moving*, with Reason on step 2).
   - `title` "Transfers", `subtitle` "Stock moved between boxes and spaces."
@@ -242,7 +242,7 @@ Everything that's out right now.
 - **Route** `/admin/stocktake` · `panels/StocktakeSessionPanel.tsx`, `StocktakeCountSection.tsx`,
   `StocktakeDiscipline.tsx`. Gate `edit_inventory`; policy needs `canConfigure`.
 - **Job:** start a count, count items (by scan), complete, approve, apply adjustments.
-- **reference:** org2 (session list with status), mgr4 (detail with sections), mgr2 (scan + recent with Undo).
+- **Yuyu:** org2 (session list with status), mgr4 (detail with sections), mgr2 (scan + recent with Undo).
 - **Split:** today one page holds policy, schedules, a create form, every session and an inline count
   table. Split into:
   1. **Sessions list** — `ListLayout`.
@@ -266,7 +266,7 @@ Everything that's out right now.
   `ProcurementReceipts.tsx`, `ProcurementMoveModal.tsx`, `ReorderSuggestions.tsx`. Gate `canUseToBuy`;
   kind chooser for `manage_makerspace`.
 - **Job:** keep a shopping list, track it from requested to received, then move it into inventory.
-- **reference:** org2 (tabs by lifecycle, rows with inline next-step action).
+- **Yuyu:** org2 (tabs by lifecycle, rows with inline next-step action).
 - **Layout:** `ListLayout`.
   - `title` "To buy", `subtitle` "What the space needs, from request to shelf."
   - `actions`: primary **"Add item"** (dialog: Name, Qty, Link, Est. unit cost, Machine type when
@@ -292,7 +292,7 @@ Everything that's out right now.
 ### A6. To-be-fixed shelf — tab `needsfix`
 - **Route** `/admin/to-be-fixed` · `panels/NeedsFixShelf.tsx`. Gate `edit_inventory`.
 - **Job:** repair or scrap units that came back broken.
-- **reference:** org2 rows with an inline action, mgr2 Undo.
+- **Yuyu:** org2 rows with an inline action, mgr2 Undo.
 - **Layout:** `ListLayout`.
   - `title` "To be fixed", `subtitle` "Units returned broken. Repair them back into stock, or scrap them."
   - `actions`: none (items arrive from returns).
@@ -309,7 +309,7 @@ Everything that's out right now.
 - **Route** `/admin/notifications` · `panels/NotificationInbox.tsx` → `notifications/PersonalInbox.tsx`,
   `staff/BroadcastComposer.tsx`. Gate any staff action.
 - **Job:** catch up on what happened that needs me; managers can also send a member announcement.
-- **reference:** org1/org2 Recent activity rail (this page is its "See all →" destination).
+- **Yuyu:** org1/org2 Recent activity rail (this page is its "See all →" destination).
 - **Layout:** `ListLayout`.
   - `title` "Notifications", `subtitle` "{n} unread" (live; keep the unread count in an `aria-live`
     region and in the sidebar item's accessible name, as pinned today).
@@ -320,7 +320,7 @@ Everything that's out right now.
   - `tabs`: Unread {n} · All.
   - `toolbar`: Family chips (Hardware, Printing, Events, Bookings, Maintenance, Members, Payments, Stock,
     Certifications, Devices, API access). Raw keys become labels.
-  - `list`: activity-style rows (reference rail, full width). Avatar/icon tile by family · **bold title** +
+  - `list`: activity-style rows (Yuyu rail, full width). Avatar/icon tile by family · **bold title** +
     summary (2 lines, clamp) · relative time ("2 min ago") · unread dot. Inline action "Open" when there is
     a safe link. Row click marks it read. Unread rows get a teal left rule, not a teal border box.
   - Date group headers: Today · Yesterday · Earlier this week · Older.
@@ -334,7 +334,7 @@ Everything that's out right now.
   in this revamp.)
 - **Job:** check that alerts and emails went out, retry failures, send a test, manage suppressed
   addresses.
-- **reference:** org2 (tabs + rows + inline action), org6 (developer-ish surface kept calm).
+- **Yuyu:** org2 (tabs + rows + inline action), org6 (developer-ish surface kept calm).
 - **Layout:** `ListLayout` with two tabs that split today's stacked sections.
   - `title` "Delivery logs", `subtitle` "Every email and alert this space sent, and whether it arrived."
   - `actions`: primary **"Send test"**. It opens a small dialog "Send a test to…" (Email to my account /
@@ -354,7 +354,7 @@ Everything that's out right now.
 ### A9. Accountability — tab `accountability`
 - **Route** `/admin/accountability` · `panels/AccountabilityPanel.tsx`. Gate `view_audit`.
 - **Job:** follow up on overdue loans and reported problems, and restrict or restore repeat offenders.
-- **reference:** org2 (stats + tabs), mgr1 ("Latest …" lists).
+- **Yuyu:** org2 (stats + tabs), mgr1 ("Latest …" lists).
 - **Layout:** `ListLayout` with tabs that replace the four stacked `Panel`s and the "Show all
   accountability sections" button. The existing `section` list filter becomes the tab key.
   - `title` "Accountability", `subtitle` "Late, lost or damaged — and who it's tied to."
@@ -374,7 +374,7 @@ Everything that's out right now.
 - **Route** `/admin/warranty` · `panels/WarrantyPanel.tsx` (+ `WarrantySection`, `WarrantyStatusBadge`).
   Gate `edit_inventory` or printing/machines.
 - **Job:** see what's covered, what's expiring, and what's missing documents.
-- **reference:** org2.
+- **Yuyu:** org2.
 - **Layout:** `ListLayout`.
   - `title` "Warranties", `subtitle` "Coverage for {scope} in {space}."
   - `stats`: Active · Expiring soon · Expired · Missing docs. Each is `[+query]` filtered count. If that
@@ -390,7 +390,7 @@ Everything that's out right now.
 - **Route** `/admin/organized-events` · `panels/OrganizedEventsPanel.tsx` (+ `EventDrawer`). Gate:
   non-superadmin, not single-tenant.
 - **Job:** an organization organizer sees the events they run across venues.
-- **reference:** org2 exactly (date-chip rows, going/capacity progress).
+- **Yuyu:** org2 exactly (date-chip rows, going/capacity progress).
 - **Layout:** `ListLayout`.
   - `title` "Organized events", `subtitle` "Events you run with your organization, across spaces."
   - `tabs`: Upcoming · Past (client split by date on the loaded page, or a query param if the API
@@ -405,7 +405,7 @@ Everything that's out right now.
 - **Route** `/admin/member-cards` · `panels/MemberCardsPanel.tsx`, `memberCards/*`. Gate member-card
   actions; module `membership`.
 - **Job:** issue, print, reissue and revoke member cards; scan a card at the desk.
-- **reference:** org4 (invite card on top + table), mgr2 (scan block).
+- **Yuyu:** org4 (invite card on top + table), mgr2 (scan block).
 - **Split:** today one long page holds the cards table, a scan box, an issue roster and the card layout
   form. Use **tabs**: Cards · Issue · Scan · Card layout.
 - **Layout:** `ListLayout`.
@@ -426,7 +426,7 @@ Everything that's out right now.
 - **Route** `/admin/devices` · `panels/DevicesPanel.tsx`, `DeviceIdentitySection.tsx`,
   `DeviceEnrollmentModal.tsx`. Gate `manage_devices`; module `devices`.
 - **Job:** register printers and label printers, see which are offline, enrol or revoke them.
-- **reference:** org4 (people table → device table), org6 (one-time secret handling).
+- **Yuyu:** org4 (people table → device table), org6 (one-time secret handling).
 - **Layout:** `ListLayout` + detail drawer.
   - `title` "Devices", `subtitle` "Printers and other hardware that talk to Space Works."
   - `actions`: primary **"Add device"** (dialog: Name, Kind (Generic / Printer / Label printer), then
@@ -445,7 +445,7 @@ Everything that's out right now.
 ### A14. Data export — tab `exports`
 - **Route** `/admin/data-export` · `features/staff/DataExportsPanel.tsx`. Gate `manage_makerspace`.
 - **Job:** get a readable archive of this space's records.
-- **reference:** org6 (warning strip + clients list), auth7 (callout with action).
+- **Yuyu:** org6 (warning strip + clients list), auth7 (callout with action).
 - **Layout:** `ListLayout`.
   - `title` "Data export", `subtitle` "A readable copy of your space's records. Not a backup."
   - `actions`: primary **"Request export"** (disabled while one is running; tooltip "An export is already
@@ -462,7 +462,7 @@ Everything that's out right now.
 ### A15. Categories — tab `categories`
 - **Route** `/admin/categories` · `panels/Categories.tsx`. Gate `edit_inventory`.
 - **Job:** organise products into categories.
-- **reference:** org4 (simple table) + org3 (create in a focused surface).
+- **Yuyu:** org4 (simple table) + org3 (create in a focused surface).
 - **Layout:** `ListLayout`.
   - `title` "Categories", `subtitle` "How items are grouped in the catalogue."
   - `actions`: primary **"Add category"**. A dialog replaces the always-visible 5-field inline row: Name,
@@ -475,7 +475,7 @@ Everything that's out right now.
 ### A16. Containers — tab `containers`
 - **Route** `/admin/containers` · `panels/ContainersPanel.tsx`. Gate `manage_qr`; module `containers`.
 - **Job:** find a box, see what's in it and its scan history, edit its label or location.
-- **reference:** org2 list → mgr1 detail with tabs.
+- **Yuyu:** org2 list → mgr1 detail with tabs.
 - **Layout:** `ListLayout`; each container opens a **detail drawer** with tabs (B3), replacing the inline
   Edit / Contents / History toggles inside each card.
   - `title` "Containers", `subtitle` "Boxes, bins and shelves with QR labels."
@@ -490,7 +490,7 @@ Everything that's out right now.
 - **Route** `/admin/handover` · `panels/machine/HandoverConsole.tsx`. Gate `collect_service_request` or
   `manage_machines`; module `machine_service`.
 - **Job:** at the desk, hand finished jobs to the people who requested them.
-- **reference:** mgr2 "Recent check-ins" rows with an inline action; org2 rows.
+- **Yuyu:** mgr2 "Recent check-ins" rows with an inline action; org2 rows.
 - **Layout:** `ListLayout`.
   - `title` "Ready to collect" (today the panel title is "Awaiting collection"; the tab label "Job
     handover" stays in the nav), `subtitle` "Finished jobs waiting for their owners."
@@ -510,7 +510,7 @@ Everything that's out right now.
 - **Route** `/admin/email-templates` · `panels/EmailTemplatesPanel.tsx`. Gate inventory, printing or
   devices.
 - **Job:** find the email to customise.
-- **reference:** org2 list → mgr1/mgr3 detail.
+- **Yuyu:** org2 list → mgr1/mgr3 detail.
 - **Layout:** `ListLayout` index, then `DetailLayout` editor (B1). This replaces the 18rem left button
   column plus an always-mounted editor.
   - `title` "Email templates", `subtitle` "What people receive from {space}, in your words."
@@ -527,7 +527,7 @@ Everything that's out right now.
 ### B1. Email template editor
 - **Route** `/admin/email-templates?template=…` · `panels/EmailTemplateEditor.tsx`,
   `EmailTemplateTypeSelector.tsx`.
-- **reference:** mgr1 (back + title + tabs), mgr3 (segmented control), org5 (Discard/Save).
+- **Yuyu:** mgr1 (back + title + tabs), mgr3 (segmented control), org5 (Discard/Save).
 - **Layout:** `DetailLayout`.
   - `back` "← All templates", `title` template label, `status` pill "Edited" / "Default", `meta`
     "{stream} · to {audience}".
@@ -544,7 +544,7 @@ Everything that's out right now.
 
 ### B2. Stocktake session (count)
 - **Route** `/admin/stocktake?session={id}` · `StocktakeCountSection.tsx`.
-- **reference:** mgr2 (scan + find + recent with Undo), mgr1 header.
+- **Yuyu:** mgr2 (scan + find + recent with Undo), mgr1 header.
 - **Layout:** `DetailLayout`.
   - `back` "← All counts", `identity` chip "#{id}", `title` notes or "Count of {container}", `status` pill,
     `meta` "Started {date} · {blind ? 'Blind count' : 'Expected shown'}".
@@ -569,8 +569,8 @@ Everything that's out right now.
 
 ### B5. Machine service console / printer service console (tab body)
 - **Where:** inside the core machine-type page (`panels/machine/MachineTypePage.tsx`; the page frame is
-  owned by `ux-spec.md`). Components `MachineServiceConsole.tsx`, `PrinterServiceConsole.tsx`.
-- **reference:** org2 tabs + rows, mgr2 inline actions.
+  owned by `ux-yuyu-spec.md`). Components `MachineServiceConsole.tsx`, `PrinterServiceConsole.tsx`.
+- **Yuyu:** org2 tabs + rows, mgr2 inline actions.
 - **Slot fill:** the type page's `DetailLayout` gets a **"Queue"** tab (and "Manual usage" and, for
   printers, "Printer reports" tabs) instead of stacked `Subsection`s.
   - Queue tab: sub-tabs Pending · Accepted · Printing (in progress) · Ready (completed) · Failed, each with
@@ -593,7 +593,7 @@ Everything that's out right now.
   `ApiClientListCard.tsx`, `ApiClientScopePicker.tsx`, `ApiClientsAccessSummary.tsx`,
   `ApiClientsTelegramSettings.tsx`.
 - **Job:** let your own tools read and write this space without sharing a login; or request access.
-- **reference:** **org6 directly.**
+- **Yuyu:** **org6 directly.**
 - **Layout:** `SettingsLayout` with an org6 body (cards, not label-left rows, because this is a create
   surface).
   - `title` "API access", `subtitle` "Let your own tools work with {space}, without sharing anyone's
@@ -618,7 +618,7 @@ Everything that's out right now.
 - **Route** `/admin/modules` · `ModulesPanel.tsx` (superadmin). `SpacePacksPanel` is mounted inside
   Makerspace settings today.
 - **Job:** switch whole feature families on or off for a space.
-- **reference:** org5 (rows + helper text), org6 (accordion reference).
+- **Yuyu:** org5 (rows + helper text), org6 (accordion reference).
 - **Layout:** `SettingsLayout`.
   - `title` "Modules", `subtitle` "Switch features on for {space}. Turning one off keeps its data;
     turning it back on restores everything."
@@ -638,7 +638,7 @@ Everything that's out right now.
 - **Route** `/admin/platform` · `PlatformEmailPanel.tsx`, `PlatformSocialAuthPanel.tsx`,
   `PlatformStripeConnectPanel.tsx` (stacked today).
 - **Job:** set deployment-wide email, sign-in providers and Stripe Connect.
-- **reference:** org5.
+- **Yuyu:** org5.
 - **Layout:** `SettingsLayout` with `subnav`: **Email** · **Sign-in providers** · **Stripe Connect**
   (the last only when `platform_hosting`). `?section=` query.
   - Email: rows SMTP host / port / username / password ("Saved — leave blank to keep"), From email,
@@ -655,7 +655,7 @@ Everything that's out right now.
 - **Route** `/admin/backup-restore` · `BackupRestorePanel.tsx` (+ `RestoreDecision`). Gate
   `manage_makerspace`; deployment part superadmin.
 - **Job:** make and download backups; superadmins schedule full backups and restore.
-- **reference:** org5 (rows + danger zone), org2 (archive list).
+- **Yuyu:** org5 (rows + danger zone), org2 (archive list).
 - **Layout:** `SettingsLayout` with `subnav`: **This space** · **Deployment** (superadmin).
   - This space: yellow callout "**Backups contain live member data.** Store downloads somewhere
     private." · primary **"Create backup"** · archive list rows (scope · date · size · status pill ·
@@ -676,7 +676,7 @@ Everything that's out right now.
   (`OrganizationCreate`, `OrganizationLinks`), `OrganizationProfileForm.tsx`,
   `OrganizationMemberships.tsx`, `OrganizationInvitations.tsx`.
 - **Job:** run an organization: its public profile, people, invitations and (superadmin) linked spaces.
-- **reference:** **organiser workspace boards directly** — org1 (org cards), org3 (create with preview), org4
+- **Yuyu:** **organiser workspace boards directly** — org1 (org cards), org3 (create with preview), org4
   (members + invite card), org5 (settings + danger zone).
 - **Layout:** two levels.
   1. **Index** — `DashboardLayout`-style card grid (org1 "Your organisations"): one card per org
@@ -705,7 +705,7 @@ Everything that's out right now.
 - **Route** `features/members/MemberAccountPage.tsx`, `MemberAccountProfile.tsx`,
   `MemberAccountSessions.tsx`, `MemberAccountMembership.tsx`, `MemberAccountExports.tsx`.
 - **Job:** manage my profile, sign-in security, membership (cancel renewal / leave) and data export.
-- **reference:** **auth6 + auth7 directly.**
+- **Yuyu:** **auth6 + auth7 directly.**
 - **Layout:** member `AppShell` + `SettingsLayout`.
   - `title` "Account", `subtitle` "Your personal profile and sign-in security." (replaces "Your account" +
     "Back to membership" button; the back link becomes the shell's nav).
@@ -733,7 +733,7 @@ Everything that's out right now.
 ### C7. Staff/member MFA management — `/mfa`
 - **Route** `features/auth/MfaAccountPage.tsx` (standalone route; reused by members via "Manage two-step
   sign-in").
-- **reference:** auth7 (security tab), auth2 (centred card).
+- **Yuyu:** auth7 (security tab), auth2 (centred card).
 - **Layout:** `CenteredCardLayout` (this route renders outside any shell, for staff and members alike).
   - Not signed in: icon tile (shield) · "Two-step sign-in" · "Sign in to manage your authenticator." ·
     two links "Staff sign-in" / "Member sign-in".
@@ -753,7 +753,7 @@ Everything that's out right now.
 ### D1. Platform dashboard — tab `platform-dashboard` (global, superadmin)
 - **Route** `/admin/platform-dashboard` · `PlatformDashboardPanel.tsx`.
 - **Job:** "is the deployment healthy, and what needs me?"
-- **reference:** org1/org2 (greeting, stat cards, callouts, list + rail).
+- **Yuyu:** org1/org2 (greeting, stat cards, callouts, list + rail).
 - **Layout:** `DashboardLayout`.
   - `greeting` "Checked {relative time}", `title` "Platform", `actions`: outline **"Run checks now"**
     (replaces "Refresh dashboard and checks"; there is no primary).
@@ -772,7 +772,7 @@ Everything that's out right now.
 ### D2. Usage & limits — tab `usage`
 - **Route** `/admin/usage` · `TenantUsagePanel.tsx` (`UsageTable` is shared with D1).
 - **Job:** "how close is this space to its limits?"
-- **reference:** mgr2 progress stat card.
+- **Yuyu:** mgr2 progress stat card.
 - **Layout:** `DashboardLayout`.
   - `title` "Usage & limits", `greeting` "Counters reset with each quota period.", `actions` outline
     "Refresh".
@@ -789,7 +789,7 @@ Everything that's out right now.
 ### D3. Organization analytics — tab `organization-analytics`
 - **Route** `/admin/organization-analytics` · `panels/OrganizationAnalyticsPanel.tsx`.
 - **Job:** compare an organization's spaces and see its combined total.
-- **reference:** org2 stats + list.
+- **Yuyu:** org2 stats + list.
 - **Layout:** `DashboardLayout`.
   - `title` "Organization analytics", `greeting` "Your organization's spaces, side by side."
   - `actions`: none. Controls row under the title: **Organization picker** (a select fed by the existing
@@ -804,7 +804,7 @@ Everything that's out right now.
 - **Route** any `/admin/*` when superadmin has no selection · `MakerspacePicker.tsx` (rendered by
   `StaffApp` gate).
 - **Job:** choose which space to operate.
-- **reference:** **org1 Home** ("Your organisations" cards).
+- **Yuyu:** **org1 Home** ("Your organisations" cards).
 - **Layout:** `DashboardLayout`, ideally inside `AppShell` in a **no-workspace mode** (the sidebar shows
   only global items, Platform dashboard and Organizations, and the switcher card reads "Choose a space").
   See gap §11.4. Fallback if the shell cannot render without a workspace: the same body in
@@ -824,7 +824,7 @@ Everything that's out right now.
 ### E1. Bulk import — tab `bulk`
 - **Route** `/admin/bulk-import` · `panels/BulkImport.tsx`, `BulkImportHelpers.ts`.
 - **Job:** add or update many items from a spreadsheet, safely (preview first).
-- **reference:** org3 (focused form), mgr2 (progress).
+- **Yuyu:** org3 (focused form), mgr2 (progress).
 - **Layout:** `FlowLayout` (page), steps:
   1. **Upload** — a big drop zone (org3 logo drop style): "Drop a CSV or Excel file here, or choose a
      file" + "or paste a table" (expands the textarea). Advanced JSON is behind "Use JSON instead"
@@ -846,7 +846,7 @@ Everything that's out right now.
 ### E2. QR tools (print batch builder) — tab `qr`
 - **Route** `/admin/qr-tools` · `panels/QrTools.tsx`, `QrImage.tsx`. Module `qr_print_batches`.
 - **Job:** build a sheet of QR labels for items, units and boxes, then download them to print.
-- **reference:** mgr4 (date cards → batch cards), mgr3 (columns + dashed add).
+- **Yuyu:** mgr4 (date cards → batch cards), mgr3 (columns + dashed add).
 - **Layout:** `ListLayout` (batches) → `DetailLayout` (a batch) as the working surface. It is not a strict
   wizard, because users add labels in any order.
   - Index: `title` "QR labels", `subtitle` "Print labels for items, units and boxes." · primary **"New
@@ -863,7 +863,7 @@ Everything that's out right now.
 ### E3. Create makerspace — inside Users (core page), superadmin
 - **Route** `/admin/users` (opened from the core Users page) · `usersModals/CreateMakerspaceModal.tsx`,
   `CreationWizardSteps.tsx`.
-- **reference:** org3 (form + live preview).
+- **Yuyu:** org3 (form + live preview).
 - **Layout:** `FlowLayout`, **page presentation** via `?create=makerspace` (no route change). Today it is a
   modal with "Step 1 of 5" text.
   - `stepper`: Identity · Profile & hours · Modules · First staff · Review.
@@ -884,7 +884,7 @@ Everything that's out right now.
   `TenantMigrationExports.tsx`, `TenantMigrationPairings.tsx`, `TenantMigrationImports.tsx`,
   `TenantMigrationIdentityDecisions.tsx`.
 - **Job:** move one space from a managed deployment to a self-hosted one, irreversibly, in a safe order.
-- **reference:** mgr2's door-station card (strong, staged controls) + org5 danger zone.
+- **Yuyu:** mgr2's door-station card (strong, staged controls) + org5 danger zone.
 - **Layout:** `FlowLayout` (page) with a **visible, persistent stepper**, because the order is the safety
   model. Steps (with the side each one runs on):
   1. **Review disclosure** (source) — closure summary, identity list, acknowledgement checkbox,
@@ -905,7 +905,7 @@ Everything that's out right now.
 ### E5. Password recovery — `/reset-password`
 - **Route** `features/staff/ResetPasswordPage.tsx` → `auth/PasswordRecoveryFlow.tsx` (code flow),
   `auth/LegacyPasswordResetForm.tsx` (uid/token link), `auth/NewPasswordFields.tsx`.
-- **reference:** **auth2** (set new password), auth3 (confirm card).
+- **Yuyu:** **auth2** (set new password), auth3 (confirm card).
 - **Layout:** `CenteredCardLayout` per step (a 3-step flow rendered as a sequence of centred cards, not
   as `FlowLayout`):
   1. Request: icon tile (key) · "Reset your password" · "We'll email you a code." · Email · primary
@@ -933,7 +933,7 @@ All of these use the same card: logo top-left, icon tile, title, body, one prima
 | F2 | **MFA challenge / enrol** | `auth/MfaFlow.tsx` · login returns a challenge | shield · Enrol: "Set up two-step sign-in" + QR (white tile) + "Can't scan? Enter this key" (mono, Copy) · Verify: "Enter your 6-digit code" + "Use a recovery code instead" link · Codes: grid + Copy all / Download | **Verify** / "Back to sign in"; codes: **I've saved my codes** · footnote "This sign-in expires in {n} minutes." |
 | F3 | **Access denied (single-tenant)** | `staff/StaffAccessDenied.tsx` | lock · "You don't have access to {space}" · "This console is only for {space}'s team. Sign in with an account that's a member here." | **Sign out** / theme toggle moves to footer |
 | F4 | **Recovery quarantine** (superadmin) | `staff/RecoveryQuarantinePanel.tsx` | danger tile · eyebrow "Recovery quarantine" · "Staff access is paused" · reason · residual risk in a bordered danger box · confirm checkbox | **Lift quarantine** (danger pill, disabled until ticked) |
-| F5 | **Org invitation redeem** | `organizations/OrganizationInvitationRedeemPage.tsx` · `/organization-invitations/redeem/:token` | **auth4**: overlapping avatar tiles (org + you) · "You've been invited to join" · org name (if known) · scope pill · "This link works once." · Not signed in: Username or email + Password + **Sign in and continue** · Redeemed: success state "You're in" + **Open organizations** | footnote "Signed in as {user} · Switch account". **Owner decision:** today redemption fires automatically once signed in. reference asks for an explicit **Accept invite** click. Recommended (frontend-only: call the mutation on click), but it is a behaviour change. |
+| F5 | **Org invitation redeem** | `organizations/OrganizationInvitationRedeemPage.tsx` · `/organization-invitations/redeem/:token` | **auth4**: overlapping avatar tiles (org + you) · "You've been invited to join" · org name (if known) · scope pill · "This link works once." · Not signed in: Username or email + Password + **Sign in and continue** · Redeemed: success state "You're in" + **Open organizations** | footnote "Signed in as {user} · Switch account". **Owner decision:** today redemption fires automatically once signed in. Yuyu asks for an explicit **Accept invite** click. Recommended (frontend-only: call the mutation on click), but it is a behaviour change. |
 | F6 | **404** | `AppRoutes.NotFoundPage` | compass · eyebrow "404" · "We couldn't find that page" · "The link may be old, or the page moved." | **Go to home** (`/` or tenant home) / "Staff sign-in" (only on `/admin*`-like paths) |
 | F7 | **Session / route loading** | `StaffApp.StaffLoading`, `AppRoutes.RouteFallback` | logo + spinner · "Restoring your session…" / "Opening {space}…" | none. Keep these messages in a `role=status` region |
 | F8 | **No makerspace assigned** | `StaffTabContent` `Panel title="No makerspace"` | empty tile · "No space assigned yet" · "Ask a space manager to add you to their team." | **Sign out** |
@@ -950,7 +950,7 @@ the "space works" credit in the footer. The "Staff login" buttons in public head
 `/admin`; keep a footer link "Staff sign-in").
 
 ### G1. Landing directory (central mode) — `/`
-- **Component** `features/LandingPage.tsx`. **reference:** org1 (cards), att1 hero tone.
+- **Component** `features/LandingPage.tsx`. **Yuyu:** org1 (cards), att1 hero tone.
 - **Layout:** `PublicLayout` (deployment-level `PublicShell`: Space Works logo, "About", "Sign in").
   - `hero`: eyebrow "Space Works" · **one Unbounded accent line** "Find a space. Borrow the tool." ·
     intro "Public catalogues from community workshops, labs and makerspaces." · big search field "Search
@@ -970,7 +970,7 @@ the "space works" credit in the footer. The "Staff login" buttons in public head
   - `content`: two link cards "Browse spaces →" and "Staff sign-in →" (org1 card style).
 
 ### G3. Public machines — `/machines`, `/m/:slug/machines`
-- **Component** `inventory/PublicMachinesPage.tsx` (+ `MachineIntakeForm`). **reference:** org2 list → card
+- **Component** `inventory/PublicMachinesPage.tsx` (+ `MachineIntakeForm`). **Yuyu:** org2 list → card
   grid, att1 tone.
 - **Layout:** `PublicLayout`.
   - `hero`: eyebrow "Machines" · title "What you can use at {space}" · intro.
@@ -985,7 +985,7 @@ the "space works" credit in the footer. The "Staff login" buttons in public head
 
 ### G4. Public bookings — `/bookings`, `/m/:slug/bookings`
 - **Component** `bookings/PublicBookingsPage.tsx`, `PublicBookingForm.tsx`, `SpaceDiscoveryCalendar.tsx`,
-  `discovery/*`. **reference:** att1 (detail + sticky action card).
+  `discovery/*`. **Yuyu:** att1 (detail + sticky action card).
 - **Layout:** `PublicLayout` (list of spaces) → selecting a space opens **`PublicDetailLayout`** in place
   (`?space={token}`, no new route).
   - List: `hero` "Book a space at {space}" · `toolbar` = `DiscoveryControls` (search, kind chips,
@@ -998,8 +998,8 @@ the "space works" credit in the footer. The "Staff login" buttons in public head
   - Header nav "My bookings" → member Bookings tab (H2).
 - **States:** "No bookable spaces yet." · "No spaces match these filters." · not enabled / throttled as G3.
 
-### G5. Public events list — `/events`, `/m/:slug/events` (only if `ux-spec.md` leaves it out)
-- **Component** `inventory/PublicEventsPage.tsx`. **reference:** org2 rows from the attendee side.
+### G5. Public events list — `/events`, `/m/:slug/events` (only if `ux-yuyu-spec.md` leaves it out)
+- **Component** `inventory/PublicEventsPage.tsx`. **Yuyu:** org2 rows from the attendee side.
 - **Layout:** `PublicLayout`: `hero` "What's on at {space}" · `toolbar` discovery controls (list /
   calendar) · **date-chip rows** (title, time · place, price, availability pill "6 spots left" /
   "Waitlist") → event page (core).
@@ -1009,7 +1009,7 @@ the "space works" credit in the footer. The "Staff login" buttons in public head
 - **Component** `printing/PublicPrintRequestPage.tsx`, `PublicPrintRequestForm.tsx`,
   `PublicPrintRequestParts.tsx` (`StatusResult` stepper), `PublicPrintRequestPanels.tsx`.
 - **Job:** send a 3D-print job with files, then track it.
-- **reference:** att1 (main + sticky card), att9 (confirmation).
+- **Yuyu:** att1 (main + sticky card), att9 (confirmation).
 - **Layout:** `PublicDetailLayout`.
   - `hero`: eyebrow "3D printing" · title "Send a print job to {space}".
   - `main`: the form in three titled groups. **Your print** (Title, Project brief) · **Material**
@@ -1026,7 +1026,7 @@ the "space works" credit in the footer. The "Staff login" buttons in public head
   again in a moment." · upload progress: inline "Uploading 2 of 3 files…".
 
 ### G7. Public stats — `/stats`, `/m/:slug/stats`
-- **Component** `stats/PublicStatsPage.tsx`, `StatsSections.tsx`, `StatsParts.tsx`. **reference:** org2 stat
+- **Component** `stats/PublicStatsPage.tsx`, `StatsSections.tsx`, `StatsParts.tsx`. **Yuyu:** org2 stat
   cards.
 - **Layout:** `PublicLayout` with a `DashboardLayout`-style body: `hero` eyebrow "Live stats" · title
   "{space} in numbers" · "Updated live from the public catalogue." · sections **Printing** (stat cards:
@@ -1037,7 +1037,7 @@ the "space works" credit in the footer. The "Staff login" buttons in public head
   fill in as people borrow and print."
 
 ### G8. Public organization — `/o/:organizationSlug`
-- **Component** `organizations/PublicOrganizationPage.tsx`. **reference:** org3 preview card → full page;
+- **Component** `organizations/PublicOrganizationPage.tsx`. **Yuyu:** org3 preview card → full page;
   att1.
 - **Layout:** `PublicLayout`: `hero` avatar tile · org name · description · "Visit website ↗" (outline) ·
   `content` "Upcoming events across spaces": **date-chip rows** (title, "{host space} · time · place",
@@ -1047,7 +1047,7 @@ the "space works" credit in the footer. The "Staff login" buttons in public head
   with Try again.
 
 ### G9. Event feedback — `/events/:token/feedback`
-- **Component** `inventory/PublicEventFeedbackPage.tsx` (+ `forms/CustomFormFields`). **reference:** auth3
+- **Component** `inventory/PublicEventFeedbackPage.tsx` (+ `forms/CustomFormFields`). **Yuyu:** auth3
   (centred, focused), att9.
 - **Layout:** `PublicLayout`, narrow single column (form) → `CenteredCardLayout` for the end states.
   - `hero`: eyebrow = event title · title = survey title · helper: anonymous "We don't store who sent
@@ -1062,7 +1062,7 @@ the "space works" credit in the footer. The "Staff login" buttons in public head
 - **Component** `inventory/PublicSelfCheckoutPage.tsx`, `PublicEvidenceUpload.tsx`,
   `PublicToolScanPanel.tsx`, `PublicToolResultCard.tsx`, `KitChecklist`.
 - **Job:** on a phone at the shelf: borrow or return a QR-tagged tool with photo proof.
-- **reference:** att11 (scan + big result), auth3 (one thing per screen).
+- **Yuyu:** att11 (scan + big result), auth3 (one thing per screen).
 - **Layout:** `PublicLayout` (minimal `PublicShell`), with a **`FlowLayout` body** that is mobile-first.
   - Top: segmented control **Borrow** · **Return** (replaces "Use (check out)" / "Return" tabs).
   - Borrow steps: 1 **Photo** ("Take a photo of the tool" camera/upload tile, preview) → 2 **Scan**
@@ -1077,7 +1077,7 @@ the "space works" credit in the footer. The "Staff login" buttons in public head
   inline danger callout on the Confirm step with the server message.
 
 ### G11. Archived payments — `/member/archived`
-- **Component** `members/ArchivedPayments.tsx`. **reference:** auth6 calm list.
+- **Component** `members/ArchivedPayments.tsx`. **Yuyu:** auth6 calm list.
 - **Layout:** `PublicLayout` (deployment-level shell) narrow column: `hero` eyebrow "Closed spaces" ·
   "Payments and receipts" · per-space sections (space name header, charge rows with amount + status pill
   + receipt download).
@@ -1088,19 +1088,19 @@ the "space works" credit in the footer. The "Staff login" buttons in public head
 
 ## 9. Batch H — Member area tab bodies (member `AppShell`)
 
-The member shell, its nav and the **Overview** tab are in `ux-spec.md`. These are the bodies of the
+The member shell, its nav and the **Overview** tab are in `ux-yuyu-spec.md`. These are the bodies of the
 other `memberTabs()` (gating unchanged). Each tab body uses `ListLayout` slots without the shell header
 repeating the space name.
 
 ### H1. Loans — `/member/loans`
 - **Component** `MemberActivity.tsx` (section `loans`), `MemberDashboardSections.tsx`
-  (`MemberHistory`), `MemberLoanRenew.tsx`. **reference:** org2 tabs + rows.
+  (`MemberHistory`), `MemberLoanRenew.tsx`. **Yuyu:** org2 tabs + rows.
 - `title` "Loans" · `tabs` **Out now** · **History** · rows: item, "Due Fri" / "Overdue" pill, inline
   **"Renew"** when allowed, history rows with returned date.
 - Empty: "Nothing out right now. Browse the catalogue to borrow something." + "Browse catalogue".
 
 ### H2. Bookings — `/member/bookings`
-- **Component** `bookings/MyBookings.tsx`, `BookingReschedule.tsx`. **reference:** org2 date-chip rows.
+- **Component** `bookings/MyBookings.tsx`, `BookingReschedule.tsx`. **Yuyu:** org2 date-chip rows.
 - `title` "Bookings" · `actions` primary **"Book a space"** (→ public bookings) · `tabs` Upcoming · Past
   (replaces the two `aria-pressed` buttons) · **date-chip rows** (space, time range, status pill) · inline
   "Move" · `[...]` "Cancel booking…" (inline confirm stays, restyled).
@@ -1108,7 +1108,7 @@ repeating the space name.
 
 ### H3. Events — `/member/events` (+ partner events)
 - **Component** `MemberActivity` (events), `MemberCalendarActions`, `MemberEventCancel`,
-  `MemberEventFeedback`, `PartnerEvents.tsx`. **reference:** att9 ticket, org2 rows.
+  `MemberEventFeedback`, `PartnerEvents.tsx`. **Yuyu:** att9 ticket, org2 rows.
 - `title` "Events" · `tabs` **Going** · **Past** · **Partner events** (only when `PartnerEvents` has rows).
 - Going rows: date chip · title · time · place · inline "Ticket" (opens an att9 ticket card dialog with
   QR, "Add to calendar", "Can't make it? Cancel").
@@ -1120,7 +1120,7 @@ repeating the space name.
 
 ### H4. Payments — `/member/payments`
 - **Component** `MemberPayments.tsx`, `MemberDashboardSections` (`MemberDues`), `payments/PaymentDocuments`
-  (member audience). **reference:** org2 stats + rows.
+  (member audience). **Yuyu:** org2 stats + rows.
 - `title` "Payments" · `stats`: Outstanding (per currency) `[loaded]` · Membership fee `[loaded]` ·
   rows: what, due, amount, status pill, inline **"Pay now"** (online rail) or muted "Pay at the desk" ·
   secondary outline header action "Receipts" (drawer with documents).
@@ -1128,7 +1128,7 @@ repeating the space name.
 
 ### H5. Inbox — `/member/inbox`
 - **Component** `notifications/MemberNotifications.tsx`, `AnnouncementFeed.tsx`, `PreferenceCentre.tsx`,
-  member notices. **reference:** activity rail.
+  member notices. **Yuyu:** activity rail.
 - `title` "Inbox" · `tabs` **Notices** · **Announcements** · **Preferences** (Preferences uses
   `SettingsLayout` rows: channel switches, digest frequency, Save).
 - Empty: "No notices need your attention." / "No announcements yet."
@@ -1164,7 +1164,7 @@ repeating the space name.
 ### I1. Event check-in station — `/event-check-in/:stationToken`, `/m/:slug/event-check-in/:stationToken`
 - **Component** `events/EventCheckInStationPage.tsx` + `staff/OfflineCheckInOperator.tsx`
   (`eventCheckInOfflineStore`).
-- **reference:** **att10 (PIN pad) + att11 (door scanner) directly.**
+- **Yuyu:** **att10 (PIN pad) + att11 (door scanner) directly.**
 - **Layout:** `KioskLayout`, two states:
   1. **Locked:** `stage` left = space avatar tile, "{event} · Door check-in", big title "Enter the station
      PIN", body "Ask an organiser for the 8-digit PIN. It unlocks check-in on this device only.", **8 PIN
@@ -1194,7 +1194,7 @@ repeating the space name.
 ### I3. Scanner page — `/scanner`
 - **Component** `kiosk/ScannerPage.tsx`.
 - **Job:** a staff device that only resolves QR codes.
-- **reference:** att11.
+- **Yuyu:** att11.
 - **Layout:** `KioskLayout`: `station bar` "Scanner" + signed-in staff chip · `stage` = **ScanWorkbench**
   (§11.2: camera + paste field + Resolve) · `side` = **resolved-object card** (the same card as the staff
   Scanner tab: "Box B-04 · 12 items", "Asset · Multimeter #3 · Out", allowed actions as labelled
@@ -1280,7 +1280,7 @@ No screen in this doc needs a new page layout. These are the places where the cl
 ### J3. Setup checklist
 - **Component** `staff/SetupChecklist.tsx` (`setupChecklistState.ts`). Shown on Dashboard to space
   managers.
-- **Change (coordinate with the core Dashboard spec):** a **reference callout card** at the top of Home:
+- **Change (coordinate with the core Dashboard spec):** a **Yuyu callout card** at the top of Home:
   "**Finish setting up {space}** — 3 of 5 done" + progress bar + the next undone step as the action link
   ("Set opening hours →"). It expands to the full list (Done ✓ / To do rows linking to their tabs) and a
   "Hide" control that persists per browser (unchanged).
@@ -1310,7 +1310,7 @@ No screen in this doc needs a new page layout. These are the places where the cl
 | Accountability (4 stacked panels) | → tabs | — | — |
 | Member cards (4 stacked sections) | → tabs | — | — |
 | QR tools (3 stacked forms) | → batch list + batch detail with segmented "Add labels" | — | — |
-| Organizations select + pager | → org cards index + org settings sub-nav | reference organiser workspace | — |
+| Organizations select + pager | → org cards index + org settings sub-nav | Yuyu organiser workspace | — |
 | Dead code | `panels/EmailLogPanel.tsx` (exported, not routed) | — | separate cleanup |
 
 ---
@@ -1325,37 +1325,37 @@ No screen in this doc needs a new page layout. These are the places where the cl
 |---|---|---|---|---|---|
 | `platform-dashboard` | Platform dashboard | `PlatformDashboardPanel` | longtail | D1 | DashboardLayout |
 | `usage` | Usage & limits | `TenantUsagePanel` | longtail | D2 | DashboardLayout |
-| `dashboard` | Dashboard | `panels/DashboardPanel` | ux-spec | Staff Home | DashboardLayout |
+| `dashboard` | Dashboard | `panels/DashboardPanel` | ux-yuyu-spec | Staff Home | DashboardLayout |
 | `notifications` | Notifications | `panels/NotificationInbox` | longtail | A7 | ListLayout |
-| `requests` | Requests | `panels/RequestsPanel` | ux-spec | Requests | ListLayout / DetailLayout |
-| `direct` | Direct handout | `DirectLoans` | ux-spec | Direct handout | (core) |
+| `requests` | Requests | `panels/RequestsPanel` | ux-yuyu-spec | Requests | ListLayout / DetailLayout |
+| `direct` | Direct handout | `DirectLoans` | ux-yuyu-spec | Direct handout | (core) |
 | `handover` | Job handover | `panels/machine/HandoverConsole` | longtail | A17 | ListLayout |
-| `inventory` | Inventory | `panels/Inventory` | ux-spec | Inventory | ListLayout / DetailLayout |
+| `inventory` | Inventory | `panels/Inventory` | ux-yuyu-spec | Inventory | ListLayout / DetailLayout |
 | `needsfix` | To-be-fixed | `panels/NeedsFixShelf` | longtail | A6 | ListLayout |
 | `categories` | Categories | `panels/Categories` | longtail | A15 | ListLayout |
-| `machines` | Machines | `panels/MachinesPanel` | ux-spec (+ longtail B5 for service-console tab bodies) | Machines | (core) DetailLayout |
-| `events` | Events | `EventsPanel` | ux-spec (+ longtail §13 note: collaboration inbox → callout) | Events | (core) |
+| `machines` | Machines | `panels/MachinesPanel` | ux-yuyu-spec (+ longtail B5 for service-console tab bodies) | Machines | (core) DetailLayout |
+| `events` | Events | `EventsPanel` | ux-yuyu-spec (+ longtail §13 note: collaboration inbox → callout) | Events | (core) |
 | `organized` | Organized events | `panels/OrganizedEventsPanel` | longtail | A11 | ListLayout |
-| `bookings` | Bookings | `BookingsPanel` | ux-spec | Bookings | (core) |
-| `members` | Members | `MembersPanel` | ux-spec | Members | (core) |
+| `bookings` | Bookings | `BookingsPanel` | ux-yuyu-spec | Bookings | (core) |
+| `members` | Members | `MembersPanel` | ux-yuyu-spec | Members | (core) |
 | `cards` | Member cards | `panels/MemberCardsPanel` | longtail | A12 | ListLayout |
 | `tobuy` | To Buy | `panels/ProcurementPanel` | longtail | A5 | ListLayout |
 | `transfers` | Transfers | `panels/StockTransferPanel` | longtail | A3 | ListLayout + FlowLayout(dialog) |
 | `stocktake` | Stocktake | `panels/StocktakeSessionPanel` | longtail | A4, B2 | ListLayout / DetailLayout |
 | `containers` | Containers | `panels/ContainersPanel` | longtail | A16, B3 | ListLayout / DetailLayout(drawer) |
 | `ledger` | Ledger | `panels/Ledger` | longtail | A2 | ListLayout |
-| `reports` | Reports | `panels/OperationsReports` | ux-spec | Reports | (core) |
+| `reports` | Reports | `panels/OperationsReports` | ux-yuyu-spec | Reports | (core) |
 | `accountability` | Accountability | `panels/AccountabilityPanel` | longtail | A9 | ListLayout |
 | `warranty` | Warranties | `panels/WarrantyPanel` | longtail | A10 | ListLayout |
 | `bulk` | Bulk import | `panels/BulkImport` | longtail | E1 | FlowLayout |
 | `qr` | QR Tools | `panels/QrTools` | longtail | E2 | ListLayout / DetailLayout |
 | `scanner` | Scanner | `panels/ScannerPanel` | longtail | §10 "Staff Scanner tab" | ListLayout + ScanWorkbench |
 | `api` | API access | `ApiClientsPanel` | longtail | C1 | SettingsLayout |
-| `settings` | Settings | `MakerspaceSettingsPanel` | ux-spec | Makerspace settings | (core) SettingsLayout |
+| `settings` | Settings | `MakerspaceSettingsPanel` | ux-yuyu-spec | Makerspace settings | (core) SettingsLayout |
 | `emailtemplates` | Email templates | `panels/EmailTemplatesPanel` | longtail | A18, B1 | ListLayout / DetailLayout |
-| `users` | Users | `panels/Users` | ux-spec (+ longtail E3 for Create makerspace) | Staff & roles | (core) |
+| `users` | Users | `panels/Users` | ux-yuyu-spec (+ longtail E3 for Create makerspace) | Staff & roles | (core) |
 | `platform` | Platform settings | `PlatformEmail/SocialAuth/StripeConnect` | longtail | C3 | SettingsLayout |
-| `audit` | Audit log | `panels/AuditLog` | ux-spec | Audit log | (core) |
+| `audit` | Audit log | `panels/AuditLog` | ux-yuyu-spec | Audit log | (core) |
 | `devices` | Devices | `panels/DevicesPanel` | longtail | A13 | ListLayout |
 | `email-logs` | Delivery logs | `panels/DeliveryLogPanel` | longtail | A8 | ListLayout |
 | `payments` | Payments | `PaymentsPanel` | longtail | A1 | ListLayout |
@@ -1366,47 +1366,47 @@ No screen in this doc needs a new page layout. These are the places where the cl
 | `backups` | Backup & restore | `BackupRestorePanel` | longtail | C4 | SettingsLayout |
 | `migration` | Tenant migration | `TenantMigrationPanel` | longtail | E4 | FlowLayout |
 
-Totals: 12 tabs in `ux-spec.md`, 30 in this doc, 42 in all.
+Totals: 12 tabs in `ux-yuyu-spec.md`, 30 in this doc, 42 in all.
 
 ### 14.2 Routes (`AppRoutes.tsx`, both modes)
 
 | Route (single · central) | Component | Spec | Section | Layout |
 |---|---|---|---|---|
-| `/` · `/m/:slug` → `FamilyHome` → inventory/events/bookings/machines/membership | per `publicHome()` | ux-spec (catalogue, event, member home), longtail (machines G3, bookings G4) | — | PublicLayout |
+| `/` · `/m/:slug` → `FamilyHome` → inventory/events/bookings/machines/membership | per `publicHome()` | ux-yuyu-spec (catalogue, event, member home), longtail (machines G3, bookings G4) | — | PublicLayout |
 | `FamilyHome` error / "No public programme" | `AppRoutes.FamilyHome` | longtail | F10 | PublicLayout |
 | `/` (central) | `LandingPage` | longtail | G1 | PublicLayout |
 | `/about` | `AboutPage` | longtail | G2 | PublicLayout |
 | `/o/:organizationSlug` | `PublicOrganizationPage` | longtail | G8 | PublicLayout |
-| `/items/:itemId` · `/m/:slug/items/:itemId` | `PublicItemPage` | ux-spec | Public item | PublicDetailLayout |
+| `/items/:itemId` · `/m/:slug/items/:itemId` | `PublicItemPage` | ux-yuyu-spec | Public item | PublicDetailLayout |
 | `/checkout` · `/m/:slug/checkout` | `PublicSelfCheckoutPage` | longtail | G10 | PublicLayout + FlowLayout body |
-| `/events` · `/m/:slug/events` | `PublicEventsPage` | ux-spec if covered, else longtail | G5 | PublicLayout |
-| `/events/:publicToken` · `/m/:slug/events/:publicToken` | `PublicEventDetailPage` | ux-spec | Public event page | PublicDetailLayout |
+| `/events` · `/m/:slug/events` | `PublicEventsPage` | ux-yuyu-spec if covered, else longtail | G5 | PublicLayout |
+| `/events/:publicToken` · `/m/:slug/events/:publicToken` | `PublicEventDetailPage` | ux-yuyu-spec | Public event page | PublicDetailLayout |
 | `/events/:publicToken/feedback` · `/m/:slug/…/feedback` | `PublicEventFeedbackPage` | longtail | G9 | PublicLayout / CenteredCardLayout |
 | `/event-check-in/:stationToken` · `/m/:slug/event-check-in/:stationToken` | `EventCheckInStationPage` | longtail | I1 | KioskLayout |
 | `/machines` · `/m/:slug/machines` | `PublicMachinesPage` | longtail | G3 | PublicLayout |
 | `/bookings` · `/m/:slug/bookings` | `PublicBookingsPage` | longtail | G4 | PublicLayout / PublicDetailLayout |
 | `/print` · `/m/:slug/print` | `PublicPrintRequestPage` | longtail | G6 | PublicDetailLayout |
-| `/member` · `/m/:slug/member` (overview, sign-in) | `MemberArea` | ux-spec | Member home / Member sign-in | AppShell / AuthLayout |
+| `/member` · `/m/:slug/member` (overview, sign-in) | `MemberArea` | ux-yuyu-spec | Member home / Member sign-in | AppShell / AuthLayout |
 | `/member/:memberTab` · `/m/:slug/member/:memberTab` — `loans` | `MemberArea` | longtail | H1 | AppShell + ListLayout |
 | — `bookings` | `MemberArea` → `MyBookings` | longtail | H2 | AppShell + ListLayout |
 | — `events` | `MemberArea` → activity + `PartnerEvents` | longtail | H3 | AppShell + ListLayout |
 | — `payments` | `MemberArea` → `MemberPayments` | longtail | H4 | AppShell + ListLayout |
 | — `inbox` | `MemberArea` → notifications | longtail | H5 | AppShell + ListLayout / SettingsLayout |
 | — `account-portal` | `MemberArea` → profile, card, directory, referrals | longtail | H6 | AppShell + SettingsLayout |
-| — `overview` | `MemberArea` | ux-spec | Member home | AppShell + DashboardLayout |
+| — `overview` | `MemberArea` | ux-yuyu-spec | Member home | AppShell + DashboardLayout |
 | `/member/account` · `/m/:slug/member/account` | `MemberAccountPage` | longtail | C6 | AppShell + SettingsLayout |
 | `/member/archived` | `ArchivedPayments` | longtail | G11 | PublicLayout |
 | `/stats` · `/m/:slug/stats` | `PublicStatsPage` | longtail | G7 | PublicLayout |
 | `/reset-password` | `ResetPasswordPage` | longtail | E5 | CenteredCardLayout |
 | `/mfa` | `MfaAccountPage` | longtail | C7 | CenteredCardLayout |
-| `/staff-invitations/accept` | `StaffInvitationAcceptPage` | ux-spec | Invitation accept | CenteredCardLayout |
+| `/staff-invitations/accept` | `StaffInvitationAcceptPage` | ux-yuyu-spec | Invitation accept | CenteredCardLayout |
 | `/organization-invitations/redeem/:token` | `OrganizationInvitationRedeemPage` | longtail | F5 | CenteredCardLayout |
-| `/admin/*` · `/m/:slug/admin/*` (sign-in) | `StaffApp` → `LoginPanel` | ux-spec | Staff sign-in | AuthLayout |
+| `/admin/*` · `/m/:slug/admin/*` (sign-in) | `StaffApp` → `LoginPanel` | ux-yuyu-spec | Staff sign-in | AuthLayout |
 | `/admin/*` gates: MFA, change password, quarantine, access denied, picker, loading | `StaffApp` | longtail | F1–F4, F7, D4 | CenteredCardLayout / DashboardLayout |
 | `/admin/{tab}` | `StaffWorkspace` → tab | per 14.1 | — | AppShell + per 14.1 |
 | `/guest-admin/*` | `StaffApp guestOnly` | same as `/admin/*` (narrow tab set, same layouts) | — | — |
 | `/scanner` | `ScannerPage` | longtail | I3 | KioskLayout |
-| `/kiosk/:stationToken` · `/m/:slug/kiosk/:stationToken` | `KioskStationPage` | ux-spec | Kiosk station | KioskLayout |
+| `/kiosk/:stationToken` · `/m/:slug/kiosk/:stationToken` | `KioskStationPage` | ux-yuyu-spec | Kiosk station | KioskLayout |
 | `/kiosk/:slug` (central) | `PublicDeskKioskPage` | longtail | I2 | KioskLayout |
 | `/superadmin` (central) | `SuperadminPage` → `StaffApp` | same as `/admin/*` (D4 picker) | D4 | — |
 | `*` | `NotFoundPage` | longtail | F6 | CenteredCardLayout |
@@ -1424,8 +1424,8 @@ Totals: 12 tabs in `ux-spec.md`, 30 in this doc, 42 in all.
 | Panel error boundary | `StaffPanelErrorBoundary` | longtail | F9 |
 | Payment dialogs | `SettlementDialog`, `PaymentRefundDialog`, `RefundReceiptAmendDialog` | longtail | A1, J4 |
 | Payment reconcile actions (embedded in bookings/events/admissions) | `PaymentReconcileActions` | host screen's spec (core); restyle per A1 dialogs | A1 |
-| Event collaboration inboxes (inside Events) | `CollaborationInbox`, `EventSeriesCollaborationInbox` | ux-spec Events page; recommended as a yellow callout "{n} spaces invited you to co-host" → review list | §13 |
-| Integration health (inside Settings) | `IntegrationHealthPanel` | ux-spec (Settings) | — |
+| Event collaboration inboxes (inside Events) | `CollaborationInbox`, `EventSeriesCollaborationInbox` | ux-yuyu-spec Events page; recommended as a yellow callout "{n} spaces invited you to co-host" → review list | §13 |
+| Integration health (inside Settings) | `IntegrationHealthPanel` | ux-yuyu-spec (Settings) | — |
 | Machine service / printer consoles (inside machine type) | `MachineServiceConsole`, `PrinterServiceConsole` | longtail | B5 |
 
 ---

@@ -1,18 +1,18 @@
-# reference UX patterns → SpaceWorks screen spec
+# Yuyu UX patterns → SpaceWorks screen spec
 
 Status: research input for `docs/design-revamp/PLAN.md` Phases 0 and 2–6. No app code is changed here.
 Scope: layout, information architecture, interaction, states and copy structure. Colour, type
 families, logo and icons come from the brand spec (PLAN §3.1–3.3). Where this document says
-"primary fill" it means whichever token wins PLAN open question 3 (teal or Deep Ink). reference uses a
+"primary fill" it means whichever token wins PLAN open question 3 (teal or Deep Ink). Yuyu uses a
 near-black pill.
 
-Sources: 28 reference screens in 4 boards, each cropped one per file into the scratchpad
+Sources: 28 Yuyu screens in 4 boards, each cropped one per file into the scratchpad
 `crops/` folder (`full-org1..6`, `full-mgr1..4`, `full-auth1..7`, `full-att1..8`,
 `top-att3..11`). All app screens are **1280 px wide** (the attendee ticket is 390 px), so every
 measurement below is a native pixel count read off the crop. Treat values as ±2 px. SpaceWorks
 components were read in this worktree at `d3e5ed29`.
 
-| Ref | reference screen | Board |
+| Ref | Yuyu screen | Board |
 |---|---|---|
 | Y1 | Organiser home ("Good morning, Priya", org cards, Coming up, Recent activity) | Organiser workspace |
 | Y2 | Org Events list (callout, 4 stat cards, tabs, date-chip rows, activity rail) | Organiser workspace |
@@ -73,7 +73,7 @@ components were read in this worktree at `d3e5ed29`.
 
 ```
 ┌──────────── 240–300 ────────────┬───────────────────── main ─────────────────────┐
-│ [Y] reference                         │  36px gutter                                   │
+│ [Y] Yuyu                         │  36px gutter                                   │
 │ ┌─────────────────────────────┐ │                                                │
 │ │[SD] Screenshot Demo Coll… ⇕ │ │                                                │
 │ │     Owner                    │ │                                                │
@@ -109,7 +109,7 @@ components were read in this worktree at `d3e5ed29`.
 - **Bottom block,** pinned with `margin-top:auto`: a "View public page ↗" text link (14), a user
   chip (24 px initials circle plus name; it becomes a filled pill while on Account), then
   "Sign out" as plain text. **There is no theme toggle and no help item in the sidebar.**
-- **Interaction:** the sidebar never scrolls on reference because it has 4 items. SpaceWorks needs
+- **Interaction:** the sidebar never scrolls on Yuyu because it has 4 items. SpaceWorks needs
   its own scroll region (see §2). The active state comes from the route.
 
 ### P2. Page header (Y1, Y2, Y4–Y6, Y16)
@@ -151,7 +151,7 @@ Overview  Guests  Page & programme  Registration form  Invites  Check-in  Feedba
   semibold with a 2 px ink underline as wide as the label plus its padding. Inactive tabs are
   muted. A 1 px hairline runs **full bleed across the main area**, not just the content column.
   Tabs are links (URL-addressable). With 8 tabs on 944 px they fit on one line; below that they
-  must scroll horizontally with edge fades (reference does not show this).
+  must scroll horizontally with edge fades (Yuyu does not show this).
 - Series uses a **coloured icon tile** (a recurrence glyph on a purple 52 px tile) instead of a
   date chip. **Generalisation: every detail page has an identity tile; a date where one exists,
   otherwise a type icon or initials.**
@@ -164,7 +164,7 @@ Overview  Guests  Page & programme  Registration form  Invites  Check-in  Feedba
   - **Progress:** a 4 px track (8 px on check-in) with the fill in the accent colour, 12 px
     below the number.
   - **Wide stat:** spans 1.5–2 columns (Y8 "Checked in 2 of 5 · 40%") with a callout beside it.
-- **Not clickable** in reference. **SpaceWorks deviation:** stat cards that represent a queue are
+- **Not clickable** in Yuyu. **SpaceWorks deviation:** stat cards that represent a queue are
   links to the filtered list (the dashboard does this today). Keep the card flat but give it a
   hover border and focus ring.
 - Zeros are shown as "0", not hidden (Y7 "Waiting for approval 0").
@@ -301,7 +301,7 @@ Shown at the top of your public    [ Screenshot Demo Collective          ]
 page.                              Description
                                    [ A demo organisation used to…        ]
 ───────────────────────────────────────────────────────────────── hairline
-Web address                        [ reference.idliapps.com/  shots-org   Copy ]  (read-only: grey fill)
+Web address                        [ yuyu.idliapps.com/  shots-org   Copy ]  (read-only: grey fill)
 Set when the organisation was created.
 ─────────────────────────────────────────────────────────────────
                                               ( Discard ) [■ Save changes ]
@@ -343,7 +343,7 @@ Set when the organisation was created.
 
 - Form column 636 wide and preview column 300, gap 32. The preview is labelled with an eyebrow
   ("PUBLIC PAGE PREVIEW") and updates as you type.
-- Prefixed URL input: a grey static prefix segment ("reference.idliapps.com/") joined to an editable
+- Prefixed URL input: a grey static prefix segment ("yuyu.idliapps.com/") joined to an editable
   segment, with an **inline availability check** underneath ("✓ Available" at 13 green).
 - Optional fields are marked inline ("Logo Optional", "Optional · shown on your public page").
   Required fields carry no asterisk.
@@ -388,7 +388,7 @@ Set when the organisation was created.
 
 ```
 ┌──────────────── 640 ────────────────┬──────────── 604 (16 inset) ────────────┐
-│ [Y] reference                             │  Free events.                           │
+│ [Y] Yuyu                             │  Free events.                           │
 │                                      │  Your community's                       │
 │        Welcome back.        (44 bold)│  data stays yours.        (40 bold)     │
 │        [ Sign in | Create account ]  │                                         │
@@ -459,7 +459,7 @@ Schedule ............................ Live schedule →
 60 min   Asha Menon
 Speakers (2-col cards) · Partners (2-col) · Venue (map | text, Get directions ↗) · FAQ (disclosure)
 ──────────────────────────────────────────────────────────────────────────────────
-[Y] Free event, powered by reference                        Privacy · Terms · Hosted on Idlistack
+[Y] Free event, powered by Yuyu                        Privacy · Terms · Hosted on Idlistack
 ```
 
 - Container 1110 with 84 px gutters at 1280. Main column 545 and sticky card 318, gap 66.
@@ -524,11 +524,11 @@ Speakers (2-col cards) · Partners (2-col) · Venue (map | text, Get directions 
 
 ### P30. Undo and confirmation behaviour (Y8, Y28)
 
-- **Inline Undo** appears in the "Recent check-ins" rows and on the station result card. reference
+- **Inline Undo** appears in the "Recent check-ins" rows and on the station result card. Yuyu
   shows no toast and no "Are you sure?" for check-ins. Reversible high-frequency actions use
   **do it now, offer Undo in place.**
 - Irreversible actions use a **danger card plus a "…" button** that leads to a confirmation.
-- **Toasts do not appear on any reference board.** The closest artefact is the floating
+- **Toasts do not appear on any Yuyu board.** The closest artefact is the floating
   "✓ Meera checked in" chip on the auth hero, which is a reasonable visual model. SpaceWorks
   already has `components/ui/toastStore.ts` with an awaited `undo` compensation, used by
   inventory archive. **Spec:** toast = bottom-centre (mobile) or bottom-left of the main area
@@ -538,11 +538,11 @@ Speakers (2-col cards) · Partners (2-col) · Venue (map | text, Get directions 
 
 ### 1.31 Interaction model summary
 
-| Concern | reference rule |
+| Concern | Yuyu rule |
 |---|---|
 | Primary action | One per page header, one per sticky card, one per callout. Never points at the current screen. |
 | Secondary | Outline pill beside the primary; everything else is a text link or a row menu. |
-| Where counts live | Stat cards (overview numbers), tab labels (queue sizes), row right slots ("5 / 120"), header meta, the kiosk header. **Never** in the sidebar on reference (SpaceWorks keeps its unread count there, see §2). |
+| Where counts live | Stat cards (overview numbers), tab labels (queue sizes), row right slots ("5 / 120"), header meta, the kiosk header. **Never** in the sidebar on Yuyu (SpaceWorks keeps its unread count there, see §2). |
 | Progressive disclosure | Sub-nav only under the active parent; accordions for reference; the camera off until "Start scanning"; the live preview beside the create form; optional fields labelled rather than hidden. |
 | Inline vs menu | The **next step** is inline (pill or link in the row); rare or destructive actions go in "⋯" / "—" menus; destructive-irreversible actions go in the danger zone. |
 | Navigation | Back link on detail pages; breadcrumb only on public sub-pages; tabs are URLs. |
@@ -606,7 +606,7 @@ type PageHeaderProps = { eyebrow?: string; title: string; subtitle?: string; met
 Breakpoints used below: **375** (phone), **768** (tablet portrait), **1280** (desktop). Gutters
 16 / 24 / 36. Content max-width 1120 (Inventory/Reports/Audit may opt into `wide` = full).
 
-### L1. `AppShell` — sidebar + content (reference Y1–Y10, Y16–Y17)
+### L1. `AppShell` — sidebar + content (Yuyu Y1–Y10, Y16–Y17)
 
 ```ts
 AppShell({
@@ -861,7 +861,7 @@ All targets ≥56 px, text ≥18, no hover-only affordances. Used by: kiosk hand
 
 ### 1A.11 Pattern → screen-type → layout map (shared with `ux-screens-longtail.md`)
 
-| Screen type | Layout | reference source | Patterns it composes | SpaceWorks screens (examples) |
+| Screen type | Layout | Yuyu source | Patterns it composes | SpaceWorks screens (examples) |
 |---|---|---|---|---|
 | Dashboard home | L1 + **L2 DashboardLayout** | Y1, Y2 | P2 eyebrow header, P5 banner, P4 stats, P6 rows, P12 rail | Staff Home, member Home, organizations home, Platform dashboard |
 | List + stats | L1 + **L3 ListLayout** | Y2, Y4 | P2, P5, P4, P8 tabs, P6 rows or P14/§5.1 table, P17 empty, P30 undo | Requests, Inventory, Members, Events, Bookings, Audit, Payments, every long-tail table tab |
@@ -932,14 +932,14 @@ quotes are proposed display labels; the key and URL do not change.
 
 | # | Section header | Items (key → label) | Notes |
 |---|---|---|---|
-| 0 | *(no header)* | **dashboard → "Home"**, **notifications → "Inbox"** (unread badge) | reference "Home" pattern. The unread count stays in the accessible name ("Inbox, 3 unread"). |
+| 0 | *(no header)* | **dashboard → "Home"**, **notifications → "Inbox"** (unread badge) | Yuyu "Home" pattern. The unread count stays in the accessible name ("Inbox, 3 unread"). |
 | 1 | Front desk | **requests → "Requests"** (count badge: pending + ready), **direct → "Direct handout"**, **handover → "Job pickups"**, **payments → "Payments"** | The daily loop. Payments sits here because `record_payment` is a handout action and front-desk staff take money at the desk. |
 | 2 | Inventory | **inventory → "Items"**, **needsfix → "Repair shelf"**, **stocktake → "Stocktake"**, **transfers → "Transfers"**, **tobuy → "To buy"**; *categories → "Categories"*, *containers → "Containers"*, *ledger → "Stock ledger"*, *warranty → "Warranties"*, *qr → "QR tools"*, *scanner → "Scanner"*, *bulk → "Bulk import"* | Page `h1` stays "Inventory" (the test pin is the panel heading, not the nav label). "Ledger" gains "Stock" so it is not mistaken for money. |
-| 3 | Machines | **machines → "Machines"** + dynamic sub-items per machine type when active, **devices → "Devices"** | Sub-items come from the machine-type list already fetched by `MachinesPanel`, linked with `staffTabPath("machines", …, machineTypeSegment(type))`. This uses the existing `TABS_WITH_SUBPATHS` route, so it is the reference "Settings › General" sub-nav pattern on an existing route. |
+| 3 | Machines | **machines → "Machines"** + dynamic sub-items per machine type when active, **devices → "Devices"** | Sub-items come from the machine-type list already fetched by `MachinesPanel`, linked with `staffTabPath("machines", …, machineTypeSegment(type))`. This uses the existing `TABS_WITH_SUBPATHS` route, so it is the Yuyu "Settings › General" sub-nav pattern on an existing route. |
 | 4 | Community | **members → "Members"**, **events → "Events"**, **bookings → "Bookings"**, *cards → "Member cards"* | |
 | 5 | Insights | **reports → "Reports"**, **audit → "Audit log"**, *accountability → "Accountability"* | |
 | 6 | Organizations | **organizations → "Organizations"**, **organized → "Organized events"**, **organization-analytics → "Org analytics"** | All three are cross-venue. The section shows a muted caption "Across venues" so the user knows the selected makerspace does not scope it. In single-tenant mode all three are hidden by gating, so the section disappears. For a governance-only actor this is the only section (see 2.5). |
-| — | *(bottom block, above the user chip)* | **settings → "Settings"** with sub-items when any Settings-family tab is active: settings → "General", users → "Staff & roles", emailtemplates → "Email templates", email-logs → "Delivery log", api → "API access", exports → "Data export", backups → "Backup & restore", usage → "Usage & limits", modules → "Modules", migration → "Tenant migration" | reference Settings › General / API access. "Admin" becomes one item that expands in place. If `settings` itself is not allowed but a child is (e.g. a role with only `edit_inventory` sees Email templates), the parent link goes to the **first allowed child**. |
+| — | *(bottom block, above the user chip)* | **settings → "Settings"** with sub-items when any Settings-family tab is active: settings → "General", users → "Staff & roles", emailtemplates → "Email templates", email-logs → "Delivery log", api → "API access", exports → "Data export", backups → "Backup & restore", usage → "Usage & limits", modules → "Modules", migration → "Tenant migration" | Yuyu Settings › General / API access. "Admin" becomes one item that expands in place. If `settings` itself is not allowed but a child is (e.g. a role with only `edit_inventory` sees Email templates), the parent link goes to the **first allowed child**. |
 | — | Platform *(bottom, superadmin only)* | **platform-dashboard → "Platform dashboard"**, **platform → "Platform settings"** | Rendered under a hairline with a muted "Platform" label so it is visibly a different scope. |
 
 Item order inside a section is by frequency of use, not alphabetical.
@@ -954,7 +954,7 @@ Item order inside a section is by frequency of use, not alphabetical.
    (wrapped in try/catch, a convenience only). **A section auto-expands when it contains the
    active tab**, so the active item is never hidden (this matches the unmounted-collapsed-content
    accessibility rule in PLAN §5).
-4. Settings sub-items show only while a Settings-family tab is active (reference rule); otherwise
+4. Settings sub-items show only while a Settings-family tab is active (Yuyu rule); otherwise
    Settings is one row.
 5. Machine-type sub-items show only while on `machines`, at most 8, then "All types →".
 6. The sidebar body scrolls independently (`overflow-y:auto`) between the switcher and the
@@ -1002,7 +1002,7 @@ Item order inside a section is by frequency of use, not alphabetical.
 
 **Governance-only** (`allowedTabs = ["organizations"]`): sidebar = Organizations only, and no
 switcher menu entries other than "View public page" (there is no makerspace scope). The page uses
-the reference home pattern Y1 ("Your organizations" cards).
+the Yuyu home pattern Y1 ("Your organizations" cards).
 
 **Machine-only** (`isMachineOnly`): typically Home, Inbox, Machines (with type sub-items),
 Warranties, Reports, Email templates. Rule 2 keeps it flat. The machine-type sub-items become the
@@ -1932,11 +1932,11 @@ across staff, member, public, auth and kiosk. Run it per screen at review time.
 
 ---
 
-## 5. Where reference doesn't fit, and the adaptation
+## 5. Where Yuyu doesn't fit, and the adaptation
 
 ### 5.1 Dense operational tables (Inventory, Ledger, Stocktake, Transfers, Audit, Reports, Payments)
 
-the reference design's biggest list has 4 rows and 3 columns. SpaceWorks lists run to hundreds of rows and 8+
+Yuyu's biggest list has 4 rows and 3 columns. SpaceWorks lists run to hundreds of rows and 8+
 numeric columns, sorted, selected in bulk and exported. **Card rows (82 px) would cut density by
 about 60%.**
 - **Adaptation:** keep `DataTable`, but inside the Y4 card chrome (bordered, radius 12; header row
@@ -1952,7 +1952,7 @@ about 60%.**
 
 ### 5.2 Evidence capture (issue/return photo, remark, box and asset QR)
 
-reference captures nothing heavier than a QR scan. SpaceWorks evidence is mandatory, immutable,
+Yuyu captures nothing heavier than a QR scan. SpaceWorks evidence is mandatory, immutable,
 uploaded through a presign to staging, and auditable.
 - **Evidence tile** (new primitive): a 16:9 dashed placeholder labelled "Issue photo · Required"
   with "Take photo" (primary, uses the existing `CameraCapture`) and "Upload from device" (link).
@@ -1968,14 +1968,14 @@ uploaded through a presign to staging, and auditable.
 
 ### 5.3 Multi-step guided flows
 
-reference has none (its forms are single page). SpaceWorks has 5-step handovers in modals.
+Yuyu has none (its forms are single page). SpaceWorks has 5-step handovers in modals.
 **Adaptation:** a task-mode shell (sidebar hidden, step rail plus a camera/work panel, the same
 on kiosk), visually derived from Y28. A "Compact view" for experts. Each completed step echoes
 its captured value in the rail.
 
 ### 5.4 Permission and module density
 
-reference has 4 nav items and owner/admin roles. SpaceWorks has 42 gated tabs, custom roles with
+Yuyu has 4 nav items and owner/admin roles. SpaceWorks has 42 gated tabs, custom roles with
 dozens of actions, and module switches. **Adaptation:** §2 sections with "More" disclosure and
 flattening rules. The role editor uses Y6 checkbox cards grouped by area rather than a flat
 checkbox list. Gated items are **absent, never disabled**, except reports, where an unavailable
@@ -1983,37 +1983,37 @@ report explains which module enables it.
 
 ### 5.5 Settings scale
 
-reference settings is 3 rows. SpaceWorks has about 30 sections. **Adaptation:** an in-page sub-nav
+Yuyu settings is 3 rows. SpaceWorks has about 30 sections. **Adaptation:** an in-page sub-nav
 with scroll-spy (S9), a per-section dirty-state Save, and one danger zone at the very end.
 
 ### 5.6 Dashboard breadth
 
-reference shows 4 stats. SpaceWorks has 17 possible tiles. **Adaptation:** priority-ranked top 4 plus
+Yuyu shows 4 stats. SpaceWorks has 17 possible tiles. **Adaptation:** priority-ranked top 4 plus
 an "Everything else" disclosure. Tone on the number, not the fill.
 
 ### 5.7 Multi-tenant switching
 
-reference shows one org in the switcher. Superadmins may see dozens of makerspaces. **Adaptation:** the
+Yuyu shows one org in the switcher. Superadmins may see dozens of makerspaces. **Adaptation:** the
 switcher menu has search, recents first, and a "Switch makerspace" full list for superadmin.
 Single-tenant lock hides the chevron (the card is static).
 
 ### 5.8 Offline and kiosk integrity
 
-the reference design's offline story is a callout with "Download guest list". SpaceWorks kiosks keep an encrypted
+Yuyu's offline story is a callout with "Download guest list". SpaceWorks kiosks keep an encrypted
 command queue with replay recovery. **Adaptation:** a persistent connection pill in the station
 header, P5 panel callouts for offline state, a queue table with per-command status, and a
 destructive-confirm dialog for "lock with pending work" (safe action as primary).
 
 ### 5.9 Money
 
-reference has free events only. Payments need receipts and append-only corrections. **Adaptation:** no
+Yuyu has free events only. Payments need receipts and append-only corrections. **Adaptation:** no
 Undo and no inline edit. "Record payment…" opens `SettlementDialog` (method, reference, date).
 Corrections appear as "Amended" rows linked to the original. Amounts are always shown with
 currency, right-aligned with tabular numerals.
 
 ### 5.10 Activity rail data
 
-the reference design's rail is free. SpaceWorks audit is permission-gated and can be large. **Adaptation:** the
+Yuyu's rail is free. SpaceWorks audit is permission-gated and can be large. **Adaptation:** the
 rail renders only when `canViewAudit` (or uses the actor's own notifications), is capped at 6
 items, and links to S15 with filters. It is hidden on narrow screens and for scoped roles whose
 audit would be empty.
