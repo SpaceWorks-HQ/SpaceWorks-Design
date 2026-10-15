@@ -1,0 +1,502 @@
+{
+  "file": "Untitled",
+  "pages": [
+    {
+      "id": "0:1",
+      "name": "01 · Brand guidelines",
+      "children": [
+        {
+          "id": "2:21",
+          "name": "01 — Made for making.",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1000
+        },
+        {
+          "id": "2:64",
+          "name": "02 — A place for every possibility.",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1000
+        },
+        {
+          "id": "2:83",
+          "name": "03 — Open box. Open possibilities.",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1000
+        },
+        {
+          "id": "2:117",
+          "name": "04 — One name. A flexible family.",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1000
+        },
+        {
+          "id": "2:201",
+          "name": "05 — Give the mark room.",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1000
+        },
+        {
+          "id": "2:243",
+          "name": "06 — Small, but still recognizable.",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1000
+        },
+        {
+          "id": "2:315",
+          "name": "07 — Choose the right background.",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1000
+        },
+        {
+          "id": "2:402",
+          "name": "08 — Keep the system intact.",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1000
+        },
+        {
+          "id": "2:594",
+          "name": "09 — Seven colors. One clear system.",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1000
+        },
+        {
+          "id": "2:634",
+          "name": "10 — Color with clarity.",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1000
+        },
+        {
+          "id": "2:683",
+          "name": "11 — Gilroy is our voice in type.",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1000
+        },
+        {
+          "id": "2:708",
+          "name": "12 — A scale that stays useful.",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1000
+        },
+        {
+          "id": "2:941",
+          "name": "13 — Built from the box.",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1000
+        },
+        {
+          "id": "2:968",
+          "name": "14 — Useful details.",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1000
+        },
+        {
+          "id": "2:1000",
+          "name": "15 — Sound like a helpful maker.",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1000
+        },
+        {
+          "id": "2:1021",
+          "name": "16 — Calm where it counts.",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1000
+        },
+        {
+          "id": "2:1081",
+          "name": "17 — A place for every part.",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1000
+        }
+      ],
+      "components": []
+    },
+    {
+      "id": "2:1142",
+      "name": "02 · Logo & styles",
+      "children": [
+        {
+          "id": "2:1143",
+          "name": "Logo masters & shared styles",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1350
+        }
+      ],
+      "components": [
+        {
+          "id": "2:1147",
+          "name": "Logo / Primary / Full color",
+          "w": 360,
+          "h": 127.05882263183594
+        },
+        {
+          "id": "2:1166",
+          "name": "Logo / Horizontal / Full color",
+          "w": 360,
+          "h": 57.599998474121094
+        },
+        {
+          "id": "2:1185",
+          "name": "Logo / Symbol / Full color",
+          "w": 135.28846740722656,
+          "h": 126
+        },
+        {
+          "id": "2:1203",
+          "name": "Logo / Primary / Ink",
+          "w": 360,
+          "h": 127.05882263183594
+        },
+        {
+          "id": "2:1220",
+          "name": "Logo / Horizontal / Ink",
+          "w": 360,
+          "h": 57.599998474121094
+        },
+        {
+          "id": "2:1237",
+          "name": "Logo / Symbol / Ink",
+          "w": 135.28846740722656,
+          "h": 126
+        },
+        {
+          "id": "2:1254",
+          "name": "Logo / Primary / Reversed",
+          "w": 360,
+          "h": 127.05882263183594
+        },
+        {
+          "id": "2:1271",
+          "name": "Logo / Horizontal / Reversed",
+          "w": 360,
+          "h": 57.599998474121094
+        },
+        {
+          "id": "2:1288",
+          "name": "Logo / Symbol / Reversed",
+          "w": 135.28846740722656,
+          "h": 126
+        },
+        {
+          "id": "2:1304",
+          "name": "Logo / App tile",
+          "w": 240,
+          "h": 240
+        }
+      ]
+    }
+  ],
+  "paintStyles": [
+    {
+      "name": "Space Works/01 Deep Ink",
+      "description": "#142C2A · Text and structural contrast",
+      "paints": [
+        {
+          "type": "SOLID",
+          "visible": true,
+          "opacity": 1,
+          "blendMode": "NORMAL",
+          "color": {
+            "r": 0.0784313753247261,
+            "g": 0.1725490242242813,
+            "b": 0.16470588743686676
+          },
+          "boundVariables": {}
+        }
+      ]
+    },
+    {
+      "name": "Space Works/02 Maker Teal",
+      "description": "#006E63 · Primary brand field and actions",
+      "paints": [
+        {
+          "type": "SOLID",
+          "visible": true,
+          "opacity": 1,
+          "blendMode": "NORMAL",
+          "color": {
+            "r": 0,
+            "g": 0.4313725531101227,
+            "b": 0.38823530077934265
+          },
+          "boundVariables": {}
+        }
+      ]
+    },
+    {
+      "name": "Space Works/03 Workshop Orange",
+      "description": "#FF7447 · Energy and highlights",
+      "paints": [
+        {
+          "type": "SOLID",
+          "visible": true,
+          "opacity": 1,
+          "blendMode": "NORMAL",
+          "color": {
+            "r": 1,
+            "g": 0.45490196347236633,
+            "b": 0.27843138575553894
+          },
+          "boundVariables": {}
+        }
+      ]
+    },
+    {
+      "name": "Space Works/04 Citron",
+      "description": "#DFFF8F · Fresh fields, selected slide backgrounds and tags",
+      "paints": [
+        {
+          "type": "SOLID",
+          "visible": true,
+          "opacity": 1,
+          "blendMode": "NORMAL",
+          "color": {
+            "r": 0.8745098114013672,
+            "g": 1,
+            "b": 0.5607843399047852
+          },
+          "boundVariables": {}
+        }
+      ]
+    },
+    {
+      "name": "Space Works/05 Sky Blue",
+      "description": "#B5CDFF · Supporting information",
+      "paints": [
+        {
+          "type": "SOLID",
+          "visible": true,
+          "opacity": 1,
+          "blendMode": "NORMAL",
+          "color": {
+            "r": 0.7098039388656616,
+            "g": 0.8039215803146362,
+            "b": 1
+          },
+          "boundVariables": {}
+        }
+      ]
+    },
+    {
+      "name": "Space Works/06 Warm Cream",
+      "description": "#FFF4E8 · Default canvas",
+      "paints": [
+        {
+          "type": "SOLID",
+          "visible": true,
+          "opacity": 1,
+          "blendMode": "NORMAL",
+          "color": {
+            "r": 1,
+            "g": 0.95686274766922,
+            "b": 0.9098039269447327
+          },
+          "boundVariables": {}
+        }
+      ]
+    },
+    {
+      "name": "Space Works/07 Warm Yellow",
+      "description": "#FFD447 · Small warm highlights; use Deep Ink text",
+      "paints": [
+        {
+          "type": "SOLID",
+          "visible": true,
+          "opacity": 1,
+          "blendMode": "NORMAL",
+          "color": {
+            "r": 1,
+            "g": 0.8313725590705872,
+            "b": 0.27843138575553894
+          },
+          "boundVariables": {}
+        }
+      ]
+    }
+  ],
+  "textStyles": [
+    {
+      "name": "Space Works/Display",
+      "fontName": {
+        "family": "Gilroy-SemiBold",
+        "style": "☞"
+      },
+      "fontSize": 72,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 76
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": -3
+      }
+    },
+    {
+      "name": "Space Works/Heading 1",
+      "fontName": {
+        "family": "Gilroy-SemiBold",
+        "style": "☞"
+      },
+      "fontSize": 48,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 52
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": -2
+      }
+    },
+    {
+      "name": "Space Works/Heading 2",
+      "fontName": {
+        "family": "Gilroy-SemiBold",
+        "style": "☞"
+      },
+      "fontSize": 32,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 38
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": -1
+      }
+    },
+    {
+      "name": "Space Works/Heading 3",
+      "fontName": {
+        "family": "Gilroy-SemiBold",
+        "style": "☞"
+      },
+      "fontSize": 24,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 30
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      }
+    },
+    {
+      "name": "Space Works/Body large",
+      "fontName": {
+        "family": "Gilroy-Regular",
+        "style": "☞"
+      },
+      "fontSize": 20,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 30
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      }
+    },
+    {
+      "name": "Space Works/Body",
+      "fontName": {
+        "family": "Gilroy-Regular",
+        "style": "☞"
+      },
+      "fontSize": 16,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 24
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      }
+    },
+    {
+      "name": "Space Works/Label",
+      "fontName": {
+        "family": "Gilroy-SemiBold",
+        "style": "☞"
+      },
+      "fontSize": 14,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 20
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      }
+    },
+    {
+      "name": "Space Works/Caption",
+      "fontName": {
+        "family": "Gilroy-Medium",
+        "style": "☞"
+      },
+      "fontSize": 12,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 16
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": 0
+      }
+    },
+    {
+      "name": "Space Works/Accent display",
+      "fontName": {
+        "family": "Unbounded",
+        "style": "Medium",
+        "variationSettings": {
+          "wght": 500
+        }
+      },
+      "fontSize": 72,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 86
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": -2
+      }
+    },
+    {
+      "name": "Space Works/Accent heading",
+      "fontName": {
+        "family": "Unbounded",
+        "style": "Medium",
+        "variationSettings": {
+          "wght": 500
+        }
+      },
+      "fontSize": 48,
+      "lineHeight": {
+        "unit": "PIXELS",
+        "value": 56
+      },
+      "letterSpacing": {
+        "unit": "PERCENT",
+        "value": -2
+      }
+    }
+  ]
+}

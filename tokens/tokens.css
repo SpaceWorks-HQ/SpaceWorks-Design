@@ -4,6 +4,43 @@
 
 @font-face {
   font-family: "Gilroy";
+  src: url("../fonts/Gilroy-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gilroy";
+  src: url("../fonts/Gilroy-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gilroy";
+  src: url("../fonts/Gilroy-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gilroy";
+  src: url("../fonts/Gilroy-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Unbounded";
+  src: url("../fonts/Unbounded-Variable.woff2") format("woff2");
+  font-weight: 500 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Legacy faces retained for existing consumers. New surfaces use Gilroy 400–700. */
+@font-face {
+  font-family: "Gilroy";
   src: url("../fonts/Gilroy-ExtraBold.woff2") format("woff2");
   font-weight: 800;
   font-style: normal;
@@ -23,15 +60,18 @@
   font-style: normal;
   font-display: swap;
 }
-@font-face {
-  font-family: "Unbounded";
-  src: url("../fonts/Unbounded-Variable.woff2") format("woff2");
-  font-weight: 500 600;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
+  --font-display: "Gilroy", sans-serif;
+  --font-sans: "Gilroy", sans-serif;
+  --font-accent: "Unbounded", "Gilroy", sans-serif;
+  --brand-deep-ink: #142C2A;
+  --brand-maker-teal: #006E63;
+  --brand-workshop-orange: #FF7447;
+  --brand-citron: #DFFF8F;
+  --brand-sky-blue: #B5CDFF;
+  --brand-warm-yellow: #FFD447;
+  --brand-warm-cream: #FFF4E8;
+
   --color-bg: 255 244 232;
   --color-surface: 246 236 224;
   --color-panel: 255 255 255;
