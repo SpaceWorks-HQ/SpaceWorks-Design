@@ -1,0 +1,83 @@
+---
+title: Using the kit
+description: Add the design kit to a project as a git submodule and use its CSS and JSON tokens.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+The kit is made to be pulled into other Space Works projects, so every surface draws from one source.
+
+## Add it to a project
+
+<Steps>
+
+1. Add the repository as a submodule:
+
+   ```bash
+   git submodule add https://github.com/SpaceWorks-HQ/SpaceWorks-Design.git design
+   ```
+
+2. Import the tokens. The font URLs in `tokens.css` are relative to the `tokens/` folder, so the fonts load
+   without extra setup:
+
+   ```css
+   @import "design/tokens/tokens.css";
+   ```
+
+3. Use the variables. Colours are space-separated sRGB triplets, so wrap them in `rgb()`:
+
+   ```css
+   body {
+     background: rgb(var(--color-bg));
+     color: rgb(var(--color-ink));
+     font-family: var(--font-sans);
+   }
+   h1, h2, h3 { font-family: var(--font-display); font-weight: 600; }
+   .button-primary {
+     background: rgb(var(--color-accent));
+     color: rgb(var(--color-on-accent));
+   }
+   ```
+
+4. For dark mode, add the class `dark` to `<html>`. Light is the default.
+
+5. To pick up kit updates later:
+
+   ```bash
+   git submodule update --remote design
+   ```
+
+</Steps>
+
+## Solid colours only
+
+Every soft fill is stored as an opaque colour, so there is no `bg-teal/20` and no translucent text. The
+triplet format still allows `rgb(var(--color-accent) / 0.5)` for decoration, but never for text, which must
+keep its tested contrast.
+
+## Use the JSON instead
+
+`tokens/tokens.json` holds the same values as hex, grouped as `brand` (the seven colours), `fonts`, `light`
+and `dark`. Use it for native apps, Figma plugins or anything that can't read CSS:
+
+```json
+{
+  "brand": { "maker-teal": "#006E63", "workshop-orange": "#FF7447" },
+  "light": { "bg": "#FFF4E8", "accent": "#006E63", "on-accent": "#FFF4E8" },
+  "dark": { "bg": "#142C2A", "accent": "#579C90", "on-accent": "#142C2A" }
+}
+```
+
+## What's in the repository
+
+| Folder | What it holds |
+|---|---|
+| `brand/` | The brand guidelines PDF, all 17 pages as SVG and PNG, the logo sheet and the Figma style record |
+| `logo/` | Ten vector masters with matching 4× PNGs |
+| `icons/` | The favicon, PNG app icons (16, 32, 180, 192, 512) and the 1200 × 630 social card |
+| `fonts/` | Gilroy and Unbounded web fonts, with licences |
+| `tokens/` | `tokens.css` and `tokens.json` |
+| `docs/` | The UI brand spec and the UX pattern specs |
+| `site/` | This website |
+
+The full token list is in the [token reference](/tokens/reference/).

@@ -1,0 +1,40 @@
+---
+// The seven brand colours, read from tokens/tokens.json, with the role each one plays (brand p.9).
+import tokens from '../assets/kit/tokens.json';
+
+const roles: Record<string, { name: string; role: string; ink: boolean }> = {
+  'deep-ink': { name: 'Deep Ink', role: 'Text · structure · depth', ink: false },
+  'maker-teal': { name: 'Maker Teal', role: 'Primary brand · actions', ink: false },
+  'workshop-orange': { name: 'Workshop Orange', role: 'Energy · emphasis', ink: true },
+  citron: { name: 'Citron', role: 'Fresh fields · short tags', ink: true },
+  'sky-blue': { name: 'Sky Blue', role: 'Supporting information', ink: true },
+  'warm-yellow': { name: 'Warm Yellow', role: 'Small highlights · ink text', ink: true },
+  'warm-cream': { name: 'Warm Cream', role: 'Canvas · breathing room', ink: true },
+};
+
+const rgb = (hex: string) =>
+  [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16)).join(', ');
+
+const colours = Object.entries(tokens.brand).map(([key, hex]) => ({ key, hex, ...roles[key] }));
+---
+
+<div class="sw-colours not-content">
+  {
+    colours.map((c) => (
+      <figure
+        class:list={[
+          'sw-colour',
+          { 'sw-colour--ink': c.ink, 'sw-colour--cream': c.key === 'warm-cream', 'sw-colour--deep': c.key === 'deep-ink' },
+        ]}
+        style={`background:${c.hex}`}
+      >
+        <figcaption>
+          <strong>{c.name}</strong>
+          <span class="sw-colour__hex">{c.hex}</span>
+          <span class="sw-colour__rgb">RGB {rgb(c.hex)}</span>
+          <span class="sw-colour__role">{c.role}</span>
+        </figcaption>
+      </figure>
+    ))
+  }
+</div>

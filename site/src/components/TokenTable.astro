@@ -1,0 +1,55 @@
+---
+// Every semantic colour token, light and dark side by side, read from tokens/tokens.json.
+import tokens from '../assets/kit/tokens.json';
+
+const light = tokens.light as Record<string, string>;
+const dark = tokens.dark as Record<string, string>;
+
+// Group by family: "accent-hover" belongs with "accent", "on-accent" too.
+const family = (name: string) => {
+  const base = name.replace(/^on-/, '').split('-')[0];
+  return ['bg', 'surface', 'panel', 'hover', 'line', 'outline', 'ink', 'muted', 'focus'].includes(base)
+    ? 'Surfaces and text'
+    : base[0].toUpperCase() + base.slice(1);
+};
+
+const groups = new Map<string, string[]>();
+for (const name of Object.keys(light)) {
+  const key = family(name);
+  groups.set(key, [...(groups.get(key) ?? []), name]);
+}
+---
+
+{
+  [...groups].map(([group, names]) => (
+    <>
+      <h3>{group}</h3>
+      <table class="sw-tokens">
+        <thead>
+          <tr>
+            <th scope="col">Token</th>
+            <th scope="col">Light</th>
+            <th scope="col">Dark</th>
+          </tr>
+        </thead>
+        <tbody>
+          {names.map((name) => (
+            <tr>
+              <td>
+                <code>--color-{name}</code>
+              </td>
+              <td>
+                <span class="sw-chip" style={`background:${light[name]}`} aria-hidden="true" />
+                <code>{light[name]}</code>
+              </td>
+              <td>
+                <span class="sw-chip" style={`background:${dark[name]}`} aria-hidden="true" />
+                <code>{dark[name]}</code>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
+  ))
+}

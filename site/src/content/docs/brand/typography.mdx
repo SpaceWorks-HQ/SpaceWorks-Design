@@ -1,0 +1,69 @@
+---
+title: Typography
+description: Gilroy and Unbounded, what each one is for, and the type scale.
+---
+
+## Two fonts. Clear roles.
+
+Gilroy leads. Unbounded brings the bold geometric accent.
+
+<div class="sw-specimen not-content">
+  <span class="sw-specimen__name">Primary</span>
+  <p class="sw-specimen__big sw-gilroy" style="font-weight:600">Ready to make.</p>
+  <p>Gilroy sets the wordmark, headings, body and labels.</p>
+  <div class="sw-specimen__weights sw-gilroy">
+    <span style="font-weight:400">Regular</span>
+    <span style="font-weight:500">Medium</span>
+    <span style="font-weight:600">Semibold</span>
+    <span style="font-weight:700">Bold</span>
+  </div>
+</div>
+
+<div class="sw-specimen not-content">
+  <span class="sw-specimen__name">Secondary / accent</span>
+  <p class="sw-specimen__big sw-unbounded" style="font-weight:600;color:var(--sl-color-text-accent)">Make room.</p>
+  <p>Unbounded is for short headlines and campaign accents: one per layout.</p>
+  <div class="sw-specimen__weights sw-unbounded">
+    <span style="font-weight:500">Medium</span>
+    <span style="font-weight:600">Semibold</span>
+  </div>
+</div>
+
+## A lean type scale
+
+Gilroy does the everyday work. Unbounded adds a single moment of emphasis.
+
+<table class="sw-scale">
+  <thead>
+    <tr><th scope="col">Role</th><th scope="col">Size / line</th><th scope="col">Sample</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Display</td><td>72 / 76</td><td><span class="sw-scale__sample sw-gilroy" style="font-size:clamp(1.75rem,5vw,3rem);font-weight:600">Ready to make.</span></td></tr>
+    <tr><td>Heading</td><td>48 / 52</td><td><span class="sw-scale__sample sw-gilroy" style="font-size:clamp(1.5rem,4vw,2.25rem);font-weight:600">Everything in its place.</span></td></tr>
+    <tr><td>Subheading</td><td>32 / 38</td><td><span class="sw-scale__sample sw-gilroy" style="font-size:1.5rem;font-weight:600">Find the right part.</span></td></tr>
+    <tr><td>Body</td><td>16 / 24</td><td><span class="sw-scale__sample sw-gilroy" style="font-size:1rem">Manage the parts, tools and materials in your space.</span></td></tr>
+    <tr><td>Label</td><td>14 / 20</td><td><span class="sw-scale__sample sw-gilroy" style="font-size:0.875rem;font-weight:600">View inventory</span></td></tr>
+    <tr><td>Accent</td><td>48 / 56</td><td><span class="sw-scale__sample sw-unbounded" style="font-size:clamp(1.5rem,4vw,2.25rem);font-weight:600">Make room.</span></td></tr>
+  </tbody>
+</table>
+
+Keep long copy and interface text in Gilroy. Use Unbounded for short phrases only. The samples above are scaled
+down to fit this page; the numbers are the real sizes.
+
+## Font files
+
+The web fonts live in [`fonts/`](https://github.com/SpaceWorks-HQ/SpaceWorks-Design/tree/main/fonts) and
+are wired up by `tokens/tokens.css`:
+
+| File | Face |
+|---|---|
+| `Gilroy-Regular.woff`, `-Medium`, `-SemiBold`, `-Bold` | Gilroy 400, 500, 600, 700 |
+| `Unbounded-Variable.woff2` | Unbounded 500–600 (SIL Open Font License) |
+
+:::caution[Outfit is legacy]
+Gilroy replaced Outfit as the body face on 15 October 2026. `Outfit-Variable.woff2`, `Gilroy-Light` and
+`Gilroy-ExtraBold` stay in `fonts/` only for older consumers. Don't use them on new surfaces.
+:::
+
+Gilroy is not an open-source font. The files are included at the owner's request; use them under the
+applicable Gilroy licence. See the [credits](/about/credits/) for details.

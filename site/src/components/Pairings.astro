@@ -1,0 +1,23 @@
+---
+// The text/fill pairs the brand book tested (p.10), with their WCAG 2.x contrast ratios.
+const pairs = [
+  { label: 'Cream on teal', fg: '#FFF4E8', bg: '#006E63', ratio: '5.68:1' },
+  { label: 'Ink on cream', fg: '#142C2A', bg: '#FFF4E8', ratio: '13.60:1', outlined: true },
+  { label: 'Ink on orange', fg: '#142C2A', bg: '#FF7447', ratio: '5.51:1' },
+  { label: 'Ink on yellow', fg: '#142C2A', bg: '#FFD447', ratio: '10.37:1' },
+  { label: 'Ink on citron', fg: '#142C2A', bg: '#DFFF8F', ratio: '13.23:1' },
+  { label: 'Ink on sky', fg: '#142C2A', bg: '#B5CDFF', ratio: '9.23:1' },
+];
+---
+
+<div class="sw-pairs not-content">
+  {
+    pairs.map((p) => (
+      <div class:list={['sw-pair', { 'sw-pair--outlined': p.outlined }]} style={`background:${p.bg};color:${p.fg}`}>
+        <span class="sw-pair__aa" aria-hidden="true">Aa</span>
+        <span class="sw-pair__ratio">{p.ratio}</span>
+        <span class="sw-pair__label">{p.label}</span>
+      </div>
+    ))
+  }
+</div>

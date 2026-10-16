@@ -7,6 +7,10 @@ pattern specs. Use it as a git submodule in any Space Works project so every sur
 git submodule add https://github.com/SpaceWorks-HQ/SpaceWorks-Design.git design
 ```
 
+**Browse it at [spaceworks-hq.github.io/SpaceWorks-Design](https://spaceworks-hq.github.io/SpaceWorks-Design/)**: the logo
+masters, colours, type, voice, every design token and the UI specs, published from this repository by
+`site/` on every push to `main`. To run it locally: `cd site && npm install && npm run dev`.
+
 ## Contents
 
 | Folder | What it holds |
@@ -17,6 +21,7 @@ git submodule add https://github.com/SpaceWorks-HQ/SpaceWorks-Design.git design
 | `fonts/` | Gilroy Regular, Medium, Semibold and Bold (WOFF), plus Unbounded (WOFF2). Legacy faces retained for existing consumers. See `fonts/README.md`. |
 | `tokens/` | `tokens.css` (`@font-face` + light/dark colour variables as RGB triplets) and `tokens.json` (the same colours as hex, plus the seven brand colours) |
 | `docs/` | `ui-brand-spec.md` (token derivations, contrast ratios, states, status pills, type scale, logo use), `ux-yuyu-spec.md` (UX patterns from Yuyu, reusable layouts, navigation, screen specs), `ux-screens-longtail.md` (remaining screens) |
+| `site/` | The Starlight website published to GitHub Pages; `scripts/sync-kit.mjs` copies the kit in at build time |
 | `references/yuyu/` | Reference boards from [Yuyu](https://github.com/twilighty-abhi/yuyu) that the UX patterns and layouts are modelled on |
 
 ## Brand at a glance

@@ -1,0 +1,46 @@
+---
+title: Colour
+description: The seven Space Works colours, how to balance them, and the text pairs that pass contrast.
+---
+
+import ColorGrid from '../../../components/ColorGrid.astro';
+import Pairings from '../../../components/Pairings.astro';
+
+## Seven colours. One clear system.
+
+Exact sRGB values: three core colours, three accents and a warm canvas. These come straight from
+[`tokens/tokens.json`](https://github.com/SpaceWorks-HQ/SpaceWorks-Design/blob/main/tokens/tokens.json).
+
+<ColorGrid />
+
+## Neutral first, accent second
+
+Most of any layout is Warm Cream and Deep Ink. Teal carries actions, orange is the one moment of energy,
+and the pastels stay small.
+
+<div class="sw-balance not-content" role="img" aria-label="Colour balance: mostly cream, then teal, then ink, with small amounts of orange, citron, sky and yellow">
+  <span style="flex:43;background:#FFF4E8"></span>
+  <span style="flex:20;background:#006E63"></span>
+  <span style="flex:15;background:#142C2A"></span>
+  <span style="flex:10;background:#FF7447"></span>
+  <span style="flex:4;background:#DFFF8F"></span>
+  <span style="flex:4;background:#B5CDFF"></span>
+  <span style="flex:4;background:#FFD447"></span>
+</div>
+
+- **Maker Teal** is the primary brand colour and the action colour.
+- **Workshop Orange** is energy and emphasis: attention counters, low-stock tags, one bold moment per layout.
+- **Citron** can fill whole sections. **Warm Yellow** is a small accent with Deep Ink text.
+
+## Readable by design
+
+Use only tested text pairings, and add a word or an icon to every status.
+
+<Pairings />
+
+- Normal text needs **≥ 4.5:1**; large text needs **≥ 3:1**. Large means 24 px regular or 18.7 px bold.
+- **Avoid orange text on cream.** It only reaches 2.47:1.
+- Ratios follow WCAG 2.2 *Contrast (Minimum)* and *Use of Color*.
+
+The full light and dark palettes the app uses, with every ratio computed, are in the
+[token reference](/tokens/reference/) and the [UI brand spec](/specs/ui-brand-spec/).

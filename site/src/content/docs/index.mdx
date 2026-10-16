@@ -1,0 +1,48 @@
+---
+title: Space Works Design
+description: The Space Works design system. Logo, colour, type, voice, design tokens and UI specs in one place.
+template: splash
+hero:
+  title: Built from the box.
+  tagline: The Space Works design system. Everything you need to make something look and sound like Space Works, from the logo masters to the tokens in the app.
+  image:
+    file: ../../assets/kit/app-icon.svg
+    alt: The Space Works open-box symbol on a warm cream tile.
+  actions:
+    - text: Start with the brand
+      link: /SpaceWorks-Design/brand/introduction/
+      icon: right-arrow
+    - text: Use the tokens
+      link: /SpaceWorks-Design/tokens/using-the-kit/
+      variant: minimal
+    - text: Download the kit
+      link: https://github.com/SpaceWorks-HQ/SpaceWorks-Design/archive/refs/heads/main.zip
+      icon: download
+      variant: minimal
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+## An open invitation
+
+A familiar box, built for a space full of possibilities. Four flaps invite the next project, a clear
+structure gives every part a place, and the colours do the rest: teal grounds it, orange gets it moving.
+
+<CardGrid>
+  <LinkCard title="Logo" description="Ten masters, clear space, minimum sizes and the six things never to do." href="/brand/logo/" />
+  <LinkCard title="Colour" description="Seven colours, one clear system, and the text pairs that pass contrast." href="/brand/colour/" />
+  <LinkCard title="Typography" description="Gilroy does the everyday work. Unbounded brings one bold moment." href="/brand/typography/" />
+  <LinkCard title="Voice" description="Sound like a helpful maker: clear, warm and specific." href="/brand/voice/" />
+  <LinkCard title="Design tokens" description="Every light and dark colour token, ready to import as CSS or JSON." href="/tokens/reference/" />
+  <LinkCard title="UI specs" description="How the brand becomes the app: states, pills, type scale and screen patterns." href="/specs/ui-brand-spec/" />
+</CardGrid>
+
+## One source of truth
+
+Everything on this site is published straight from the
+[SpaceWorks-Design](https://github.com/SpaceWorks-HQ/SpaceWorks-Design) repository. Add it to any Space Works
+project as a git submodule and every surface draws from the same kit:
+
+```bash
+git submodule add https://github.com/SpaceWorks-HQ/SpaceWorks-Design.git design
+```

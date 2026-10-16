@@ -1,0 +1,39 @@
+---
+// Every logo master in logo/, shown on the background it is made for, with SVG and PNG downloads.
+import { kitUrl } from './kit-url';
+
+const logos = [
+  { file: 'lockup-stacked', name: 'Primary', use: 'Symbol + two-line wordmark', surface: 'white' },
+  { file: 'lockup-horizontal', name: 'Horizontal', use: 'Narrow headers', surface: 'citron' },
+  { file: 'symbol', name: 'Symbol', use: 'Recognition at a glance', surface: 'sky' },
+  { file: 'app-icon', name: 'App icon', use: 'Symbol ≈ 62% of a warm cream tile', surface: 'cream' },
+  { file: 'lockup-stacked-reversed', name: 'Primary, reversed', use: 'Dark surfaces', surface: 'ink' },
+  { file: 'lockup-horizontal-reversed', name: 'Horizontal, reversed', use: 'Dark surfaces', surface: 'ink' },
+  { file: 'symbol-reversed', name: 'Symbol, reversed', use: 'Deep Ink or teal', surface: 'teal' },
+  { file: 'lockup-stacked-one-colour-ink', name: 'Primary, one colour', use: 'Single-colour print', surface: 'white' },
+  { file: 'lockup-horizontal-one-colour-ink', name: 'Horizontal, one colour', use: 'Single-colour print', surface: 'white' },
+  { file: 'symbol-one-colour-ink', name: 'Symbol, one colour', use: 'Stamps, engraving, labels', surface: 'white' },
+];
+---
+
+<div class="sw-logos not-content">
+  {
+    logos.map((l) => (
+      <figure class="sw-logo">
+        <div class={`sw-logo__stage sw-surface--${l.surface}`}>
+          <img src={kitUrl(`logo/${l.file}.svg`)} alt={`Space Works ${l.name.toLowerCase()} logo`} loading="lazy" />
+        </div>
+        <figcaption>
+          <span>
+            <strong>{l.name}</strong>
+            <span class="sw-logo__use">{l.use}</span>
+          </span>
+          <span class="sw-logo__links">
+            <a href={kitUrl(`logo/${l.file}.svg`)} download>SVG</a>
+            <a href={kitUrl(`logo/${l.file}.png`)} download>PNG</a>
+          </span>
+        </figcaption>
+      </figure>
+    ))
+  }
+</div>

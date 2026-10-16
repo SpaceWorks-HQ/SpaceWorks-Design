@@ -1,0 +1,24 @@
+---
+title: Token reference
+description: Every Space Works colour token in light and dark mode, generated from tokens.json.
+---
+
+import TokenTable from '../../../components/TokenTable.astro';
+
+Every semantic colour token, light and dark side by side. This page is generated from
+[`tokens/tokens.json`](https://github.com/SpaceWorks-HQ/SpaceWorks-Design/blob/main/tokens/tokens.json), so it is
+always current. In CSS, each token is a `--color-*` variable holding an sRGB triplet.
+
+How the tokens behave:
+
+- **`accent`** is Maker Teal, the action colour. **`brand`** defaults to the accent, and is the one family a
+  makerspace may override with its own colour.
+- **`emphasis`** is Workshop Orange. It belongs to Space Works and can never be overridden.
+- **`*-soft`** tokens are opaque tinted fills for pills and cards. **`*-ink`** tokens are the text colour that
+  passes contrast on every surface.
+- **`danger`** comes from the UX references, because the brand palette has no red. It is reserved for
+  destructive actions and errors.
+
+How every value was derived, with its contrast ratio, is in the [UI brand spec](/specs/ui-brand-spec/).
+
+<TokenTable />
