@@ -58,3 +58,13 @@ The kit was exported from the connected Figma file on 15 October 2026 using MCP 
 also exported as `brand/logo-masters.svg` and `.png`. SVG text is outlined; the editable source remains in Figma.
 
 See [brand/README.md](brand/README.md) for asset selection and [fonts/README.md](fonts/README.md) for font provenance.
+
+## License
+
+Space Works design assets in this repository are licensed under the
+**[GNU Affero General Public License v3](LICENSE)** (`AGPL-3.0-or-later`), the same as
+[Space Works](https://github.com/SpaceWorks-HQ/SpaceWorks).
+
+Third-party material keeps its own licence and is not relicensed: the fonts in `fonts/` (see
+`fonts/LICENSES/` and [fonts/README.md](fonts/README.md)) and the Yuyu reference boards in
+`references/yuyu/` (see [Yuyu](https://github.com/twilighty-abhi/yuyu)).
