@@ -19,7 +19,7 @@ export default defineConfig({
     starlight({
       title: 'Space Works Design',
       description:
-        'The Space Works design system: logo, colour, type, voice, design tokens and UI specs.',
+        'The Space Works design system: logo, colour, type, voice, design tokens, UI specs and Space Works UX.',
       logo: {
         light: './src/assets/kit/lockup-horizontal.svg',
         dark: './src/assets/kit/lockup-horizontal-reversed.svg',
@@ -61,6 +61,7 @@ export default defineConfig({
           ],
         },
         { label: 'Tokens', items: ['tokens/using-the-kit', 'tokens/reference'] },
+        { label: 'UX', items: ['ux/introduction'] },
         { label: 'Specs', items: [{ autogenerate: { directory: 'specs' } }] },
         { label: 'About', items: ['about/credits'] },
       ],

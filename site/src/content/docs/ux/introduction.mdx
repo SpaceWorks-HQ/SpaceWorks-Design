@@ -1,0 +1,60 @@
+---
+title: Space Works UX
+description: Our interaction system. The patterns, layouts and quality bar every Space Works screen follows.
+---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+**Space Works UX** sets how every Space Works screen works: where things go, how you move between them, and
+what happens when you act. The brand decides how a screen looks. Space Works UX decides how it behaves.
+
+## The rules to remember
+
+<CardGrid>
+  <Card title="One clear next step">
+    One filled primary action per page header, sticky card or callout. Everything else is an outline pill,
+    a text link or a row menu.
+  </Card>
+  <Card title="Calm workspace, warm public face">
+    Staff and manager screens stay quiet: cream canvas, white panels, hairlines, no shadows. Public pages
+    get one bold moment.
+  </Card>
+  <Card title="Do it now, offer Undo">
+    Reversible actions happen straight away and offer Undo in place. Irreversible ones live in a danger
+    zone, behind a button that ends in "…" and a confirmation.
+  </Card>
+  <Card title="Counts where you look">
+    Numbers live on stat cards, tab labels and row slots, so the queue that needs you is never hidden.
+  </Card>
+  <Card title="Empty states name the next step">
+    "No parts added yet. Add your first item." An empty list always says what to do, and says something
+    different when a filter hides everything.
+  </Card>
+  <Card title="Everyone can use it">
+    44 px targets, a visible focus ring, one `h1` per page, a skip link, and tabs that are real URLs.
+  </Card>
+</CardGrid>
+
+## What it covers
+
+- **30 patterns (P1–P30):** the app shell and sidebar, page and detail headers, stat cards, callouts, list
+  rows, tabs, pills, buttons, the activity rail, settings rows, the danger zone, empty states, forms, auth,
+  public pages, kiosk screens, and Undo and confirmation behaviour.
+- **10 layouts (L1–L10):** a closed set. Every screen is the app shell plus exactly one of `AppShell`,
+  `DashboardLayout`, `ListLayout`, `DetailLayout`, `SettingsLayout`, `FormPageLayout`, `FlowLayout`,
+  `AuthLayout` / `CenteredCardLayout`, `PublicLayout` / `PublicDetailLayout` and `KioskLayout`.
+- **Screen specs:** the core screens, then the long-tail screens, each mapped to a layout and its patterns.
+- **A quality bar** that every screen has to pass before it ships.
+
+<CardGrid>
+  <LinkCard title="Space Works UX spec" description="Patterns, layouts, navigation, core screens and the quality bar." href="/specs/ux-patterns/" />
+  <LinkCard title="Long-tail screens" description="The remaining screens, each composed from the same patterns and layouts." href="/specs/ux-long-tail-screens/" />
+  <LinkCard title="UI brand spec" description="How the brand becomes interface: tokens, states, pills and the type scale." href="/specs/ui-brand-spec/" />
+</CardGrid>
+
+## Where it comes from
+
+Space Works UX is our own. It was inspired by [Yuyu](https://github.com/twilighty-abhi/yuyu), whose screens we
+studied as reference boards (R1–R28 in the spec) and then adapted for Space Works: bigger tables, guided
+flows, payments, kiosks and many roles. The visual identity comes only from the
+[Space Works brand guidelines](/brand/guidelines/). See [Credits and licences](/about/credits/).

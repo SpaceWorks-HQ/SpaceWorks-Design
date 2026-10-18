@@ -1,47 +1,52 @@
-# Yuyu UX patterns → SpaceWorks screen spec
+# Space Works UX spec
+
+> **Space Works UX.** This is our own interaction system: the patterns (P1–P30), layouts (L1–L10) and
+> screen specs that every Space Works product follows. It was **inspired by
+> [Yuyu](https://github.com/twilighty-abhi/yuyu)**, whose screens we studied as reference boards R1–R28
+> (kept in `references/yuyu/`). The visual identity comes only from the Space Works brand guidelines.
 
 Status: research input for `docs/design-revamp/PLAN.md` Phases 0 and 2–6. No app code is changed here.
 Scope: layout, information architecture, interaction, states and copy structure. Colour, type
 families, logo and icons come from the brand spec (PLAN §3.1–3.3). Where this document says
-"primary fill" it means whichever token wins PLAN open question 3 (teal or Deep Ink). Yuyu uses a
+"primary fill" it means whichever token wins PLAN open question 3 (teal or Deep Ink). The reference boards use a
 near-black pill.
 
-Sources: 28 Yuyu screens in 4 boards, each cropped one per file into the scratchpad
+Sources: 28 reference screens (R1–R28) in 4 boards, each cropped one per file into the scratchpad
 `crops/` folder (`full-org1..6`, `full-mgr1..4`, `full-auth1..7`, `full-att1..8`,
 `top-att3..11`). All app screens are **1280 px wide** (the attendee ticket is 390 px), so every
 measurement below is a native pixel count read off the crop. Treat values as ±2 px. SpaceWorks
 components were read in this worktree at `d3e5ed29`.
 
-| Ref | Yuyu screen | Board |
+| Ref | Reference screen | Board |
 |---|---|---|
-| Y1 | Organiser home ("Good morning, Priya", org cards, Coming up, Recent activity) | Organiser workspace |
-| Y2 | Org Events list (callout, 4 stat cards, tabs, date-chip rows, activity rail) | Organiser workspace |
-| Y3 | New organisation form + live public-page preview | Organiser workspace |
-| Y4 | Members (invite-link card, table, dashed empty state) | Organiser workspace |
-| Y5 | Settings › General (settings rows, Discard/Save, danger zone) | Organiser workspace |
-| Y6 | Settings › API access (form card, checkbox cards, code block, accordions) | Organiser workspace |
-| Y7 | Event › Overview (detail header, 8 tabs, stat cards, latest list, At a glance, CTA card) | Managing an event |
-| Y8 | Event › Check-in (progress stat, offline callout, camera, find, toggles, recent + Undo, door station) | Managing an event |
-| Y9 | Event › Page & programme (segmented control, track chips, session cards, delay stepper) | Managing an event |
-| Y10 | Series › Overview (upcoming-date cards, details form, radio chips, agenda, danger zone) | Managing an event |
-| Y11 | Sign in (split screen) | Sign in, invites & account |
-| Y12 | Set a new password (centred card, strength meter) | idem |
-| Y13 | Confirm your email (centred card) | idem |
-| Y14 | Org invite accept (avatar pair, role pill) | idem |
-| Y15 | Event co-organiser invite (banner card) | idem |
-| Y16 | Account › Profile (settings rows, verified pill) | idem |
-| Y17 | Account › Security (big callout with button, destructive outline) | idem |
-| Y18 | Public event page with cover + sticky "Join this event" card | Attending an event |
-| Y19 | Same page, no cover, tenant accent colour | idem |
-| Y20 | Public programme (time grid, track filter pills) | idem |
-| Y21 | Public session detail (right rail "Next on main stage") | idem |
-| Y22 | Speaker page | idem |
-| Y23 | Series event page (inline register form inside sticky card, date pills) | idem |
-| Y24 | Live running order (NOW / NEXT / LATER, delay pill) | idem |
-| Y25 | Feedback form (rating tiles) | idem |
-| Y26 | Mobile ticket with QR (390 px) | idem |
-| Y27 | Kiosk: enter station PIN (digit boxes + keypad) | idem |
-| Y28 | Kiosk: door check-in station (camera + big result card + Undo + recent) | idem |
+| R1 | Organiser home ("Good morning, Priya", org cards, Coming up, Recent activity) | Organiser workspace |
+| R2 | Org Events list (callout, 4 stat cards, tabs, date-chip rows, activity rail) | Organiser workspace |
+| R3 | New organisation form + live public-page preview | Organiser workspace |
+| R4 | Members (invite-link card, table, dashed empty state) | Organiser workspace |
+| R5 | Settings › General (settings rows, Discard/Save, danger zone) | Organiser workspace |
+| R6 | Settings › API access (form card, checkbox cards, code block, accordions) | Organiser workspace |
+| R7 | Event › Overview (detail header, 8 tabs, stat cards, latest list, At a glance, CTA card) | Managing an event |
+| R8 | Event › Check-in (progress stat, offline callout, camera, find, toggles, recent + Undo, door station) | Managing an event |
+| R9 | Event › Page & programme (segmented control, track chips, session cards, delay stepper) | Managing an event |
+| R10 | Series › Overview (upcoming-date cards, details form, radio chips, agenda, danger zone) | Managing an event |
+| R11 | Sign in (split screen) | Sign in, invites & account |
+| R12 | Set a new password (centred card, strength meter) | idem |
+| R13 | Confirm your email (centred card) | idem |
+| R14 | Org invite accept (avatar pair, role pill) | idem |
+| R15 | Event co-organiser invite (banner card) | idem |
+| R16 | Account › Profile (settings rows, verified pill) | idem |
+| R17 | Account › Security (big callout with button, destructive outline) | idem |
+| R18 | Public event page with cover + sticky "Join this event" card | Attending an event |
+| R19 | Same page, no cover, tenant accent colour | idem |
+| R20 | Public programme (time grid, track filter pills) | idem |
+| R21 | Public session detail (right rail "Next on main stage") | idem |
+| R22 | Speaker page | idem |
+| R23 | Series event page (inline register form inside sticky card, date pills) | idem |
+| R24 | Live running order (NOW / NEXT / LATER, delay pill) | idem |
+| R25 | Feedback form (rating tiles) | idem |
+| R26 | Mobile ticket with QR (390 px) | idem |
+| R27 | Kiosk: enter station PIN (digit boxes + keypad) | idem |
+| R28 | Kiosk: door check-in station (camera + big result card + Undo + recent) | idem |
 
 ---
 
@@ -69,11 +74,11 @@ components were read in this worktree at `d3e5ed29`.
   inline pill actions 28 · status pills 20–22 · nav items 40 · table rows 64 · list-card rows 82
   · kiosk keys 76.
 
-### P1. App shell and sidebar (Y1–Y10, Y16, Y17)
+### P1. App shell and sidebar (R1–R10, R16, R17)
 
 ```
 ┌──────────── 240–300 ────────────┬───────────────────── main ─────────────────────┐
-│ [Y] Yuyu                         │  36px gutter                                   │
+│ [S] Space Works                  │  36px gutter                                   │
 │ ┌─────────────────────────────┐ │                                                │
 │ │[SD] Screenshot Demo Coll… ⇕ │ │                                                │
 │ │     Owner                    │ │                                                │
@@ -102,17 +107,17 @@ components were read in this worktree at `d3e5ed29`.
 - **Nav item:** 40 tall with a 43 px pitch (3 px gap), radius 8, 14 px inset from the sidebar
   edge, 10 px text padding. An 18 px line icon, 10 px gap, then the 15 px label. **Active:** a
   filled warm-grey pill and a semibold label; no accent bar and no coloured text. The home
-  sidebar (Y1) has no icons. The org sidebar has icons on the four top items only.
+  sidebar (R1) has no icons. The org sidebar has icons on the four top items only.
 - **Section label:** "ORGANISATIONS", 12 caps tracked and muted. 24 px above, 8 px below.
 - **Sub-items** appear only under the active parent: 14 px labels indented 24, with the same
-  active pill. Y5 and Y6 show Settings › General / API access.
+  active pill. R5 and R6 show Settings › General / API access.
 - **Bottom block,** pinned with `margin-top:auto`: a "View public page ↗" text link (14), a user
   chip (24 px initials circle plus name; it becomes a filled pill while on Account), then
   "Sign out" as plain text. **There is no theme toggle and no help item in the sidebar.**
-- **Interaction:** the sidebar never scrolls on Yuyu because it has 4 items. SpaceWorks needs
+- **Interaction:** the sidebar never scrolls on the reference boards because they have 4 items. SpaceWorks needs
   its own scroll region (see §2). The active state comes from the route.
 
-### P2. Page header (Y1, Y2, Y4–Y6, Y16)
+### P2. Page header (R1, R2, R4–R6, R16)
 
 ```
 Good morning, Priya                       ← 15 muted (greeting or date line)   y+40
@@ -129,7 +134,7 @@ People who can work on this organisation's events.   ← optional 15 muted subti
   glyph prefixes create actions. The secondary pill is an outline on white.
 - 24 px from the header block to the first content element.
 
-### P3. Detail header with back link, identity chip and underline tabs (Y7–Y10)
+### P3. Detail header with back link, identity chip and underline tabs (R7–R10)
 
 ```
 ← All events                                              13 semibold link
@@ -145,51 +150,51 @@ Overview  Guests  Page & programme  Registration form  Invites  Check-in  Feedba
 - **Meta line:** the status pill (P10) first, then "Public · Tomorrow, 9:30 AM" at 14 muted,
   separated by " · ".
 - **Contextual primary:** "Open check-in" on Overview. On the Check-in tab the primary
-  **disappears** (Y8) and only "View page ↗" stays. On Page & programme it becomes
-  "View programme ↗" (Y9). **Rule: the header primary never points at the screen you are on.**
+  **disappears** (R8) and only "View page ↗" stays. On Page & programme it becomes
+  "View programme ↗" (R9). **Rule: the header primary never points at the screen you are on.**
 - **Tabs:** 15 px labels, 12 px horizontal padding, a 40 px tall bar. The active tab is ink and
   semibold with a 2 px ink underline as wide as the label plus its padding. Inactive tabs are
   muted. A 1 px hairline runs **full bleed across the main area**, not just the content column.
   Tabs are links (URL-addressable). With 8 tabs on 944 px they fit on one line; below that they
-  must scroll horizontally with edge fades (Yuyu does not show this).
+  must scroll horizontally with edge fades (the reference boards do not show this).
 - Series uses a **coloured icon tile** (a recurrence glyph on a purple 52 px tile) instead of a
   date chip. **Generalisation: every detail page has an identity tile; a date where one exists,
   otherwise a type icon or initials.**
 
-### P4. Stat-card row (Y2, Y7, Y8)
+### P4. Stat-card row (R2, R7, R8)
 
 - **Grid:** 4 equal columns with 12 gaps, 102 tall, radius 12, 1 px border, 16 px padding.
 - **Anatomy:** label at 14 muted on top, number at 28–30 bold 12 px below. Variants:
   - **Fraction:** "5 / 120" with the denominator at 16 semibold muted.
   - **Progress:** a 4 px track (8 px on check-in) with the fill in the accent colour, 12 px
     below the number.
-  - **Wide stat:** spans 1.5–2 columns (Y8 "Checked in 2 of 5 · 40%") with a callout beside it.
-- **Not clickable** in Yuyu. **SpaceWorks deviation:** stat cards that represent a queue are
+  - **Wide stat:** spans 1.5–2 columns (R8 "Checked in 2 of 5 · 40%") with a callout beside it.
+- **Not clickable** on the reference boards. **SpaceWorks deviation:** stat cards that represent a queue are
   links to the filtered list (the dashboard does this today). Keep the card flat but give it a
   hover border and focus ring.
-- Zeros are shown as "0", not hidden (Y7 "Waiting for approval 0").
+- Zeros are shown as "0", not hidden (R7 "Waiting for approval 0").
 
-### P5. Contextual callout (Y2, Y6, Y8, Y17, Y7 CTA card)
+### P5. Contextual callout (R2, R6, R8, R17, R7 CTA card)
 
 Three sizes, all in warm-yellow fill with dark-brown text, radius 14, no border:
 
-1. **Banner** (Y2): one line, 50 tall, full content width, 16 px padding. A circled "!" icon,
+1. **Banner** (R2): one line, 50 tall, full content width, 16 px padding. A circled "!" icon,
    then a **bold lead clause** ("Demo Summit is tomorrow.") and a regular follow-on
    ("Download the guest list for offline check-in before you leave."). A right-aligned
    underlined bold link with "→" ("Prepare check-in →").
-2. **Panel with button** (Y8, Y17): two lines, about 105 tall. A bold title ("Not ready for
+2. **Panel with button** (R8, R17): two lines, about 105 tall. A bold title ("Not ready for
    offline yet", "Two-step sign-in is off"), one sentence of consequence, and a **filled
    dark-brown pill button** on the right ("Download guest list", "Set up authenticator").
-3. **CTA card** (Y7 "Get the door ready"): sits in a side column, the whole card is a link, with
+3. **CTA card** (R7 "Get the door ready"): sits in a side column, the whole card is a link, with
    a bold title, a body line and a "→" at the right.
-4. **Inline advisory** (Y6): one line, "!" plus text, no action ("Keep keys in a secret manager.
+4. **Inline advisory** (R6): one line, "!" plus text, no action ("Keep keys in a secret manager.
    Never put them in browser code, URLs, source control or logs.").
 
 **Rules observed:** a callout exists only when something is **time-sensitive or unsafe and the
 user can act now**. There is never more than one on a screen. It always names the consequence.
 There are no info-blue "tips". **A callout replaces a toast or banner for standing conditions.**
 
-### P6. List rows as bordered cards (Y1, Y2)
+### P6. List rows as bordered cards (R1, R2)
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────┐
@@ -213,7 +218,7 @@ There are no info-blue "tips". **A callout replaces a toast or banner for standi
   - a **two-line nudge**: muted state ("No guests yet") over a teal text link ("Send invites").
 - **Drafts:** dashed border, off-white fill, grey chip, and meta that says who can see it
   ("Draft · only your team can see it").
-- Y1 "Coming up" uses the same row with the action pill only on the most urgent item.
+- R1 "Coming up" uses the same row with the action pill only on the most urgent item.
 
 ### P7. Date chip / identity tile
 
@@ -224,7 +229,7 @@ There are no info-blue "tips". **A callout replaces a toast or banner for standi
 - Variants: initials tile (org avatar: rounded square, coloured fill, white initials), person
   avatar (circle, pastel fill, coloured initials at 11 bold), icon tile (series).
 
-### P8. Underline tabs with inline counts (Y2, Y7, Y16)
+### P8. Underline tabs with inline counts (R2, R7, R16)
 
 - On list pages the tabs **are the filter** ("Upcoming · Drafts 1 · Past"). The count follows
   the label in the same muted weight with no badge background. A count is shown only where it
@@ -232,7 +237,7 @@ There are no info-blue "tips". **A callout replaces a toast or banner for standi
 - Tabs sit **between** the stat row and the list, aligned to the main column (not full bleed on
   list pages; full bleed on detail pages).
 
-### P9. Segmented control (Y9, Y11)
+### P9. Segmented control (R9, R11)
 
 - A grey track pill 44–50 tall with a white thumb, soft shadow and semibold active text.
 - **Use:** two to three mutually exclusive **views of the same object** ("Page content |
@@ -243,11 +248,11 @@ There are no info-blue "tips". **A callout replaces a toast or banner for standi
 - **Status pill:** 20–22 tall, 8 px horizontal padding, 12 semibold, tinted fill with dark text
   in the same hue. Observed: Published, Going, Verified and Unused in green; Waitlist and
   "Running 5 min late" in yellow; Owner and "as a Member" in grey; Live in green with a 6 px dot.
-- **Meta chips** (Y6, Y18): grey tint, 26–28 tall, 13 regular ("Bearer auth", "In person",
+- **Meta chips** (R6, R18): grey tint, 26–28 tall, 13 regular ("Bearer auth", "In person",
   "3 sessions · 2 speakers"). The first chip may carry the brand tint ("Free").
-- **Choice chips** (Y10 "Who can join"; Y20 track filter; Y23 dates): 36 tall outline pills. The
-  selected one has a 1.5 px dark border (Y10) or a dark fill with white text (Y20 "All tracks").
-- **Track tag** (Y18 schedule): a tinted pill aligned right in the row.
+- **Choice chips** (R10 "Who can join"; R20 track filter; R23 dates): 36 tall outline pills. The
+  selected one has a 1.5 px dark border (R10) or a dark fill with white text (R20 "All tracks").
+- **Track tag** (R18 schedule): a tinted pill aligned right in the row.
 
 ### P11. Buttons
 
@@ -260,12 +265,12 @@ There are no info-blue "tips". **A callout replaces a toast or banner for standi
   red **outline** pill with a trailing "…" ("Delete organisation…", "Delete series…",
   "Sign out everywhere") for actions that open a confirmation. Destructive is never filled.
 - **Callout button:** a filled dark-brown pill inside a yellow callout.
-- **Disabled:** a grey fill with grey text (Y27 "Open check-in"), not reduced opacity.
+- **Disabled:** a grey fill with grey text (R27 "Open check-in"), not reduced opacity.
 - **Paired form footer:** "Discard" (outline) and "Save changes" (primary), right-aligned at the
   end of the form. On a create form the pair is "Create organisation" (primary, left) and
   "Cancel" (plain text, right of it).
 
-### P12. Recent-activity rail (Y1, Y2)
+### P12. Recent-activity rail (R1, R2)
 
 - A right column 260 wide with a 28 px gap from the main column (main is 622). Heading
   "Recent activity" at 20 bold.
@@ -273,24 +278,24 @@ There are no info-blue "tips". **A callout replaces a toast or banner for standi
   name in bold** and the target after " · " ("**Kiran Reddy** joined the waitlist · Demo
   Summit"), with the relative time at 14 muted on the next line. 77 px pitch. No dividers.
 - Footer link: "See all activity →", underlined 14 semibold.
-- The rail **sits beside the list, not above it,** and starts level with the tab bar (Y2) or the
-  first section heading (Y1). It drops entirely on narrow screens (inferred).
+- The rail **sits beside the list, not above it,** and starts level with the tab bar (R2) or the
+  first section heading (R1). It drops entirely on narrow screens (inferred).
 
-### P13. Key–value "At a glance" card (Y7)
+### P13. Key–value "At a glance" card (R7)
 
 - A bordered card 280 wide with 42 px rows split by hairlines. Label at 14 muted on the left,
   value at 14 ink **right-aligned**. Below it, the CTA card (P5.3).
 
-### P14. Tables inside a card (Y4, Y8, Y10)
+### P14. Tables inside a card (R4, R8, R10)
 
 - One bordered card radius 12. Header row 40 tall with labels at 13 muted, sentence case, no
   uppercase. Body rows 64 tall with hairlines.
 - Person cell: a 36 px initials circle, name at 15 semibold plus "(you)" muted, and email at 14
   muted below.
 - The last column is a row menu ("—"/"⋯") or an **inline text action** ("Undo", underlined).
-  The agenda table (Y10) puts the status pill right-aligned.
+  The agenda table (R10) puts the status pill right-aligned.
 
-### P15. Settings rows (Y5, Y16, Y17)
+### P15. Settings rows (R5, R16, R17)
 
 ```
 Logo                               [SD]  ( Upload logo )
@@ -301,7 +306,7 @@ Shown at the top of your public    [ Screenshot Demo Collective          ]
 page.                              Description
                                    [ A demo organisation used to…        ]
 ───────────────────────────────────────────────────────────────── hairline
-Web address                        [ yuyu.idliapps.com/  shots-org   Copy ]  (read-only: grey fill)
+Web address                        [ space-works.tech/  shots-org   Copy ]  (read-only: grey fill)
 Set when the organisation was created.
 ─────────────────────────────────────────────────────────────────
                                               ( Discard ) [■ Save changes ]
@@ -319,17 +324,17 @@ Set when the organisation was created.
   ("Changing email is coming in a future update.").
 - **Footer:** one Discard/Save pair for the whole page. The account page puts a meta fact on the
   left of the save row ("Member since 13 October 2026").
-- **Independent action rows** (Y17 password) carry their own button inside the right column
+- **Independent action rows** (R17 password) carry their own button inside the right column
   ("Update password"), because they are not part of the page save.
 
-### P16. Danger zone (Y5, Y10)
+### P16. Danger zone (R5, R10)
 
 - Always last, 40 px below the save row. A card with a 1 px pale-red border, radius 14 and
   20 px padding. Title at 16 semibold red ("Delete organisation"), one sentence of consequence
   at 14 ink, and a red outline pill with "…" on the right. **One danger card per irreversible
   action.**
 
-### P17. Empty states (Y4, Y6, Y3 preview)
+### P17. Empty states (R4, R6, R3 preview)
 
 - A dashed-border card (1 px dashed, radius 12, 20–24 px padding) with **one centred sentence**
   at 15 muted. **No illustration and no heading.** The sentence states the situation and the
@@ -339,18 +344,18 @@ Set when the organisation was created.
 - The same dashed treatment marks **"+ Add session"** and "+ New organisation" placeholders. The
   "add" affordance sits where the next item will appear.
 
-### P18. Create form with live preview (Y3)
+### P18. Create form with live preview (R3)
 
 - Form column 636 wide and preview column 300, gap 32. The preview is labelled with an eyebrow
   ("PUBLIC PAGE PREVIEW") and updates as you type.
-- Prefixed URL input: a grey static prefix segment ("yuyu.idliapps.com/") joined to an editable
+- Prefixed URL input: a grey static prefix segment ("space-works.tech/") joined to an editable
   segment, with an **inline availability check** underneath ("✓ Available" at 13 green).
 - Optional fields are marked inline ("Logo Optional", "Optional · shown on your public page").
   Required fields carry no asterisk.
 - Dropzone: dashed card with a 56 px icon tile, "Drop an image here, or **choose a file**" and
   the constraints line "Square, JPEG, PNG or WebP, up to 5 MB".
 
-### P19. Form card with checkbox cards and developer reference (Y6)
+### P19. Form card with checkbox cards and developer reference (R6)
 
 - A "New API client" form inside a bordered card with 3-column inputs.
 - **Checkbox cards:** a 3-up grid, each a bordered card with a checkbox, a 15 semibold label and
@@ -360,7 +365,7 @@ Set when the organisation was created.
 - **Accordion rows:** a disclosure triangle, the label and a monospace hint, at 52 tall with
   hairlines. This is progressive disclosure for reference material.
 
-### P20. Session/track board (Y9)
+### P20. Session/track board (R9)
 
 - Track columns are tinted panels (off-white fill, radius 16, 16 px padding) with a header
   ("Main stage" plus "2 sessions" right-aligned and muted).
@@ -371,7 +376,7 @@ Set when the organisation was created.
   handle and an edit pencil, plus "+ Add track". A right-aligned muted hint explains the rule
   ("Delays only move later sessions in the same track.").
 
-### P21. Check-in workspace (Y8)
+### P21. Check-in workspace (R8)
 
 - Top: a progress stat (2 cols) plus the "Not ready for offline yet" callout (2 cols).
 - Left (446): the camera block (dark, radius 16, 240 tall, centred "Camera is off") with a
@@ -384,11 +389,11 @@ Set when the organisation was created.
   only check people in — no guest lists or exports"), then the buttons "Copy link" (primary),
   "Show PIN", "New PIN" and "Turn off station" (red text).
 
-### P22. Auth split screen (Y11)
+### P22. Auth split screen (R11)
 
 ```
 ┌──────────────── 640 ────────────────┬──────────── 604 (16 inset) ────────────┐
-│ [Y] Yuyu                             │  Free events.                           │
+│ [S] Space Works                      │  Free events.                           │
 │                                      │  Your community's                       │
 │        Welcome back.        (44 bold)│  data stays yours.        (40 bold)     │
 │        [ Sign in | Create account ]  │                                         │
@@ -412,7 +417,7 @@ Set when the organisation was created.
   product objects** (date-chip cards, a check-in toast), slightly rotated with soft shadows.
   This is product proof, not stock art.
 
-### P23. Centred task card (Y12–Y15)
+### P23. Centred task card (R12–R15)
 
 - 440 wide (480 for invites), radius 20, 32 px padding, 1 px border, on the off-white canvas with
   the logo top-left.
@@ -431,14 +436,14 @@ Set when the organisation was created.
 - Password strength: a 4-segment meter (4 px bars, 4 px gaps) plus a live rule list
   ("✓ At least 12 characters" in green).
 
-### P24. Account tabs (Y16, Y17)
+### P24. Account tabs (R16, R17)
 
 - Title plus subtitle, then a 2-tab underline bar (Profile / Security) at content width, then
   settings rows.
 - Security leads with a **panel callout** when a protection is off. Sessions use a destructive
   outline ("Sign out everywhere").
 
-### P25. Public event page (Y18, Y19, Y23)
+### P25. Public event page (R18, R19, R23)
 
 ```
 [SD] Screenshot Demo Collective                     Discover events  ( Sign in )   48h header
@@ -459,24 +464,24 @@ Schedule ............................ Live schedule →
 60 min   Asha Menon
 Speakers (2-col cards) · Partners (2-col) · Venue (map | text, Get directions ↗) · FAQ (disclosure)
 ──────────────────────────────────────────────────────────────────────────────────
-[Y] Free event, powered by Yuyu                        Privacy · Terms · Hosted on Idlistack
+[S] Powered by Space Works                                Privacy · Terms
 ```
 
 - Container 1110 with 84 px gutters at 1280. Main column 545 and sticky card 318, gap 66.
-- **Tenant theming** (Y19) recolours only the title, the chip tint, the date-chip band, the
+- **Tenant theming** (R19) recolours only the title, the chip tint, the date-chip band, the
   register button and the highlight tile. Everything else stays neutral, and the cover image is
   optional.
 - The sticky card carries the **only primary on the page**, and it changes with state: the price
   is folded into the label ("Register — it's free"); a waitlist would read "Join waitlist". Social
   proof (avatars plus "Meera, Dev and 3 others") sits above the button; the capacity bar sits
   under the counts.
-- **Inline-form variant (Y23):** the registration fields live inside the sticky card ("Join on
+- **Inline-form variant (R23):** the registration fields live inside the sticky card ("Join on
   20 October"; name, email, helper "We'll send your ticket and the call link here.", register;
   "Have an account? **Sign in to register faster**"). A date-pill picker sits in the main column.
-- Secondary pages (Y20–Y22) **move the primary into the header** ("Register — free" pill)
+- Secondary pages (R20–R22) **move the primary into the header** ("Register — free" pill)
   because there is no sticky card. They use a breadcrumb "Demo Summit 2026 / Programme".
 
-### P26. Live and status pages (Y24) and feedback (Y25)
+### P26. Live and status pages (R24) and feedback (R25)
 
 - **Running order:** a "● Live · updates automatically" green pill in the header. A **NOW** card
   in solid brand fill (white text, title 36 bold, "6:30 – 6:40 PM · 4 min left", white progress
@@ -491,7 +496,7 @@ Speakers (2-col cards) · Partners (2-col) · Venue (map | text, Get directions 
   a privacy helper. The full-width brand primary names both outcomes ("Send feedback & get
   certificate").
 
-### P27. Mobile ticket (Y26, 390 px)
+### P27. Mobile ticket (R26, 390 px)
 
 - "← Event page" sits beside a "✓ Confirmed" green pill. Title "You're in, Meera!" at 32 bold.
 - **Ticket card:** a brand header band (org name small, event at 24 bold), a 2-column grid of
@@ -501,7 +506,7 @@ Speakers (2-col cards) · Partners (2-col) · Venue (map | text, Get directions 
 - Two half-width buttons (primary "Add to calendar", outline "Save ticket") and an underlined
   destructive escape ("Can't make it? Cancel registration").
 
-### P28. Kiosk PIN (Y27)
+### P28. Kiosk PIN (R27)
 
 - Two columns on a 1180 canvas. **Left:** org tile 64, a context line ("Demo Summit 2026 · Door
   check-in"), the title at 52 bold ("Enter the station PIN"), the helper ("Ask an organiser for
@@ -511,7 +516,7 @@ Speakers (2-col cards) · Partners (2-col) · Venue (map | text, Get directions 
   "⌫" on grey keys, and a full-width CTA "Open check-in" (58 tall) that stays **disabled grey
   until all 8 digits are in**.
 
-### P29. Kiosk station (Y28)
+### P29. Kiosk station (R28)
 
 - A 100 px header: event name (22 bold), "Door check-in · Station 1", and on the right a big
   count "**3** / 5 checked in", a "● Online" pill and an outline "Lock station".
@@ -522,13 +527,13 @@ Speakers (2-col cards) · Partners (2-col) · Venue (map | text, Get directions 
   (white outline). Below it a "RECENT" list (✓ name, relative time). The result **is the
   screen**; there is no modal.
 
-### P30. Undo and confirmation behaviour (Y8, Y28)
+### P30. Undo and confirmation behaviour (R8, R28)
 
-- **Inline Undo** appears in the "Recent check-ins" rows and on the station result card. Yuyu
-  shows no toast and no "Are you sure?" for check-ins. Reversible high-frequency actions use
+- **Inline Undo** appears in the "Recent check-ins" rows and on the station result card. The reference boards
+  show no toast and no "Are you sure?" for check-ins. Reversible high-frequency actions use
   **do it now, offer Undo in place.**
 - Irreversible actions use a **danger card plus a "…" button** that leads to a confirmation.
-- **Toasts do not appear on any Yuyu board.** The closest artefact is the floating
+- **Toasts do not appear on any reference board.** The closest artefact is the floating
   "✓ Meera checked in" chip on the auth hero, which is a reasonable visual model. SpaceWorks
   already has `components/ui/toastStore.ts` with an awaited `undo` compensation, used by
   inventory archive. **Spec:** toast = bottom-centre (mobile) or bottom-left of the main area
@@ -538,11 +543,11 @@ Speakers (2-col cards) · Partners (2-col) · Venue (map | text, Get directions 
 
 ### 1.31 Interaction model summary
 
-| Concern | Yuyu rule |
+| Concern | Space Works rule |
 |---|---|
 | Primary action | One per page header, one per sticky card, one per callout. Never points at the current screen. |
 | Secondary | Outline pill beside the primary; everything else is a text link or a row menu. |
-| Where counts live | Stat cards (overview numbers), tab labels (queue sizes), row right slots ("5 / 120"), header meta, the kiosk header. **Never** in the sidebar on Yuyu (SpaceWorks keeps its unread count there, see §2). |
+| Where counts live | Stat cards (overview numbers), tab labels (queue sizes), row right slots ("5 / 120"), header meta, the kiosk header. **Never** in the sidebar on the reference boards (SpaceWorks keeps its unread count there, see §2). |
 | Progressive disclosure | Sub-nav only under the active parent; accordions for reference; the camera off until "Start scanning"; the live preview beside the create form; optional fields labelled rather than hidden. |
 | Inline vs menu | The **next step** is inline (pill or link in the row); rare or destructive actions go in "⋯" / "—" menus; destructive-irreversible actions go in the danger zone. |
 | Navigation | Back link on detail pages; breadcrumb only on public sub-pages; tabs are URLs. |
@@ -606,7 +611,7 @@ type PageHeaderProps = { eyebrow?: string; title: string; subtitle?: string; met
 Breakpoints used below: **375** (phone), **768** (tablet portrait), **1280** (desktop). Gutters
 16 / 24 / 36. Content max-width 1120 (Inventory/Reports/Audit may opt into `wide` = full).
 
-### L1. `AppShell` — sidebar + content (Yuyu Y1–Y10, Y16–Y17)
+### L1. `AppShell` — sidebar + content (R1–R10, R16–R17)
 
 ```ts
 AppShell({
@@ -634,7 +639,7 @@ AppShell({
 
 Used by: every staff tab (§2), the member area (S16). Not used by public, auth, kiosk.
 
-### L2. `DashboardLayout` — greeting header + stat row + main + right rail (Y1, Y2)
+### L2. `DashboardLayout` — greeting header + stat row + main + right rail (R1, R2)
 
 ```ts
 DashboardLayout({
@@ -655,7 +660,7 @@ DashboardLayout({
 
 Used by: staff Home (S1), member Home (S16), organizations home (governance-only), Platform dashboard.
 
-### L3. `ListLayout` — header + callout + stats/tabs + filters + list/table + pagination (Y2, Y4)
+### L3. `ListLayout` — header + callout + stats/tabs + filters + list/table + pagination (R2, R4)
 
 ```ts
 ListLayout({
@@ -681,7 +686,7 @@ ListLayout({
 
 Used by: Requests, Direct handout, Inventory, Members, Staff & roles, Events, Bookings, Machines index (rows→cards), Audit log, Inbox, Payments, Ledger, Transfers, Stocktake, To buy, Repair shelf, Containers, Categories, Warranties, Devices, Member cards, Accountability, Organizations, Organized events, Delivery log, Email templates, public events list (inside L9).
 
-### L4. `DetailLayout` — back + identity + title/status/meta + actions + underline tabs + main/aside (Y7–Y10)
+### L4. `DetailLayout` — back + identity + title/status/meta + actions + underline tabs + main/aside (R7–R10)
 
 ```ts
 DetailLayout({
@@ -705,7 +710,7 @@ DetailLayout({
 
 Used by: Request detail (drawer), Inventory item (drawer), Machine type page, Machine detail (drawer, wide), Event detail, Series detail, Bookable space, Member detail (drawer), Role detail, Report viewer (main = report, aside = report list on the left variant `asideSide="start"`).
 
-### L5. `SettingsLayout` — sub-nav + sections of rows + sticky Discard/Save + DangerZone (Y5, Y6, Y16, Y17)
+### L5. `SettingsLayout` — sub-nav + sections of rows + sticky Discard/Save + DangerZone (R5, R6, R16, R17)
 
 ```ts
 SettingsLayout({
@@ -729,7 +734,7 @@ DangerZone({ title: string; consequence: string; action: Action & { confirms: tr
 
 Used by: Makerspace settings (S9), Account/MFA, member Account tab, Machine type › Settings tab content, item Details tab content (rows only), API access, Email settings, Modules, Usage & limits, Backup & restore, Data export, Platform settings, Evidence retention.
 
-### L6. `FormPageLayout` — create/edit form + optional live preview (Y3, Y6 form card)
+### L6. `FormPageLayout` — create/edit form + optional live preview (R3, R6 form card)
 
 ```ts
 FormPageLayout({
@@ -748,7 +753,7 @@ FormPageLayout({
 
 Used by: New event / New series, Add item, Create makerspace, New organization, Create bookable space, New API client, Add staff (full page variant), QR tools, staff Scanner, Bulk import, Email template editor.
 
-### L7. `FlowLayout` — step rail + work panel + guarded footer (Y8/Y28 visual, SpaceWorks wizards)
+### L7. `FlowLayout` — step rail + work panel + guarded footer (R8/R28 visual, SpaceWorks wizards)
 
 ```ts
 FlowLayout({
@@ -772,7 +777,7 @@ FlowLayout({
 
 Used by: request issue/return (S3), direct handout (S4), job pickup (`HandoverConsole`), kiosk handover, offline replay correction, stocktake count session, tenant migration / backup restore wizards, create-makerspace onboarding.
 
-### L8. `AuthLayout` (Y11) and `CenteredCardLayout` (Y12–Y15)
+### L8. `AuthLayout` (R11) and `CenteredCardLayout` (R12–R15)
 
 ```ts
 AuthLayout({
@@ -800,7 +805,7 @@ CenteredCardLayout({
 
 Used by: staff sign-in, member sign-in/sign-up (Auth); reset password, verify email, MFA challenge, staff/organization invitation accept, change-password gate, access denied, "event not found" (Centred).
 
-### L9. `PublicLayout` (Y18–Y25 chrome) and `PublicDetailLayout` (Y18, Y19, Y21, Y23)
+### L9. `PublicLayout` (R18–R25 chrome) and `PublicDetailLayout` (R18, R19, R21, R23)
 
 ```ts
 PublicLayout({
@@ -834,7 +839,7 @@ type ActionCardProps = { title: string; summary?: ReactNode /* counts + bar, ava
 
 Used by: catalogue (PublicLayout + `aside`), item detail, public event, events list, programme, session, feedback (narrow), running order (narrow, `liveStatus`), ticket (narrow), public machines, public bookings, public stats, organization page, about/landing.
 
-### L10. `KioskLayout` — full screen, large targets (Y27, Y28)
+### L10. `KioskLayout` — full screen, large targets (R27, R28)
 
 ```ts
 KioskLayout({
@@ -861,20 +866,20 @@ All targets ≥56 px, text ≥18, no hover-only affordances. Used by: kiosk hand
 
 ### 1A.11 Pattern → screen-type → layout map (shared with `ux-screens-longtail.md`)
 
-| Screen type | Layout | Yuyu source | Patterns it composes | SpaceWorks screens (examples) |
+| Screen type | Layout | Reference | Patterns it composes | SpaceWorks screens (examples) |
 |---|---|---|---|---|
-| Dashboard home | L1 + **L2 DashboardLayout** | Y1, Y2 | P2 eyebrow header, P5 banner, P4 stats, P6 rows, P12 rail | Staff Home, member Home, organizations home, Platform dashboard |
-| List + stats | L1 + **L3 ListLayout** | Y2, Y4 | P2, P5, P4, P8 tabs, P6 rows or P14/§5.1 table, P17 empty, P30 undo | Requests, Inventory, Members, Events, Bookings, Audit, Payments, every long-tail table tab |
-| Detail with tabs | L1 + **L4 DetailLayout** (page or drawer) | Y7–Y10 | P3, P7, P4, P13 aside, P5 CTA card, P16 | Request, item, machine type, machine, event, series, space, member, role |
-| Settings rows | L1 + **L5 SettingsLayout** | Y5, Y6, Y16, Y17 | P15, P16, P5 panel, P19, P24 | Makerspace settings, account, API access, modules, backups, exports |
-| Create / tool form | L1 + **L6 FormPageLayout** | Y3, Y6 | P18 preview, P19 cards, P17 dropzone | New event/item/makerspace/space/client, QR tools, bulk import, template editor |
-| Wizard / flow | **L7 FlowLayout** (task mode over L1, or inside L10) | Y8, Y28 (visual) | P21 camera, evidence tile (§5.2), P29 result card | Issue/return, direct handout, job pickup, stocktake session, restore/migration |
-| Scanner / kiosk | **L10 KioskLayout** | Y27, Y28 | P28 PIN, P29 station, P30 undo, P5 panel | Kiosk station, door check-in, desk kiosk, scanner page |
-| Public list | **L9 PublicLayout** | Y18 chrome, Y20 | P6 rows, P10 chips, P9 segmented | Catalogue (with `aside` cart), events list, machines, bookings |
-| Public detail | L9 + **PublicDetailLayout** | Y18, Y19, Y21, Y23 | P25, P10, action card | Event page, item page, session, speaker, organization page |
-| Public narrow task | L9 `width="narrow"` | Y24, Y25, Y26 | P26, P27 | Feedback, running order, ticket, self-checkout result |
-| Auth | **L8 AuthLayout** | Y11 | P22, P9 | Staff sign-in, member sign-in/up |
-| Centred task card | **L8 CenteredCardLayout** | Y12–Y15 | P23 | Reset, verify, MFA, invitations, access denied, not found |
+| Dashboard home | L1 + **L2 DashboardLayout** | R1, R2 | P2 eyebrow header, P5 banner, P4 stats, P6 rows, P12 rail | Staff Home, member Home, organizations home, Platform dashboard |
+| List + stats | L1 + **L3 ListLayout** | R2, R4 | P2, P5, P4, P8 tabs, P6 rows or P14/§5.1 table, P17 empty, P30 undo | Requests, Inventory, Members, Events, Bookings, Audit, Payments, every long-tail table tab |
+| Detail with tabs | L1 + **L4 DetailLayout** (page or drawer) | R7–R10 | P3, P7, P4, P13 aside, P5 CTA card, P16 | Request, item, machine type, machine, event, series, space, member, role |
+| Settings rows | L1 + **L5 SettingsLayout** | R5, R6, R16, R17 | P15, P16, P5 panel, P19, P24 | Makerspace settings, account, API access, modules, backups, exports |
+| Create / tool form | L1 + **L6 FormPageLayout** | R3, R6 | P18 preview, P19 cards, P17 dropzone | New event/item/makerspace/space/client, QR tools, bulk import, template editor |
+| Wizard / flow | **L7 FlowLayout** (task mode over L1, or inside L10) | R8, R28 (visual) | P21 camera, evidence tile (§5.2), P29 result card | Issue/return, direct handout, job pickup, stocktake session, restore/migration |
+| Scanner / kiosk | **L10 KioskLayout** | R27, R28 | P28 PIN, P29 station, P30 undo, P5 panel | Kiosk station, door check-in, desk kiosk, scanner page |
+| Public list | **L9 PublicLayout** | R18 chrome, R20 | P6 rows, P10 chips, P9 segmented | Catalogue (with `aside` cart), events list, machines, bookings |
+| Public detail | L9 + **PublicDetailLayout** | R18, R19, R21, R23 | P25, P10, action card | Event page, item page, session, speaker, organization page |
+| Public narrow task | L9 `width="narrow"` | R24, R25, R26 | P26, P27 | Feedback, running order, ticket, self-checkout result |
+| Auth | **L8 AuthLayout** | R11 | P22, P9 | Staff sign-in, member sign-in/up |
+| Centred task card | **L8 CenteredCardLayout** | R12–R15 | P23 | Reset, verify, MFA, invitations, access denied, not found |
 
 ---
 
@@ -932,14 +937,14 @@ quotes are proposed display labels; the key and URL do not change.
 
 | # | Section header | Items (key → label) | Notes |
 |---|---|---|---|
-| 0 | *(no header)* | **dashboard → "Home"**, **notifications → "Inbox"** (unread badge) | Yuyu "Home" pattern. The unread count stays in the accessible name ("Inbox, 3 unread"). |
+| 0 | *(no header)* | **dashboard → "Home"**, **notifications → "Inbox"** (unread badge) | The "Home" pattern. The unread count stays in the accessible name ("Inbox, 3 unread"). |
 | 1 | Front desk | **requests → "Requests"** (count badge: pending + ready), **direct → "Direct handout"**, **handover → "Job pickups"**, **payments → "Payments"** | The daily loop. Payments sits here because `record_payment` is a handout action and front-desk staff take money at the desk. |
 | 2 | Inventory | **inventory → "Items"**, **needsfix → "Repair shelf"**, **stocktake → "Stocktake"**, **transfers → "Transfers"**, **tobuy → "To buy"**; *categories → "Categories"*, *containers → "Containers"*, *ledger → "Stock ledger"*, *warranty → "Warranties"*, *qr → "QR tools"*, *scanner → "Scanner"*, *bulk → "Bulk import"* | Page `h1` stays "Inventory" (the test pin is the panel heading, not the nav label). "Ledger" gains "Stock" so it is not mistaken for money. |
-| 3 | Machines | **machines → "Machines"** + dynamic sub-items per machine type when active, **devices → "Devices"** | Sub-items come from the machine-type list already fetched by `MachinesPanel`, linked with `staffTabPath("machines", …, machineTypeSegment(type))`. This uses the existing `TABS_WITH_SUBPATHS` route, so it is the Yuyu "Settings › General" sub-nav pattern on an existing route. |
+| 3 | Machines | **machines → "Machines"** + dynamic sub-items per machine type when active, **devices → "Devices"** | Sub-items come from the machine-type list already fetched by `MachinesPanel`, linked with `staffTabPath("machines", …, machineTypeSegment(type))`. This uses the existing `TABS_WITH_SUBPATHS` route, so it is the "Settings › General" sub-nav pattern on an existing route. |
 | 4 | Community | **members → "Members"**, **events → "Events"**, **bookings → "Bookings"**, *cards → "Member cards"* | |
 | 5 | Insights | **reports → "Reports"**, **audit → "Audit log"**, *accountability → "Accountability"* | |
 | 6 | Organizations | **organizations → "Organizations"**, **organized → "Organized events"**, **organization-analytics → "Org analytics"** | All three are cross-venue. The section shows a muted caption "Across venues" so the user knows the selected makerspace does not scope it. In single-tenant mode all three are hidden by gating, so the section disappears. For a governance-only actor this is the only section (see 2.5). |
-| — | *(bottom block, above the user chip)* | **settings → "Settings"** with sub-items when any Settings-family tab is active: settings → "General", users → "Staff & roles", emailtemplates → "Email templates", email-logs → "Delivery log", api → "API access", exports → "Data export", backups → "Backup & restore", usage → "Usage & limits", modules → "Modules", migration → "Tenant migration" | Yuyu Settings › General / API access. "Admin" becomes one item that expands in place. If `settings` itself is not allowed but a child is (e.g. a role with only `edit_inventory` sees Email templates), the parent link goes to the **first allowed child**. |
+| — | *(bottom block, above the user chip)* | **settings → "Settings"** with sub-items when any Settings-family tab is active: settings → "General", users → "Staff & roles", emailtemplates → "Email templates", email-logs → "Delivery log", api → "API access", exports → "Data export", backups → "Backup & restore", usage → "Usage & limits", modules → "Modules", migration → "Tenant migration" | The Settings › General / API access sub-nav (R5, R6). "Admin" becomes one item that expands in place. If `settings` itself is not allowed but a child is (e.g. a role with only `edit_inventory` sees Email templates), the parent link goes to the **first allowed child**. |
 | — | Platform *(bottom, superadmin only)* | **platform-dashboard → "Platform dashboard"**, **platform → "Platform settings"** | Rendered under a hairline with a muted "Platform" label so it is visibly a different scope. |
 
 Item order inside a section is by frequency of use, not alphabetical.
@@ -954,7 +959,7 @@ Item order inside a section is by frequency of use, not alphabetical.
    (wrapped in try/catch, a convenience only). **A section auto-expands when it contains the
    active tab**, so the active item is never hidden (this matches the unmounted-collapsed-content
    accessibility rule in PLAN §5).
-4. Settings sub-items show only while a Settings-family tab is active (Yuyu rule); otherwise
+4. Settings sub-items show only while a Settings-family tab is active (sub-nav rule); otherwise
    Settings is one row.
 5. Machine-type sub-items show only while on `machines`, at most 8, then "All types →".
 6. The sidebar body scrolls independently (`overflow-y:auto`) between the switcher and the
@@ -1002,7 +1007,7 @@ Item order inside a section is by frequency of use, not alphabetical.
 
 **Governance-only** (`allowedTabs = ["organizations"]`): sidebar = Organizations only, and no
 switcher menu entries other than "View public page" (there is no makerspace scope). The page uses
-the Yuyu home pattern Y1 ("Your organizations" cards).
+the home pattern R1 ("Your organizations" cards).
 
 **Machine-only** (`isMachineOnly`): typically Home, Inbox, Machines (with type sub-items),
 Warranties, Reports, Email templates. Rule 2 keeps it flat. The machine-type sub-items become the
@@ -1029,7 +1034,7 @@ column, limited to 3 items with "See all"; row cards keep the chip and stack the
 the meta; header actions collapse to the primary plus an overflow "⋯"; underline tabs scroll
 horizontally with the active tab scrolled into view; drawers open full screen.
 
-### S1. Staff Home / Dashboard (`dashboard`) ← Y1 + Y2
+### S1. Staff Home / Dashboard (`dashboard`) ← R1 + R2
 
 **Layout:** L1 `AppShell` + L2 `DashboardLayout`. The slots are filled as follows:
 `header` = date eyebrow, "Dashboard" `h1` (greeting as eyebrow), Quick add primary;
@@ -1080,7 +1085,7 @@ Everything else ▸  (disclosure: remaining non-zero tiles as a compact 2-col li
   the greeting as the eyebrow, **or** update the pin deliberately in Phase 4. Recommendation:
   `h1` "Dashboard" with the greeting above it.
 
-### S2. Requests list (`requests`) ← Y2 (tabs + rows) + Y8 (inline actions)
+### S2. Requests list (`requests`) ← R2 (tabs + rows) + R8 (inline actions)
 
 **Layout:** L3 `ListLayout`. The slots are filled as follows: `header` = "Requests", with the
 subtitle and a conditional primary; `tabs` = Pending / Ready / On loan / History with counts;
@@ -1127,7 +1132,7 @@ Pending 4 │ Ready 2 │ On loan 7 │ History                 [ Search name, e
 - **Mobile:** rows stack; the inline action becomes a full-width button at the bottom of the
   card (44 tall).
 
-### S3. Request detail + issue/return flow ← Y7 (detail header, at-a-glance) + Y8/Y28 (scan workspace)
+### S3. Request detail + issue/return flow ← R7 (detail header, at-a-glance) + R8/R28 (scan workspace)
 
 **Layout:** the detail is L4 `DetailLayout presentation="drawer"`. The slots are filled as
 follows: `back` = Requests; `identity` = requester avatar; `title` = "Request #id"; `status`;
@@ -1216,7 +1221,7 @@ Desktop: full-screen task mode (no sidebar), 2 columns
   sign-off:** the abandoned-upload cleanup is default-off, so the claim must match the
   deployment.
 
-### S4. Direct handout (`direct`) ← Y2 list + S3 flow
+### S4. Direct handout (`direct`) ← R2 list + S3 flow
 
 **Layout:** L3 `ListLayout`. The slots are filled as follows: `header` = "+ New handout"
 primary; `tabs` = On loan / Returned / Claim codes; `body` = rows with inline Return. New handout
@@ -1240,7 +1245,7 @@ On loan 5 │ Returned │ Claim codes
 - **Mobile:** the primary becomes a full-width sticky bottom button above the bottom tab bar
   (handout console).
 
-### S5. Inventory list (`inventory`) ← Y2 header/stat cards + adapted dense table (§5)
+### S5. Inventory list (`inventory`) ← R2 header/stat cards + adapted dense table (§5)
 
 **Layout:** L3 `ListLayout width="wide"`. The slots are filled as follows: `header` = title,
 meta counts, "+ Add item" primary, an Export menu as secondary; `callout` = reorder suggestions;
@@ -1279,7 +1284,7 @@ All 248 │ Low stock 12 │ Out of stock 4 │ Archived            [ Search ite
 - **Mobile:** table becomes stacked cards (image, name, availability pill, "Issued 15 · Damaged
   1 · Lost 1"), selection via long-press or a checkbox; bulk bar fixed at the bottom.
 
-### S6. Inventory item detail ← Y7 (detail header + tabs) + Y5 (settings rows, danger zone)
+### S6. Inventory item detail ← R7 (detail header + tabs) + R5 (settings rows, danger zone)
 
 **Layout:** L4 `DetailLayout presentation="drawer" width=720`. The slots are filled as follows:
 `identity` = image; `status` = availability; `tabs` = Details / Stock / QR & assets / History /
@@ -1307,14 +1312,14 @@ Details: settings rows (Name & description │ Photo │ Category │ Public vis
   The last two only when `canViewAudit`.
 - **Public visibility row** groups `is_public`, `public_availability_mode` (segmented: Exact
   count / Status only / Hidden) and `show_public_count`, with a **live preview pill** of what the
-  public sees (Y3 live-preview pattern). The rule from CLAUDE.md is computed client-side only for
+  public sees (R3 live-preview pattern). The rule from CLAUDE.md is computed client-side only for
   display. "Exact count" with `show_public_count=false` previews as "Limited" and the helper says
   why.
-- **Add item** uses the same layout as a create page (Y3): form left, "Public catalogue preview"
+- **Add item** uses the same layout as a create page (R3): form left, "Public catalogue preview"
   card right (ProductCard rendering). Then, as today, it reopens in edit mode to add a photo, with
   the copy "Item created. Add a photo so members can recognise it."
 
-### S7. Members (`members`) ← Y4
+### S7. Members (`members`) ← R4
 
 **Layout:** L3 `ListLayout`. The slots are filled as follows: `header` = "Invite member" primary;
 `callout` = pending requests; `tabs` = Members / Requests / Present now / Plans / Waivers;
@@ -1332,7 +1337,7 @@ Members 128 │ Requests 3 │ Present now 4 │ Plans │ Waivers          [ Se
 └──────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
-- **Invite** = the Y4 invite card pattern, opened from the primary into a modal: email, role
+- **Invite** = the R4 invite card pattern, opened from the primary into a modal: email, role
   select (defaults to first role, as today) and "Send invite". The Requests tab lists both
   membership requests and staff invitations (today's second panel), each with inline
   "Approve" (primary pill) and "Decline…" (red text). The plan picker appears inline in the
@@ -1349,7 +1354,7 @@ Members 128 │ Requests 3 │ Present now 4 │ Plans │ Waivers          [ Se
   empty:** "No one is waiting. New membership requests appear here."
 - **Mobile:** the table becomes cards (name, role and status pills, ⋯).
 
-### S8. Staff & roles (`users`) ← Y4 (table) + Y6 (checkbox cards for permissions)
+### S8. Staff & roles (`users`) ← R4 (table) + R6 (checkbox cards for permissions)
 
 **Layout:** L3 `ListLayout`. The slots are filled as follows: `tabs` = Staff / Roles /
 Invitations; `body` = table. The role detail is L4 `DetailLayout` (page). Its `main` =
@@ -1364,17 +1369,17 @@ Staff table: Person · Role (pill) · Makerspace* · Status (Restricted pill if 
 ```
 \* superadmin / multi-makerspace only.
 
-- The first-staff invitation link renders as the **Y4 invite-link card** (read-only field,
+- The first-staff invitation link renders as the **R4 invite-link card** (read-only field,
   "Unused" pill, "Copy link" primary, "Dismiss").
 - **Roles tab:** role list rows (name, the "Default" pill for the 4 protected roles, "n actions",
   "m staff") leading to a role detail with the `RoleEditor` actions grouped as **checkbox cards**
-  (Y6) by area (Lending, Inventory, Machines, Community, Money, Admin), each card showing the
+  (R6) by area (Lending, Inventory, Machines, Community, Money, Admin), each card showing the
   human label plus the action key in mono, and `RoleMachineScopeEditor` as its own settings row.
   Save via a Discard/Save pair. Danger zone: "Delete role…" for custom roles.
 - **Invitations tab:** `StaffInvitations` (when `staff.invitations`).
 - **Empty:** "No staff yet. Add staff to share the work."
 
-### S9. Makerspace settings (`settings`) ← Y5 + Y6 + Y17
+### S9. Makerspace settings (`settings`) ← R5 + R6 + R17
 
 **Layout:** L5 `SettingsLayout subnav="auto"`. The slots are filled as follows: `sections` = the
 12 groups in the table below, each with its own `save`; `danger` = the archive request. The
@@ -1416,7 +1421,7 @@ scroll-spy, so no routing change is needed. Optional later: `settings/<section>`
 - **Loading:** row skeletons per section. **Error:** per-section error with Retry (the sections
   load independently).
 
-### S10. Machines ← Y1 cards (index), Y7 detail header + tabs (type page), Y5 rows (machine detail)
+### S10. Machines ← R1 cards (index), R7 detail header + tabs (type page), R5 rows (machine detail)
 
 **Layout:** the index is L3 `ListLayout`. The slots are filled as follows: `body` = rows,
 rendered as a card grid via the `ListRow` card variant; `callout` = overdue maintenance. The type
@@ -1471,7 +1476,7 @@ Overview: stat cards (Usage hours · Jobs this month · Next maintenance · Open
 - **Empty:** "No machines are registered for this type. Add the first one with Add machine."
   Keep the "requires a successful load" rule from `MachineTypePage`.
 
-### S11. Events list (`events`) ← Y2 exactly
+### S11. Events list (`events`) ← R2 exactly
 
 **Layout:** L3 `ListLayout`. The slots are filled as follows: `header` = greeting eyebrow, "New
 series" secondary, "+ New event" primary; `callout` = collaboration invites or door-ready;
@@ -1489,7 +1494,7 @@ date-chip rows: right slot = "12 / 30 going" bar │ "Finish & publish" pill │
 ```
 
 - **Remove the always-open create form** from the list page. "+ New event" opens a create page
-  (Y3 layout: form left, public event card preview right) and "New series" opens the series
+  (R3 layout: form left, public event card preview right) and "New series" opens the series
   variant. The `useQuickCreate("event")` hook opens the same page.
 - `CollaborationInbox` and `EventSeriesCollaborationInbox` collapse into **one callout** when
   invitations are pending ("2 venues invited you to co-host. Review →") that opens a drawer. No
@@ -1502,7 +1507,7 @@ date-chip rows: right slot = "12 / 30 going" bar │ "Finish & publish" pill │
   Cancelled (red word pill), Completed (grey).
 - **Empty (no events):** dashed "+ New event" placeholder row: "Your events will appear here."
 
-### S12. Event detail ← Y7, Y8, Y9, Y10
+### S12. Event detail ← R7, R8, R9, R10
 
 **Layout:** L4 `DetailLayout` (page). The slots are filled as follows: `identity` = date chip;
 `actions.primary` = status-driven (with `targetsTab="checkin"` so it hides on that tab); `tabs` =
@@ -1524,7 +1529,7 @@ Overview  Registrations 14  Check-in  Tickets & invites  Feedback  Team  Setting
 |---|---|
 | Overview | Stat cards (Going n/cap with bar · Waitlist · Awaiting approval · Invites sent), "Latest registrations" list (5 rows + "All registrations →"), an "At a glance" card (When, Where, Who can join, Price), and the door-ready CTA card when tomorrow or today and offline check-in is enabled. |
 | Registrations | `EventRegistrationRoster` as a P14 table with status pills (Going, Waitlist, Pending) and inline Approve / Decline… for pending; `EventRegisterMember` as "+ Add registration" (outline). |
-| Check-in | The Y8 layout: progress stat plus offline callout (`OfflineCheckInOperator`), camera and Start scanning (`EventCheckInScanner`), find a guest, toggles, Recent check-ins with **inline Undo only if the backend supports reversing a check-in** (otherwise omit; do not fake it), and the door-station card (`EventStationSettings`). |
+| Check-in | The R8 layout: progress stat plus offline callout (`OfflineCheckInOperator`), camera and Start scanning (`EventCheckInScanner`), find a guest, toggles, Recent check-ins with **inline Undo only if the backend supports reversing a check-in** (otherwise omit; do not fake it), and the door-station card (`EventStationSettings`). |
 | Tickets & invites | `EventTicketsPanel`, `EventPromosPanel`, `EventInvitesPanel`, each a section; shown only for enabled `ticketing_features`. |
 | Feedback | `EventFeedbackPanel` and responses; certificates (`EventCertificateActions`). |
 | Team | `EventOrganizers`, `EventCollaborators`. |
@@ -1533,10 +1538,10 @@ Overview  Registrations 14  Check-in  Tickets & invites  Feedback  Team  Setting
 - **Header primary by status:** draft → "Publish…" (confirm, because it notifies the public);
   published → "Open check-in" (hidden on the Check-in tab); completed → "View feedback".
   Cancelled or completed: a read-only banner "This event is completed. It can't be edited."
-- **Series** (`EventSeriesDrawer`) gets the same page treatment per Y10: upcoming-date cards,
+- **Series** (`EventSeriesDrawer`) gets the same page treatment per R10: upcoming-date cards,
   details, a "Who can join" chip radio, agenda, and the "Delete series…" danger zone.
 
-### S13. Bookings (`bookings`) ← Y2 + Y7
+### S13. Bookings (`bookings`) ← R2 + R7
 
 **Layout:** L3 `ListLayout`. The slots are filled as follows: `stats`; `tabs` = Requests /
 Upcoming / Spaces (or Spaces only in the minimum variant); `body` = rows. The space detail is L4
@@ -1553,11 +1558,11 @@ Spaces tab rows: [tile] Woodshop bench · Workshop · (Staff approval) (Public) 
   **Minimum change:** the spaces list as P6 rows with pills replacing the 5-column table, and the
   "Awaiting approval" stat linking to the first space with pending requests. **Better** (needs a
   cross-space bookings list endpoint, so flag it): the Requests and Upcoming tabs.
-- The space detail opens as a page (Y7 pattern) with tabs Calendar, Requests, Settings (the
+- The space detail opens as a page (R7 pattern) with tabs Calendar, Requests, Settings (the
   `BookableSpaceForm` rows) and Danger (deactivate).
 - **Empty:** "No bookable spaces yet. Create one to start taking bookings."
 
-### S14. Reports (`reports`) ← Y6 (form card) + P4
+### S14. Reports (`reports`) ← R6 (form card) + P4
 
 **Layout:** L4 `DetailLayout` (page) with `asideSide="start"`. The slots are filled as follows:
 `aside` = the grouped report list; `title` = the selected report; `actions` = Export primary and
@@ -1584,7 +1589,7 @@ Operations reporting for Fab Lab Kochi.
 - **Mobile:** the report list becomes a select sheet at the top.
 - **Empty data:** "No activity in this period. Try a longer range."
 
-### S15. Audit log (`audit`) ← Y1/Y2 activity rail as a full list + P14
+### S15. Audit log (`audit`) ← R1/R2 activity rail as a full list + P14
 
 **Layout:** L3 `ListLayout width="wide"`. The slots are filled as follows: `callout` =
 verification status (success pill, or a danger panel if broken); `filters` = AuditLogFilters with
@@ -1610,7 +1615,7 @@ YESTERDAY …
 - **Empty with filters:** "No entries match these filters. Clear filters."
 - No Undo or edit affordances anywhere (append-only).
 
-### S16. Member area home and tabs (`/member`, `/member/:tab`) ← Y1 (home), Y26 (card), Y16 (account)
+### S16. Member area home and tabs (`/member`, `/member/:tab`) ← R1 (home), R26 (card), R16 (account)
 
 **Layout:** L1 `AppShell variant="member" compactNav="bottom-tabs"`. Home = L2
 `DashboardLayout` (`rail` = notices). Loans, Bookings, Events, Payments and Inbox = L3
@@ -1637,7 +1642,7 @@ Your member card ▸ (ticket card with QR — opens the full card)
   convert to links (PLAN Phase 4 decision). Keep the `#main-content` target.
 - **Callout priority:** waiver acceptance needed, then a payment due, then an overdue loan, then
   application status ("Your application is waiting for 2 vouches").
-- **Not a member / signed out:** the home becomes the join page. A Y23-style card ("Join Fab Lab
+- **Not a member / signed out:** the home becomes the join page. A R23-style card ("Join Fab Lab
   Kochi": policy summary, `AdmissionJoin` / `JoinMembershipCta` as the primary, "Have an
   account? Sign in") beside a description of what membership gives. `InvitationRequestForm` and
   `MemberClaimRedemption` are secondary links.
@@ -1645,15 +1650,15 @@ Your member card ▸ (ticket card with QR — opens the full card)
   (`MemberHistory`). **Payments:** dues stat cards plus `MemberPaymentRows` with an inline "Pay"
   primary pill per row; archived payments as a link row at the bottom. **Inbox:**
   `MemberNotices` and `MemberNotifications`; empty "No notices need your attention." **Account:**
-  the Y16 settings rows (profile, two-step sign-in link, `MemberCertifications`, referrals,
+  the R16 settings rows (profile, two-step sign-in link, `MemberCertifications`, referrals,
   directory listing) and the member card.
-- **Member card** (`MemberCardPanel`) = the **Y26 ticket**: a makerspace header band, a name /
+- **Member card** (`MemberCardPanel`) = the **R26 ticket**: a makerspace header band, a name /
   member since / role grid, a perforation, the QR, the caption "Show this at the desk. It only
   holds a private member link." (verify that statement against the card payload before using it),
   and "Add to wallet" / "Save card" where supported. Offline note when cached.
 - **Restoring state:** a full-page skeleton of the shell, not "Restoring session…" text.
 
-### S17. Public catalogue (`/m/:slug`) ← Y18 (sticky right card) + P10 chips
+### S17. Public catalogue (`/m/:slug`) ← R18 (sticky right card) + P10 chips
 
 **Layout:** L9 `PublicLayout width="wide"`. The slots are filled as follows: `aside` =
 `ActionCard` (the request cart: `form` = purpose and contact fields, `primary` = "Send request —
@@ -1676,11 +1681,11 @@ Sort: Name ▾                                            │ What's it for?  [ 
 footer: [logo] Powered by space works · Privacy · Terms
 ```
 
-- **Shared `PublicShell`** (PLAN §3.4): a Y18 48 px header with the makerspace brand, then nav
+- **Shared `PublicShell`** (PLAN §3.4): a R18 48 px header with the makerspace brand, then nav
   links (only the modules that are on), then a "Sign in" outline pill.
 - The category sidebar becomes a **chip row** (scrollable) at <1280 and stays a left list at
   ≥1280 if there are more than 8 categories.
-- **Request panel = the Y18/Y23 sticky card.** Its counts and title change with state: empty
+- **Request panel = the R18/R23 sticky card.** Its counts and title change with state: empty
   ("Nothing added yet. Tap Add on any tool."), with items, submitted (a success state in the card:
   "Request sent. We'll email you when it's ready.", plus the public token link). The Borrow/Scan
   switch is a P9 segmented control. Access-policy copy (the three variants in
@@ -1692,7 +1697,7 @@ footer: [logo] Powered by space works · Privacy · Terms
 - **Never expose** locations, box IDs, QR, evidence or hidden counts. The availability pill shows
   `exact_count` only when allowed, else the status word.
 
-### S18. Public item detail (`/items/:itemId`) ← Y21 (detail with right rail) + Y18 sticky card
+### S18. Public item detail (`/items/:itemId`) ← R21 (detail with right rail) + R18 sticky card
 
 **Layout:** L9 `PublicLayout` + `PublicDetailLayout`. The slots are filled as follows: `cover` =
 item image; `chips` = category and kit; `sections` = Description and Borrowing terms;
@@ -1713,7 +1718,7 @@ Borrowing terms (grey inset box)                      └───────�
 - **Not found:** a centred card "This item isn't in the public catalogue." with "Back to the
   catalogue".
 
-### S19. Public event page (`/events/:publicToken`) ← Y18, Y19, Y23, plus Y26 confirmation
+### S19. Public event page (`/events/:publicToken`) ← R18, R19, R23, plus R26 confirmation
 
 **Layout:** L9 `PublicLayout` + `PublicDetailLayout`. The slots are filled as follows: `facts` =
 date chip block and venue block; `sections` = About / Schedule / Speakers / Venue / FAQ (only
@@ -1726,21 +1731,21 @@ order = L9 `width="narrow"`.
   `EventPrice` folded into the CTA label ("Register — ₹200", "Register — it's free",
   "Join waitlist", "Apply").
 - **Registration form placement:** inside the sticky card when the form is short (no
-  `custom_form` and no ticket choice, the Y23 pattern); otherwise the card CTA opens a modal or
+  `custom_form` and no ticket choice, the R23 pattern); otherwise the card CTA opens a modal or
   sheet with `EventRegistrationForm` (tickets, promo, custom fields).
 - "Add to calendar" and "Share" are the two outline half-buttons in the card. The share error
   becomes a toast ("Couldn't share. Link copied instead." when the clipboard fallback succeeds).
 - **Closed:** the card shows "Registration is closed" plus the cutoff time, with no primary.
   **Not found:** a centred card.
 - **After registering:** a confirmation state in the card, then a link to the **ticket page**
-  (Y26) if tickets or check-in exist.
+  (R26) if tickets or check-in exist.
 - **Events list** (`/events`): P6 date-chip rows grouped by series (series eyebrow), with search
   and filters (Free, Registration open) as chips and the calendar view as a segmented toggle
   (List | Calendar). The inline "Register" expand-in-place becomes a link to the event page (one
   primary per page; forms live on the event page).
-- **Feedback page** (`/events/:token/feedback`) = Y25 exactly.
+- **Feedback page** (`/events/:token/feedback`) = R25 exactly.
 
-### S20. Staff sign-in (`LoginPanel`) ← Y11
+### S20. Staff sign-in (`LoginPanel`) ← R11
 
 **Layout:** L8 `AuthLayout`. The slots are filled as follows: `brand.headline` = the accent
 phrase; `brand.showcase` = floating SpaceWorks object cards; `eyebrow` = Staff console or Front
@@ -1760,7 +1765,7 @@ desk; `title` = "Welcome back."; `social`; `form` = Username and Password; no `m
 - **No segmented Sign in / Create account** (staff accounts are invited).
 - **Mobile:** the brand panel collapses to a 120 px band above the form or is hidden.
 
-### S21. Member sign-in / sign-up (`MemberAuthPanel`) ← Y11, Y12, Y13
+### S21. Member sign-in / sign-up (`MemberAuthPanel`) ← R11, R12, R13
 
 **Layout:** L8 `AuthLayout` with `brand.tenant`. The slots are filled as follows: `modeSwitch`
 when self-serve. Verify, MFA and reset = L8 `CenteredCardLayout` (`media.icon`, `content` = code
@@ -1770,16 +1775,16 @@ boxes or the strength meter).
   logo, the welcome line from branding). The segmented control **Sign in | Create account**
   appears only when `selfServeAccounts`; otherwise the muted line "This space doesn't run self
   sign-up. Ask a staff member to add you."
-- Sign-up fields: Name, Email, Password (with the Y12 strength meter and rule list), Phone ·
+- Sign-up fields: Name, Email, Password (with the R12 strength meter and rule list), Phone ·
   Optional. Helper under Create account: "One account works at every makerspace you join."
-- **Verify email** = a Y13 centred card (envelope tile): "Check your email", "We sent a code to
+- **Verify email** = a R13 centred card (envelope tile): "Check your email", "We sent a code to
   **meera@…**", a 6-box code input (the P28 digit boxes at 46×56 with `autocomplete=one-time-code`
   on a single hidden input for paste), primary "Verify email", link "Resend code" (with a
   countdown).
 - **MFA** (`MfaFlow`) uses the same centred card with code boxes and "Use a recovery code
-  instead". **Reset password** (`PasswordRecoveryFlow`, `ResetPasswordPage`) = Y12 exactly.
+  instead". **Reset password** (`PasswordRecoveryFlow`, `ResetPasswordPage`) = R12 exactly.
 
-### S22. Invitation accept (`StaffInvitationAcceptPage`, `OrganizationInvitationRedeemPage`) ← Y14, Y15
+### S22. Invitation accept (`StaffInvitationAcceptPage`, `OrganizationInvitationRedeemPage`) ← R14, R15
 
 **Layout:** L8 `CenteredCardLayout width=480`. The slots are filled as follows: `media.avatars`
 for a staff invite or `media.banner` for an organization invite; `content` = the password field
@@ -1809,10 +1814,10 @@ plus the MFA disclosure; `primary` = "Accept invitation"; `footer` = account hin
 - **Success:** a centred success card "You're in." plus a "Sign in" primary (today a link).
 - **Invalid or used token:** "This invite link has already been used or has expired. Ask the
   person who invited you for a new one."
-- An organization invite uses the Y15 banner variant (organization colour band) with the scope
+- An organization invite uses the R15 banner variant (organization colour band) with the scope
   sentence.
 
-### S23. Kiosk station (`/kiosk/:stationToken`, `KioskStationPage`) ← Y27, Y28
+### S23. Kiosk station (`/kiosk/:stationToken`, `KioskStationPage`) ← R27, R28
 
 **Layout:** L10 `KioskLayout`. The slots are filled as follows: `mode` lock → ready → work;
 `lock.pinLength=8`; `work.capture` = `KioskOnlineScanner`; `work.panel` = L7 `FlowLayout
@@ -1820,7 +1825,7 @@ presentation="kiosk"` (the handover) or the result card; `confirmLock` = the pen
 dialog; `idleCountdown`. The offline queue renders in `work.panel` as a table plus a panel
 callout.
 
-- **Locked:** the Y27 layout. Makerspace tile, the context line "Fab Lab Kochi · Handover
+- **Locked:** the R27 layout. Makerspace tile, the context line "Fab Lab Kochi · Handover
   station", the title "Enter the station PIN", the helper "Ask a manager for the 8-digit PIN. It
   unlocks this device only.", **8 digit boxes** (the current PIN is exactly 8 digits) plus the
   keypad, and "Unlock station" disabled until 8. The keypad must not break hardware-keyboard entry
@@ -1828,7 +1833,7 @@ callout.
   replaced by "Reconnect to unlock this station" and an "Offline" pill.
 - **Unlocked, no operator:** a centred card "Station ready", the station name and kind, and the
   primary "Start operator shift" (disabled offline, with the reason).
-- **Working:** the Y28 layout. Header: station name, "Fab Lab Kochi · Handover station",
+- **Working:** the R28 layout. Header: station name, "Fab Lab Kochi · Handover station",
   right side shows the **queue count** ("2 waiting"), an "● Online" / "● Offline · 3 queued"
   pill, "Full screen" (icon button) and "Lock station" (outline). Body: camera left
   (`KioskOnlineScanner`), right = the current handover (`KioskOnlineHandover`) as the S3 steps in
@@ -1843,7 +1848,7 @@ callout.
   primary.
 - **Idle reset** shows a 10 s countdown overlay ("Locking for privacy in 10… Tap to keep
   working") before locking when no work is pending.
-- **Event door station** (`/event-check-in/:stationToken`) = Y27 then Y28 one-to-one.
+- **Event door station** (`/event-check-in/:stationToken`) = R27 then R28 one-to-one.
 
 ### S24. Remaining staff tabs (Phase 6 sweep), pattern assignment
 
@@ -1860,8 +1865,8 @@ must use the layout names from §1A.11. The assignments below are the default la
 | warranty, devices | L3 + L4 drawer · Table plus drawer detail with P15 rows. |
 | cards (Member cards) | L3 · Camera scan block plus the card list; the scan result as a P29 result card. |
 | accountability | L3 · Table of borrowers with restriction status pills; row menu Restrict… / Restore. |
-| organized, organization-analytics, organizations | L2 / L3 / L4-report · Y1 org cards for organizations; organized events reuse S11 rows; analytics reuses S14. |
-| emailtemplates, email-logs, api | L6 / L3 / L5 · Y6 patterns (form card, empty state, code/accordion) for api; logs as a P14 table with status pills; templates as a list plus an editor page with a live preview (P18). |
+| organized, organization-analytics, organizations | L2 / L3 / L4-report · R1 org cards for organizations; organized events reuse S11 rows; analytics reuses S14. |
+| emailtemplates, email-logs, api | L6 / L3 / L5 · R6 patterns (form card, empty state, code/accordion) for api; logs as a P14 table with status pills; templates as a list plus an editor page with a live preview (P18). |
 | exports, backups, migration, usage, modules, platform* | L5 (restore/migration runs = L7) · P15 settings rows plus P16 danger cards for restore/purge; jobs show progress rows (JobTray). |
 
 ---
@@ -1932,14 +1937,14 @@ across staff, member, public, auth and kiosk. Run it per screen at review time.
 
 ---
 
-## 5. Where Yuyu doesn't fit, and the adaptation
+## 5. Where the reference boards don't scale, and our adaptation
 
 ### 5.1 Dense operational tables (Inventory, Ledger, Stocktake, Transfers, Audit, Reports, Payments)
 
-Yuyu's biggest list has 4 rows and 3 columns. SpaceWorks lists run to hundreds of rows and 8+
+The reference boards' biggest list has 4 rows and 3 columns. SpaceWorks lists run to hundreds of rows and 8+
 numeric columns, sorted, selected in bulk and exported. **Card rows (82 px) would cut density by
 about 60%.**
-- **Adaptation:** keep `DataTable`, but inside the Y4 card chrome (bordered, radius 12; header row
+- **Adaptation:** keep `DataTable`, but inside the R4 card chrome (bordered, radius 12; header row
   40 tall with 13 muted sentence-case labels; body rows **52–56** tall; hairlines; tabular
   numerals right-aligned). Sticky header. A column picker. A selection checkbox column, and the
   bulk bar (sticky) instead of toolbar buttons. Row click opens the detail; the row menu holds
@@ -1952,7 +1957,7 @@ about 60%.**
 
 ### 5.2 Evidence capture (issue/return photo, remark, box and asset QR)
 
-Yuyu captures nothing heavier than a QR scan. SpaceWorks evidence is mandatory, immutable,
+The reference boards capture nothing heavier than a QR scan. SpaceWorks evidence is mandatory, immutable,
 uploaded through a presign to staging, and auditable.
 - **Evidence tile** (new primitive): a 16:9 dashed placeholder labelled "Issue photo · Required"
   with "Take photo" (primary, uses the existing `CameraCapture`) and "Upload from device" (link).
@@ -1968,52 +1973,52 @@ uploaded through a presign to staging, and auditable.
 
 ### 5.3 Multi-step guided flows
 
-Yuyu has none (its forms are single page). SpaceWorks has 5-step handovers in modals.
+The reference boards have none (their forms are single page). SpaceWorks has 5-step handovers in modals.
 **Adaptation:** a task-mode shell (sidebar hidden, step rail plus a camera/work panel, the same
-on kiosk), visually derived from Y28. A "Compact view" for experts. Each completed step echoes
+on kiosk), visually derived from R28. A "Compact view" for experts. Each completed step echoes
 its captured value in the rail.
 
 ### 5.4 Permission and module density
 
-Yuyu has 4 nav items and owner/admin roles. SpaceWorks has 42 gated tabs, custom roles with
+The reference boards have 4 nav items and owner/admin roles. SpaceWorks has 42 gated tabs, custom roles with
 dozens of actions, and module switches. **Adaptation:** §2 sections with "More" disclosure and
-flattening rules. The role editor uses Y6 checkbox cards grouped by area rather than a flat
+flattening rules. The role editor uses R6 checkbox cards grouped by area rather than a flat
 checkbox list. Gated items are **absent, never disabled**, except reports, where an unavailable
 report explains which module enables it.
 
 ### 5.5 Settings scale
 
-Yuyu settings is 3 rows. SpaceWorks has about 30 sections. **Adaptation:** an in-page sub-nav
+The reference settings page has 3 rows. SpaceWorks has about 30 sections. **Adaptation:** an in-page sub-nav
 with scroll-spy (S9), a per-section dirty-state Save, and one danger zone at the very end.
 
 ### 5.6 Dashboard breadth
 
-Yuyu shows 4 stats. SpaceWorks has 17 possible tiles. **Adaptation:** priority-ranked top 4 plus
+The reference boards show 4 stats. SpaceWorks has 17 possible tiles. **Adaptation:** priority-ranked top 4 plus
 an "Everything else" disclosure. Tone on the number, not the fill.
 
 ### 5.7 Multi-tenant switching
 
-Yuyu shows one org in the switcher. Superadmins may see dozens of makerspaces. **Adaptation:** the
+The reference boards show one org in the switcher. Superadmins may see dozens of makerspaces. **Adaptation:** the
 switcher menu has search, recents first, and a "Switch makerspace" full list for superadmin.
 Single-tenant lock hides the chevron (the card is static).
 
 ### 5.8 Offline and kiosk integrity
 
-Yuyu's offline story is a callout with "Download guest list". SpaceWorks kiosks keep an encrypted
+The reference offline story is a callout with "Download guest list". SpaceWorks kiosks keep an encrypted
 command queue with replay recovery. **Adaptation:** a persistent connection pill in the station
 header, P5 panel callouts for offline state, a queue table with per-command status, and a
 destructive-confirm dialog for "lock with pending work" (safe action as primary).
 
 ### 5.9 Money
 
-Yuyu has free events only. Payments need receipts and append-only corrections. **Adaptation:** no
+The reference boards cover free events only. Payments need receipts and append-only corrections. **Adaptation:** no
 Undo and no inline edit. "Record payment…" opens `SettlementDialog` (method, reference, date).
 Corrections appear as "Amended" rows linked to the original. Amounts are always shown with
 currency, right-aligned with tabular numerals.
 
 ### 5.10 Activity rail data
 
-Yuyu's rail is free. SpaceWorks audit is permission-gated and can be large. **Adaptation:** the
+The reference rail is free. SpaceWorks audit is permission-gated and can be large. **Adaptation:** the
 rail renders only when `canViewAudit` (or uses the actor's own notifications), is capped at 6
 items, and links to S15 with filters. It is hidden on narrow screens and for scoped roles whose
 audit would be empty.

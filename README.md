@@ -20,9 +20,9 @@ masters, colours, type, voice, every design token and the UI specs, published fr
 | `icons/` | `favicon.svg`, PNG app icons (16, 32, 180, 192, 512) and the 1200×630 social card |
 | `fonts/` | Gilroy Regular, Medium, Semibold and Bold (WOFF), plus Unbounded (WOFF2). Legacy faces retained for existing consumers. See `fonts/README.md`. |
 | `tokens/` | `tokens.css` (`@font-face` + light/dark colour variables as RGB triplets) and `tokens.json` (the same colours as hex, plus the seven brand colours) |
-| `docs/` | `ui-brand-spec.md` (token derivations, contrast ratios, states, status pills, type scale, logo use), `ux-yuyu-spec.md` (UX patterns from Yuyu, reusable layouts, navigation, screen specs), `ux-screens-longtail.md` (remaining screens) |
+| `docs/` | `ui-brand-spec.md` (token derivations, contrast ratios, states, status pills, type scale, logo use), `ux-spec.md` (**Space Works UX**: our interaction patterns, reusable layouts, navigation and screen specs), `ux-screens-longtail.md` (remaining screens) |
 | `site/` | The Starlight website published to GitHub Pages; `scripts/sync-kit.mjs` copies the kit in at build time |
-| `references/yuyu/` | Reference boards from [Yuyu](https://github.com/twilighty-abhi/yuyu) that the UX patterns and layouts are modelled on |
+| `references/yuyu/` | The reference boards from [Yuyu](https://github.com/twilighty-abhi/yuyu) that inspired Space Works UX |
 
 ## Brand at a glance
 
@@ -51,8 +51,9 @@ Add the class `dark` to `<html>` for dark mode. The font URLs in `tokens.css` ar
 
 ## Credits
 
-The UX patterns, layouts and interaction details are modelled on [Yuyu](https://github.com/twilighty-abhi/yuyu)
-(reference boards in `references/yuyu/`). The visual identity — colour, type, logo, icons and voice — comes only from the Space Works
+**Space Works UX** (the patterns, layouts and interaction details in `docs/ux-spec.md`) is our own
+interaction system. It was inspired by [Yuyu](https://github.com/twilighty-abhi/yuyu), whose screens we
+studied as reference boards (kept in `references/yuyu/`). The visual identity — colour, type, logo, icons and voice — comes only from the Space Works
 brand guidelines in `brand/`.
 
 ## Export provenance

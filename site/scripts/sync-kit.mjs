@@ -35,7 +35,7 @@ cpSync(join(root, 'tokens', 'tokens.json'), join(assets, 'tokens.json'));
 // Spec pages: the first "# Heading" becomes the page title; the rest is published unchanged.
 const specPages = [
   { file: 'ui-brand-spec.md', slug: 'ui-brand-spec', order: 1, label: 'UI brand spec' },
-  { file: 'ux-yuyu-spec.md', slug: 'ux-patterns', order: 2, label: 'UX patterns' },
+  { file: 'ux-spec.md', slug: 'ux-patterns', order: 2, label: 'Space Works UX spec' },
   { file: 'ux-screens-longtail.md', slug: 'ux-long-tail-screens', order: 3, label: 'Long-tail screens' },
 ];
 for (const { file, slug, order, label } of specPages) {
