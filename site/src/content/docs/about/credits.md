@@ -9,10 +9,11 @@ The colour, type, logo, icons and voice come only from the Space Works brand gui
 the connected Figma file on 15 October 2026. `brand/figma-styles.json` records the source node IDs, the seven
 paint styles and the ten text styles.
 
-## UX patterns
+## Space Works UX
 
-The UX patterns, layouts and interaction details in the specs are modelled on
-[Yuyu](https://github.com/twilighty-abhi/yuyu). The reference boards are kept in
+[Space Works UX](/ux/introduction/) is our own interaction system: the patterns, layouts and
+interaction details in the specs. It was inspired by [Yuyu](https://github.com/twilighty-abhi/yuyu), whose
+screens we studied as reference boards. The reference boards are kept in
 [`references/yuyu/`](https://github.com/SpaceWorks-HQ/SpaceWorks-Design/tree/main/references/yuyu) and are not
 republished on this site.
 
