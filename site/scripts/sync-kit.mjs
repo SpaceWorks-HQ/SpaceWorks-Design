@@ -1,7 +1,7 @@
 // Copies the design kit from the repository root into the site before every dev or build run,
 // so the site always shows the real masters and never a hand-maintained copy of them.
 //
-//   logo/ icons/ fonts/ tokens/ brand/  ->  public/kit/...      (served for preview and download)
+//   logo/ icons/ fonts/ tokens/ mascot/ brand/  ->  public/kit/...  (served for preview and download)
 //   screenshots/ references/yuyu/       ->  public/kit/...      (UX screenshots and reference boards)
 //   logo/*.svg                          ->  src/assets/kit/     (header logo and hero art)
 //   docs/*.md                           ->  src/content/docs/specs/  (rendered spec pages)
@@ -22,7 +22,7 @@ for (const dir of [kit, assets, specs]) {
   mkdirSync(dir, { recursive: true });
 }
 
-for (const folder of ['logo', 'icons', 'fonts', 'tokens', 'screenshots']) {
+for (const folder of ['logo', 'icons', 'fonts', 'tokens', 'mascot', 'screenshots']) {
   cpSync(join(root, folder), join(kit, folder), { recursive: true });
 }
 cpSync(join(root, 'brand', 'space-works-brand-guidelines-v1.pdf'), join(kit, 'brand', 'space-works-brand-guidelines-v1.pdf'));
@@ -63,4 +63,4 @@ for (const { file, slug, order, label } of specPages) {
   writeFileSync(join(specs, `${slug}.md`), frontmatter + source.slice(match[0].length));
 }
 
-console.log('sync-kit: copied logo, icons, fonts, tokens, screenshots, brand pages, reference boards and 3 specs');
+console.log('sync-kit: copied logo, icons, fonts, tokens, mascot, screenshots, brand pages, reference boards and 3 specs');

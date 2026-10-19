@@ -1,0 +1,59 @@
+---
+// Patch from mascot/: the hero, the animated loop and the concept sheet, then the eight animation frames.
+import { kitUrl } from './kit-url';
+
+const files = [
+  { file: 'patch.png', name: 'Patch', use: 'Hero pose, 640 × 640', surface: 'cream' },
+  { file: 'patch-animated.webp', name: 'Patch, animated', use: '7-second loop, also as SVG', surface: 'white', also: 'patch-animated.svg' },
+  { file: 'patch-animated.webp', name: 'Patch on a light accent', use: 'Sky Blue, Citron or orange', surface: 'sky' },
+  { file: 'concept/patch-concept-sheet.webp', name: 'Concept sheet', use: 'The source of truth', surface: 'cream' },
+];
+
+const frames = [
+  ['01-idle', '0.0 s', 'Idle'],
+  ['02-blink', '2.0 s', 'Blink'],
+  ['03-left-ear', '3.5 s', 'Left ear twitch'],
+  ['04-right-ear', '4.0 s', 'Right ear twitch'],
+  ['05-sneeze-prep', '5.3 s', 'Sneeze (prep)'],
+  ['06-sneeze', '5.6 s', 'Sneeze!'],
+  ['07-recover', '6.0 s', 'Recover'],
+  ['08-back-to-idle', '6.6–7.0 s', 'Back to idle'],
+];
+const ext = (f: string) => f.split('.').pop()!.toUpperCase();
+---
+
+<div class="sw-logos not-content">
+  {
+    files.map((f) => (
+      <figure class="sw-logo">
+        <div class={`sw-logo__stage sw-logo__stage--mascot sw-surface--${f.surface}`}>
+          <img src={kitUrl(`mascot/${f.file}`)} alt={`${f.name}, the Space Works mascot`} loading="lazy" />
+        </div>
+        <figcaption>
+          <span>
+            <strong>{f.name}</strong>
+            <span class="sw-logo__use">{f.use}</span>
+          </span>
+          <span class="sw-logo__links">
+            <a href={kitUrl(`mascot/${f.file}`)} download>{ext(f.file)}</a>
+            {f.also && <a href={kitUrl(`mascot/${f.also}`)} download>{ext(f.also)}</a>}
+          </span>
+        </figcaption>
+      </figure>
+    ))
+  }
+</div>
+
+<div class="sw-frames not-content">
+  {
+    frames.map(([file, time, label]) => (
+      <figure class="sw-frame">
+        <img src={kitUrl(`mascot/frames/patch-${file}.png`)} alt={`Patch, ${label.toLowerCase()}`} loading="lazy" />
+        <figcaption>
+          <strong>{time}</strong>
+          <span>{label}</span>
+        </figcaption>
+      </figure>
+    ))
+  }
+</div>

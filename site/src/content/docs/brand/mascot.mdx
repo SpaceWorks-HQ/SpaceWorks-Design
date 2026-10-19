@@ -1,0 +1,101 @@
+---
+title: Mascot
+description: Meet Patch, the painted wolf. Why we chose it, the files, colour, animation and how to use it.
+---
+
+import MascotGallery from '../../../components/MascotGallery.astro';
+
+## Meet Patch
+
+Patch is an **African painted wolf** (African wild dog) with huge round ears and a patchwork coat. It
+carries a wrench in its mouth, like a dog bringing back a stick: borrow it, use it, bring it back.
+
+<MascotGallery />
+
+Every file is in [`mascot/`](https://github.com/SpaceWorks-HQ/SpaceWorks-Design/tree/main/mascot), cut
+straight out of the approved
+[concept sheet](https://github.com/SpaceWorks-HQ/SpaceWorks-Design/blob/main/mascot/concept/patch-concept-sheet.webp)
+on transparent backgrounds. Nothing was redrawn.
+
+| File | Use it for | Size |
+|---|---|---|
+| `patch.png` | The hero pose | 640 × 640 |
+| `patch-animated.webp` | The 7-second loop, anywhere an image goes | 272 × 272 |
+| `patch-animated.svg` | The same loop as an SVG, timed with CSS; respects reduced motion | 272 × 272 |
+| `frames/` | The eight frames, for app animation code or a Lottie | 272 × 272 each |
+
+They're raster at the sheet's own resolution: use the hero up to about 320 px wide and the animation up to
+about 136 px. For bigger or print use, export the original artwork larger, replace the sheet and run
+`node scripts/cut-mascot.mjs` from `site/`.
+
+## Why a painted wolf
+
+We wanted a mascot whose real behaviour matches what Space Works stands for.
+
+| What painted wolves do | What it says about Space Works |
+|---|---|
+| **No two coats are alike.** | A community of very different makers, all one pack. |
+| **They vote by sneezing.** Once enough of the pack sneezes, it moves ([Walker et al., 2017](https://www.unsw.edu.au/newsroom/news/2017/09/something-to-sneeze-about--democratic-voting-in-african-wild-dog)). | The community decides together. Everyone gets a voice. |
+| **They look after everyone.** Pups eat first; the pack brings food back for the injured, sick and old ([Tsavo Trust](https://tsavotrust.org/it-takes-a-pack-the-extraordinary-family-life-of-african-wild-dogs/)). | A commons: access for everyone, nobody left behind. |
+| **They succeed as a team.** | Collaboration over lone genius. |
+| **They are endangered.** | A real story worth telling. |
+
+Sneeze votes aren't equal: about three sneezes do it when the dominant pair joins in, about ten
+otherwise. Say "everyone gets a voice", not "one dog, one vote".
+
+The maker world is full of robots and skull-and-wrench marks, and we found no tool library with a
+mascot and no software brand using a painted wolf.
+
+## Why "Patch"
+
+The **patchwork coat** that makes every painted wolf unique, **patching things up** in repair and maker
+culture, and a **software patch**. Short, friendly and easy to say in any language.
+
+## Colour
+
+The badge and accents use the [brand colours](/brand/colour/): a Maker Teal badge, a Warm Yellow orbit and
+planets, and Citron, Workshop Orange and Sky Blue sparkles. The coat's tans and browns and the silver
+wrench belong to the artwork; don't reuse them as UI colours.
+
+## Animation
+
+The concept sheet's 7-second loop, frame by frame. Between moments Patch holds the idle frame.
+
+| Time | Frame |
+|---|---|
+| 0.0 s | Idle (breathing) |
+| 2.0 s | Blink |
+| 3.5 s | Left ear twitch |
+| 4.0 s | Right ear twitch |
+| 5.3 s | Sneeze (prep) |
+| 5.6 s | **Sneeze!** The sneeze vote |
+| 6.0 s | Recover |
+| 6.6–7.0 s | Back to idle |
+
+With reduced motion turned on, the SVG shows the idle frame. In product, save the sneeze (frames 5 to 7)
+for moments when the community acts together: a vote passing, a project filling up, a tool coming back to
+the shelf.
+
+## Where Patch shows up
+
+Patch is the friendly face. **The box symbol is still the logo.**
+
+| Use Patch for | Use the logo for |
+|---|---|
+| Empty states, onboarding, loading, success, 404 and error pages | The app header, favicon and app icon |
+| The website hero, docs, social posts | Legal pages and formal documents |
+| Stickers, merch and event signage | Anywhere the brand must be identified |
+
+Patch counts as the layout's [one bold moment](/brand/graphics/). Don't put Patch inside or beside the box
+symbol as a combined mark.
+
+## Keep Patch intact
+
+1. **Don't recolour, filter or redraw** Patch. Use the cut-outs as they are.
+2. **Don't stretch, skew or mirror** Patch. The coat is asymmetric on purpose.
+3. **Don't add effects** such as shadows, glows, gradients or outlines.
+4. **Don't make Patch fierce.** No bared teeth, angry brows or hunting poses.
+5. **Don't enlarge the files** past the sizes above. Re-export from the original instead.
+6. **Keep clear space** of a quarter of the badge height on every side.
+7. **Check dark surfaces.** Patch's dark ear rims sit close to Deep Ink; light surfaces and Workshop
+   Orange work best.
