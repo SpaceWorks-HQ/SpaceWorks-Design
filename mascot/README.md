@@ -61,6 +61,21 @@ by hand. Every piece comes in three forms:
 | `walk/patch-walk-animated` (0.96 s loop) | `.svg` (6.9 MB), `.webp` 512 × 352 | `.webp` 256 × 176 | `.svg` (1.2 MB), `.svgz` (2.6 MB), `.webp` 256 × 176 |
 | `walk/frames/patch-walk-0N` (eight frames) | `.svg` and `.png` 1024 × 704 | `.png` 256 × 176 | `.svg` and `.svgz` |
 
+### Walking left (from the walk cycle)
+
+The approved left-facing walk, for anything that moves Patch to the left (a pet that follows the
+pointer, a loan heading back). It is the walk cycle mirrored exactly by the script, never by hand, so
+it shows Patch's other side. Same sizes, frames and timing as the walk cycle:
+
+| File | Full | Original | Compressed |
+|---|---|---|---|
+| `walk-left/patch-walk-left` (walking pose) | `.svg`, `.png` 1920 × 1440 | `.png` 480 × 360 | `.svg`, `.svgz` |
+| `walk-left/patch-walk-left-animated` (0.96 s loop) | `.svg`, `.webp` 512 × 352 | `.webp` 256 × 176 | `.svg`, `.svgz`, `.webp` 256 × 176 |
+| `walk-left/frames/patch-walk-left-0N` (eight frames) | `.svg` and `.png` 1024 × 704 | `.png` 256 × 176 | `.svg` and `.svgz` |
+
+Frame N of `walk-left/` is frame N of `walk/` facing the other way, on the same ground line, so you
+can switch direction mid-stride without a jump.
+
 **Which one to use:**
 
 - **Product UI** (apps, the web, chat): the animated **WebP**, or `compressed/` for the lightest.
@@ -96,6 +111,8 @@ node scripts/cut-mascot.mjs
 
 Pass `concept` or `walk` to rebuild just one sheet. If a new sheet has a different layout, update its
 boxes in `SHEETS` at the top of the script first. A higher-resolution sheet gives finer vectors.
+Rebuilding the walk also rebuilds `walk-left/`; pass `walk-left` to rebuild only that, from the current
+walk files, in a few seconds and without tracing.
 
 **How faithful the vectors are.** The trace settings were chosen by rendering each candidate and scoring
 it against the sheet pixel by pixel. At the chosen settings about 0.27% of pixels differ visibly. Going
@@ -160,7 +177,8 @@ Patch is the friendly face of the product. **The box symbol is still the logo.**
 ## Keep Patch intact
 
 1. **Don't** recolour, filter or redraw Patch. Use these files as they are.
-2. **Don't** stretch, skew or mirror Patch. The coat is asymmetric on purpose.
+2. **Don't** stretch, skew or mirror Patch. The coat is asymmetric on purpose. To show Patch heading
+   left, use the approved `walk-left/` files; never flip the other files with CSS or an editor.
 3. **Don't** add shadows, glows, gradients or outlines.
 4. **Don't** make Patch fierce: no bared teeth, angry brows or hunting poses.
 5. **Don't** scale up the PNGs or WebPs past their size. Use the full SVGs when you need bigger.
