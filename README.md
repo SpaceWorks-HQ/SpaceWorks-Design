@@ -17,7 +17,7 @@ masters, colours, type, voice, every design token and the UI specs, published fr
 |---|---|
 | `brand/` | `space-works-brand-guidelines-v1.pdf` — the source of truth for logo, colour, type, icons and voice |
 | `logo/` | Ten vector masters exported directly from Figma, with matching 4× PNGs: `symbol`, `symbol-reversed`, `symbol-one-colour-ink`, `lockup-stacked`, `lockup-stacked-reversed`, `lockup-stacked-one-colour-ink`, `lockup-horizontal`, `lockup-horizontal-reversed`, `lockup-horizontal-one-colour-ink`, `app-icon` |
-| `mascot/` | **Patch**, the painted wolf mascot, cut from the approved concept sheet in `mascot/concept/`: `patch.png` (hero), `patch-animated.webp` and `patch-animated.svg` (the 7-second loop), the eight frames in `frames/`, and the story and usage rules in `mascot/README.md` |
+| `mascot/` | **Patch**, the painted wolf mascot, cut from the approved concept sheets in `mascot/concept/` and traced to vector SVG: `patch.svg` (hero), `patch-animated.webp`/`.svg` (the 7-second sneeze loop) and its eight `frames/`, plus `walk/` (the walking pose, walk cycle and its frames), with high-resolution PNGs. Story and usage rules in `mascot/README.md` |
 | `icons/` | `favicon.svg`, PNG app icons (16, 32, 180, 192, 512) and the 1200×630 social card |
 | `fonts/` | Gilroy Regular, Medium, Semibold and Bold (WOFF), plus Unbounded (WOFF2). Legacy faces retained for existing consumers. See `fonts/README.md`. |
 | `tokens/` | `tokens.css` (`@font-face` + light/dark colour variables as RGB triplets) and `tokens.json` (the same colours as hex, plus the seven brand colours) |

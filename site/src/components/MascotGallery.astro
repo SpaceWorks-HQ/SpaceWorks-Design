@@ -1,23 +1,35 @@
 ---
-// Patch from mascot/: the hero, the animated loop and the concept sheet, then the eight animation frames.
+// Patch from mascot/: the hero, both loops and the concept sheets, then the frames of each loop.
+// Cards preview the light PNG/WebP; the vector SVGs are offered as downloads (some are several MB).
 import { kitUrl } from './kit-url';
 
 const files = [
-  { file: 'patch.png', name: 'Patch', use: 'Hero pose, 640 × 640', surface: 'cream' },
-  { file: 'patch-animated.webp', name: 'Patch, animated', use: '7-second loop, also as SVG', surface: 'white', also: 'patch-animated.svg' },
-  { file: 'patch-animated.webp', name: 'Patch on a light accent', use: 'Sky Blue, Citron or orange', surface: 'sky' },
-  { file: 'concept/patch-concept-sheet.webp', name: 'Concept sheet', use: 'The source of truth', surface: 'cream' },
+  { show: 'patch.png', name: 'Patch', use: 'Hero pose', surface: 'cream', downloads: ['patch.svg', 'patch.png'] },
+  { show: 'patch-animated.webp', name: 'Patch, sneeze loop', use: '7-second loop', surface: 'white', downloads: ['patch-animated.webp', 'patch-animated.svg'] },
+  { show: 'walk/patch-walk.png', name: 'Patch, walking', use: 'On its way', surface: 'cream', downloads: ['walk/patch-walk.svg', 'walk/patch-walk.png'] },
+  { show: 'walk/patch-walk-animated.webp', name: 'Patch, walk cycle', use: '8 frames, 0.96 s', surface: 'sky', downloads: ['walk/patch-walk-animated.webp', 'walk/patch-walk-animated.svg'] },
+  { show: 'concept/patch-concept-sheet.webp', name: 'Concept sheet', use: 'Pose and sneeze loop', surface: 'cream', downloads: ['concept/patch-concept-sheet.webp'] },
+  { show: 'concept/patch-walk-sheet.webp', name: 'Walk sheet', use: 'Walk cycle', surface: 'cream', downloads: ['concept/patch-walk-sheet.webp'] },
 ];
 
-const frames = [
-  ['01-idle', '0.0 s', 'Idle'],
-  ['02-blink', '2.0 s', 'Blink'],
-  ['03-left-ear', '3.5 s', 'Left ear twitch'],
-  ['04-right-ear', '4.0 s', 'Right ear twitch'],
-  ['05-sneeze-prep', '5.3 s', 'Sneeze (prep)'],
-  ['06-sneeze', '5.6 s', 'Sneeze!'],
-  ['07-recover', '6.0 s', 'Recover'],
-  ['08-back-to-idle', '6.6–7.0 s', 'Back to idle'],
+const loops = [
+  {
+    label: 'Sneeze loop frames',
+    frames: [
+      ['frames/patch-01-idle', '0.0 s', 'Idle'],
+      ['frames/patch-02-blink', '2.0 s', 'Blink'],
+      ['frames/patch-03-left-ear', '3.5 s', 'Left ear twitch'],
+      ['frames/patch-04-right-ear', '4.0 s', 'Right ear twitch'],
+      ['frames/patch-05-sneeze-prep', '5.3 s', 'Sneeze (prep)'],
+      ['frames/patch-06-sneeze', '5.6 s', 'Sneeze!'],
+      ['frames/patch-07-recover', '6.0 s', 'Recover'],
+      ['frames/patch-08-back-to-idle', '6.6–7.0 s', 'Back to idle'],
+    ],
+  },
+  {
+    label: 'Walk cycle frames',
+    frames: [1, 2, 3, 4, 5, 6, 7, 8].map((n) => [`walk/frames/patch-walk-0${n}`, `${((n - 1) * 0.12).toFixed(2)} s`, `Step ${n}`]),
+  },
 ];
 const ext = (f: string) => f.split('.').pop()!.toUpperCase();
 ---
@@ -27,7 +39,7 @@ const ext = (f: string) => f.split('.').pop()!.toUpperCase();
     files.map((f) => (
       <figure class="sw-logo">
         <div class={`sw-logo__stage sw-logo__stage--mascot sw-surface--${f.surface}`}>
-          <img src={kitUrl(`mascot/${f.file}`)} alt={`${f.name}, the Space Works mascot`} loading="lazy" />
+          <img src={kitUrl(`mascot/${f.show}`)} alt={`${f.name}, the Space Works mascot`} loading="lazy" />
         </div>
         <figcaption>
           <span>
@@ -35,8 +47,7 @@ const ext = (f: string) => f.split('.').pop()!.toUpperCase();
             <span class="sw-logo__use">{f.use}</span>
           </span>
           <span class="sw-logo__links">
-            <a href={kitUrl(`mascot/${f.file}`)} download>{ext(f.file)}</a>
-            {f.also && <a href={kitUrl(`mascot/${f.also}`)} download>{ext(f.also)}</a>}
+            {f.downloads.map((d) => <a href={kitUrl(`mascot/${d}`)} download>{ext(d)}</a>)}
           </span>
         </figcaption>
       </figure>
@@ -44,16 +55,19 @@ const ext = (f: string) => f.split('.').pop()!.toUpperCase();
   }
 </div>
 
-<div class="sw-frames not-content">
-  {
-    frames.map(([file, time, label]) => (
-      <figure class="sw-frame">
-        <img src={kitUrl(`mascot/frames/patch-${file}.png`)} alt={`Patch, ${label.toLowerCase()}`} loading="lazy" />
-        <figcaption>
-          <strong>{time}</strong>
-          <span>{label}</span>
-        </figcaption>
-      </figure>
-    ))
-  }
-</div>
+{
+  loops.map((loop) => (
+    <div class="sw-frames not-content" aria-label={loop.label}>
+      {loop.frames.map(([file, time, label]) => (
+        <figure class="sw-frame">
+          <img src={kitUrl(`mascot/${file}.png`)} alt={`Patch, ${label.toLowerCase()}`} loading="lazy" />
+          <figcaption>
+            <strong>{time}</strong>
+            <span>{label}</span>
+            <a href={kitUrl(`mascot/${file}.svg`)} download>SVG</a>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  ))
+}

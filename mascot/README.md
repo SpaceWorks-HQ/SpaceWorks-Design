@@ -36,34 +36,58 @@ Short, friendly and easy to say in any language.
 
 ## The files
 
-Patch is the artwork in the approved concept sheet, cut out as it is. Nothing was redrawn.
+Patch is the artwork in the two approved concept sheets in [`concept/`](concept/). Each piece is cut out
+and **traced to a colour vector SVG**, so it stays sharp at any size. Nothing was redrawn by hand. Every
+PNG and WebP is rendered from those vectors.
+
+### Pose and sneeze loop (from `concept/patch-concept-sheet.webp`)
 
 | File | Use it for | Size |
 |---|---|---|
-| [`patch.png`](patch.png) | The hero pose: about pages, the website, docs, social posts, stickers | 640 × 640, transparent |
-| [`patch-animated.webp`](patch-animated.webp) | The 7-second loop, anywhere an image goes: apps, the web, chat | 272 × 272, transparent |
-| [`patch-animated.svg`](patch-animated.svg) | The same loop as an SVG: the eight frames embedded and timed with CSS. Respects reduced motion. | 272 × 272, transparent |
-| [`frames/`](frames/) | The eight animation frames as separate PNGs, for app animation code or building a Lottie | 272 × 272 each |
-| [`concept/patch-concept-sheet.webp`](concept/patch-concept-sheet.webp) | The approved concept sheet: pose, every frame, palette, sizes and backgrounds. **The source of truth.** | 1774 × 887 |
+| [`patch.svg`](patch.svg) / [`patch.png`](patch.png) | The hero pose: about pages, the website, docs, social posts, stickers, print | SVG any size; PNG 2560 × 2560 |
+| [`patch-animated.webp`](patch-animated.webp) | The 7-second sneeze loop in apps, the web and chat | 544 × 544 |
+| [`patch-animated.svg`](patch-animated.svg) | The same loop as a vector, sharp at any size. Heavy (about 10 MB), so use it for big hero moments, not lists. | any size |
+| [`frames/`](frames/) | The eight frames as SVG and PNG, for app animation code or a Lottie | SVG any size; PNG 1088 × 1088 |
 
-Every frame sits on the same canvas with the badge in the same place, so the frames can be swapped
-without Patch jumping.
+### Walk cycle (from `concept/patch-walk-sheet.webp`)
+
+| File | Use it for | Size |
+|---|---|---|
+| [`walk/patch-walk.svg`](walk/patch-walk.svg) / [`.png`](walk/patch-walk.png) | Patch trotting with the wrench: loading, "on its way", returns and deliveries | SVG any size; PNG 1920 × 1440 |
+| [`walk/patch-walk-animated.webp`](walk/patch-walk-animated.webp) | The walk cycle, looping (8 frames, 0.96 s) | 512 × 352 |
+| [`walk/patch-walk-animated.svg`](walk/patch-walk-animated.svg) | The walk cycle as a vector (about 4.5 MB) | any size |
+| [`walk/frames/`](walk/frames/) | The eight walk frames as SVG and PNG | SVG any size; PNG 1024 × 704 |
+
+Frames on the same canvas line up exactly: the sneeze frames on the teal badge, the walk frames on the
+ground shadow. Swap them and Patch doesn't jump. The walk's ground shadow is a vector capsule tinted to
+match the sheet on Warm Cream; on other surfaces it darkens them gently.
 
 ```html
 <img src="design/mascot/patch-animated.webp" width="136" height="136" alt="Patch, the Space Works mascot">
+<img src="design/mascot/walk/patch-walk-animated.webp" width="128" height="88" alt="Patch walking">
 ```
 
-The files are raster, cut from the sheet at its own resolution. Use the hero up to about 320 px wide and
-the animation up to about 136 px (half size, so it stays sharp on high-density screens). For larger or
-print use, export the original artwork at a higher resolution, replace
-`concept/patch-concept-sheet.webp` and re-run the cutter (from `site/`):
+The animated SVGs use CSS only, so they play in a plain `<img>` and show one still frame when reduced
+motion is on. The WebPs are much lighter; prefer them in product UI.
+
+### How the files are made
+
+`site/scripts/cut-mascot.mjs` builds all of it from the sheets: it cuts each piece out (flood-filling the
+sheet's cream away from the edges, so cream fur inside Patch stays), upscales it 4×, traces it with
+[vtracer](https://github.com/visioncortex/vtracer) at its finest colour settings, and renders the PNGs
+and WebPs from the vectors. To rebuild after replacing a sheet (from `site/`; the concept sheet takes a
+few minutes):
 
 ```bash
 node scripts/cut-mascot.mjs
 ```
 
-If the new sheet has a different size or layout, update the boxes at the top of
-`site/scripts/cut-mascot.mjs` first.
+Pass `concept` or `walk` to rebuild just one sheet. If a new sheet has a different layout, update its
+boxes in `SHEETS` at the top of the script first. A higher-resolution sheet traces into even finer vectors.
+
+**Known trade-off:** tracing turns soft shading into flat colour layers. Up close, the subtle brown iris
+inside each eye merges into the pupil, and the tiny walk frames show slightly stepped outlines at extreme
+zoom. At normal sizes Patch looks like the sheet.
 
 ## Anatomy
 
@@ -75,6 +99,7 @@ If the new sheet has a different size or layout, update the boxes at the top of
 | **Eyes** | Big, dark and kind, with bright highlights. Patch is never fierce. |
 | **Wrench** | Silver, held sideways across the mouth. |
 | **Badge** | Maker Teal, a Warm Yellow dotted orbit, Warm Yellow ringed planets, Citron, Workshop Orange and Sky Blue sparkles. The ears break out of the top of the badge. |
+| **Walking Patch** | Side view, no badge: a thick dark outline, a bushy cream-tipped tail up, the wrench held forward, a soft ground shadow. |
 
 The badge and accents use the brand colours. The coat browns and tans and the silver wrench belong to the
 artwork itself; don't reuse them as UI colours.
@@ -85,18 +110,22 @@ artwork itself; don't reuse them as UI colours.
 
 | Time | Frame | File |
 |---|---|---|
-| 0.0 s | Idle (breathing) | `frames/patch-01-idle.png` |
-| 2.0 s | Blink | `frames/patch-02-blink.png` |
-| 3.5 s | Left ear twitch | `frames/patch-03-left-ear.png` |
-| 4.0 s | Right ear twitch | `frames/patch-04-right-ear.png` |
-| 5.3 s | Sneeze (prep) | `frames/patch-05-sneeze-prep.png` |
-| 5.6 s | **Sneeze!** The sneeze vote | `frames/patch-06-sneeze.png` |
-| 6.0 s | Recover | `frames/patch-07-recover.png` |
-| 6.6–7.0 s | Back to idle | `frames/patch-08-back-to-idle.png` |
+| 0.0 s | Idle (breathing) | `frames/patch-01-idle` |
+| 2.0 s | Blink | `frames/patch-02-blink` |
+| 3.5 s | Left ear twitch | `frames/patch-03-left-ear` |
+| 4.0 s | Right ear twitch | `frames/patch-04-right-ear` |
+| 5.3 s | Sneeze (prep) | `frames/patch-05-sneeze-prep` |
+| 5.6 s | **Sneeze!** The sneeze vote | `frames/patch-06-sneeze` |
+| 6.0 s | Recover | `frames/patch-07-recover` |
+| 6.6–7.0 s | Back to idle | `frames/patch-08-back-to-idle` |
 
 Between those moments Patch holds the idle frame: the blink lasts 0.2 s and each ear twitch 0.3 s, then
-the sneeze runs straight through from 5.3 s to 7.0 s. The exact timing lives in `TIMELINE` in
+the sneeze runs straight through from 5.3 s to 7.0 s. The exact timing lives in `timeline` in
 `site/scripts/cut-mascot.mjs`. With reduced motion on, the SVG shows the idle frame only.
+
+The **walk cycle** plays its eight frames at 120 ms each (0.96 s per loop). Frames 6 and 7 have Patch's
+eyes closed happily mid-stride, exactly as in the walk sheet. With reduced motion on, the SVG shows the
+first frame.
 
 The sneeze is the signature moment. In product, save it for moments when the community acts together:
 a vote passing, a project filling up, a tool coming back to the shelf. Use `frames/` to play just the
@@ -107,7 +136,8 @@ sneeze (frames 5 to 7) at those moments.
 Patch is the friendly face of the product. **The box symbol is still the logo.**
 
 - **Use Patch for:** empty states, onboarding, loading, success moments, 404 and error pages, the
-  website hero, docs, social posts, stickers, merch and event signage.
+  website hero, docs, social posts, stickers, merch and event signage. The walk suits loading and
+  anything in motion: a loan on its way, a tool being returned.
 - **Use the logo for:** the app header, the favicon, the app icon, legal pages and anywhere the brand
   must be identified. Don't put Patch inside or next to the box symbol as a combined mark.
 - **One bold moment per layout.** Patch counts as that moment. Don't add an Unbounded phrase, an orange
@@ -115,11 +145,11 @@ Patch is the friendly face of the product. **The box symbol is still the logo.**
 
 ## Keep Patch intact
 
-1. **Don't** recolour, filter or redraw Patch. Use the cut-outs as they are.
+1. **Don't** recolour, filter or redraw Patch. Use these files as they are.
 2. **Don't** stretch, skew or mirror Patch. The coat is asymmetric on purpose.
 3. **Don't** add shadows, glows, gradients or outlines.
 4. **Don't** make Patch fierce: no bared teeth, angry brows or hunting poses.
-5. **Don't** enlarge the files past the sizes above. Re-export from the original instead.
+5. **Don't** scale up the PNGs or WebPs past their size. Use the SVGs when you need bigger.
 6. **Do** keep clear space of a quarter of the badge's height around Patch.
 7. **Do** check contrast on dark surfaces: Patch's dark ear rims sit close to Deep Ink. Warm Cream,
    white, Citron, Sky Blue and Workshop Orange surfaces all work.
