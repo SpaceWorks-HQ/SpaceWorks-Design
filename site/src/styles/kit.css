@@ -130,6 +130,9 @@
 .sw-logo strong { font-weight: 600; }
 .sw-logo__use { font-size: 0.8125rem; color: var(--sl-color-gray-3); }
 .sw-logo__links { display: flex; gap: 0.5rem; }
+/* Mascot cards carry up to four downloads: stack the caption and let the pills wrap. */
+.sw-logo--mascot figcaption { flex-direction: column; align-items: flex-start; gap: 0.6rem; }
+.sw-logo--mascot .sw-logo__links { flex-wrap: wrap; }
 .sw-logo__links a {
   font-size: 0.8125rem;
   font-weight: 600;

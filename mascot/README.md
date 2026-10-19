@@ -36,31 +36,43 @@ Short, friendly and easy to say in any language.
 
 ## The files
 
-Patch is the artwork in the two approved concept sheets in [`concept/`](concept/). Each piece is cut out
-and **traced to a colour vector SVG**, so it stays sharp at any size. Nothing was redrawn by hand. Every
-PNG and WebP is rendered from those vectors.
+Patch is the artwork in the two approved concept sheets in [`concept/`](concept/). Nothing was redrawn
+by hand. Every piece comes in three forms:
+
+| Folder | What it is | Detail |
+|---|---|---|
+| `mascot/` (this folder) | **Full vectors**: each piece traced to a colour SVG at the most faithful settings measured, plus high-resolution PNGs and animated WebPs rendered from those vectors | Sharp at any size |
+| [`original/`](original/) | **The original pixels**: each piece cut from the sheet exactly, lossless PNG and WebP | Nothing lost, at the sheet's own size |
+| [`compressed/`](compressed/) | **Compressed copies**: a lighter traced SVG that renders anywhere, the full SVG gzipped as `.svgz` (lossless), and a small animated WebP | Lite SVG is close at normal sizes; SVGZ is identical to the full SVG |
 
 ### Pose and sneeze loop (from `concept/patch-concept-sheet.webp`)
 
-| File | Use it for | Size |
-|---|---|---|
-| [`patch.svg`](patch.svg) / [`patch.png`](patch.png) | The hero pose: about pages, the website, docs, social posts, stickers, print | SVG any size; PNG 2560 × 2560 |
-| [`patch-animated.webp`](patch-animated.webp) | The 7-second sneeze loop in apps, the web and chat | 544 × 544 |
-| [`patch-animated.svg`](patch-animated.svg) | The same loop as a vector, sharp at any size. Heavy (about 10 MB), so use it for big hero moments, not lists. | any size |
-| [`frames/`](frames/) | The eight frames as SVG and PNG, for app animation code or a Lottie | SVG any size; PNG 1088 × 1088 |
+| File | Full | Original | Compressed |
+|---|---|---|---|
+| `patch` (hero pose) | `patch.svg` (6.5 MB), `patch.png` 2560 px | `original/patch.png` 640 px | `compressed/patch.svg` (956 KB), `.svgz` (2.4 MB) |
+| `patch-animated` (7-second loop) | `.svg` (16.5 MB), `.webp` 544 px | `original/patch-animated.webp` 272 px | `compressed/patch-animated.svg` (2.7 MB), `.svgz` (6.1 MB), `.webp` 272 px |
+| `frames/patch-0N-*` (eight frames) | `.svg` and `.png` 1088 px | `.png` 272 px | `.svg` and `.svgz` |
 
 ### Walk cycle (from `concept/patch-walk-sheet.webp`)
 
-| File | Use it for | Size |
-|---|---|---|
-| [`walk/patch-walk.svg`](walk/patch-walk.svg) / [`.png`](walk/patch-walk.png) | Patch trotting with the wrench: loading, "on its way", returns and deliveries | SVG any size; PNG 1920 × 1440 |
-| [`walk/patch-walk-animated.webp`](walk/patch-walk-animated.webp) | The walk cycle, looping (8 frames, 0.96 s) | 512 × 352 |
-| [`walk/patch-walk-animated.svg`](walk/patch-walk-animated.svg) | The walk cycle as a vector (about 4.5 MB) | any size |
-| [`walk/frames/`](walk/frames/) | The eight walk frames as SVG and PNG | SVG any size; PNG 1024 × 704 |
+| File | Full | Original | Compressed |
+|---|---|---|---|
+| `walk/patch-walk` (walking pose) | `.svg` (2.2 MB), `.png` 1920 × 1440 | `.png` 480 × 360 | `.svg` (359 KB), `.svgz` (814 KB) |
+| `walk/patch-walk-animated` (0.96 s loop) | `.svg` (6.9 MB), `.webp` 512 × 352 | `.webp` 256 × 176 | `.svg` (1.2 MB), `.svgz` (2.6 MB), `.webp` 256 × 176 |
+| `walk/frames/patch-walk-0N` (eight frames) | `.svg` and `.png` 1024 × 704 | `.png` 256 × 176 | `.svg` and `.svgz` |
+
+**Which one to use:**
+
+- **Product UI** (apps, the web, chat): the animated **WebP**, or `compressed/` for the lightest.
+- **Big screens, print, merch, anything scaled up:** the full **SVG**.
+- **When every pixel matters** (editing, retouching, a new export): `original/`, Patch exactly as drawn.
+- **Storage or transfer of the full vectors:** the `.svgz`. Browsers only show `.svgz` when the server
+  sends it with `Content-Encoding: gzip`, so use the plain `.svg` on web pages.
 
 Frames on the same canvas line up exactly: the sneeze frames on the teal badge, the walk frames on the
 ground shadow. Swap them and Patch doesn't jump. The walk's ground shadow is a vector capsule tinted to
-match the sheet on Warm Cream; on other surfaces it darkens them gently.
+match the sheet on Warm Cream; on other surfaces it darkens them gently. (In `original/` it's removed
+with the sheet's background.)
 
 ```html
 <img src="design/mascot/patch-animated.webp" width="136" height="136" alt="Patch, the Space Works mascot">
@@ -68,26 +80,28 @@ match the sheet on Warm Cream; on other surfaces it darkens them gently.
 ```
 
 The animated SVGs use CSS only, so they play in a plain `<img>` and show one still frame when reduced
-motion is on. The WebPs are much lighter; prefer them in product UI.
+motion is on.
 
 ### How the files are made
 
-`site/scripts/cut-mascot.mjs` builds all of it from the sheets: it cuts each piece out (flood-filling the
-sheet's cream away from the edges, so cream fur inside Patch stays), upscales it 4×, traces it with
-[vtracer](https://github.com/visioncortex/vtracer) at its finest colour settings, and renders the PNGs
-and WebPs from the vectors. To rebuild after replacing a sheet (from `site/`; the concept sheet takes a
-few minutes):
+`site/scripts/cut-mascot.mjs` builds all of it from the sheets. It cuts each piece out (flood-filling the
+sheet's cream away from the edges, so cream fur inside Patch stays), saves those exact pixels to
+`original/`, upscales 4× and traces with [vtracer](https://github.com/visioncortex/vtracer), then renders
+the PNGs and WebPs from the vectors. To rebuild after replacing a sheet (from `site/`; the concept sheet
+takes about ten minutes):
 
 ```bash
 node scripts/cut-mascot.mjs
 ```
 
 Pass `concept` or `walk` to rebuild just one sheet. If a new sheet has a different layout, update its
-boxes in `SHEETS` at the top of the script first. A higher-resolution sheet traces into even finer vectors.
+boxes in `SHEETS` at the top of the script first. A higher-resolution sheet gives finer vectors.
 
-**Known trade-off:** tracing turns soft shading into flat colour layers. Up close, the subtle brown iris
-inside each eye merges into the pupil, and the tiny walk frames show slightly stepped outlines at extreme
-zoom. At normal sizes Patch looks like the sheet.
+**How faithful the vectors are.** The trace settings were chosen by rendering each candidate and scoring
+it against the sheet pixel by pixel. At the chosen settings about 0.27% of pixels differ visibly. Going
+finer, upscaling further or sharpening first didn't improve it. What a vector can't hold is soft shading:
+a trace is made of flat colour shapes, so the subtle brown iris gradient inside each eye merges into the
+pupil. That detail is kept in `original/`.
 
 ## Anatomy
 
@@ -149,7 +163,7 @@ Patch is the friendly face of the product. **The box symbol is still the logo.**
 2. **Don't** stretch, skew or mirror Patch. The coat is asymmetric on purpose.
 3. **Don't** add shadows, glows, gradients or outlines.
 4. **Don't** make Patch fierce: no bared teeth, angry brows or hunting poses.
-5. **Don't** scale up the PNGs or WebPs past their size. Use the SVGs when you need bigger.
+5. **Don't** scale up the PNGs or WebPs past their size. Use the full SVGs when you need bigger.
 6. **Do** keep clear space of a quarter of the badge's height around Patch.
 7. **Do** check contrast on dark surfaces: Patch's dark ear rims sit close to Deep Ink. Warm Cream,
    white, Citron, Sky Blue and Workshop Orange surfaces all work.

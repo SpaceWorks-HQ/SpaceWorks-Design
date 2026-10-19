@@ -15,21 +15,29 @@ carries a wrench in its mouth, like a dog bringing back a stick: borrow it, use 
 Every file is in [`mascot/`](https://github.com/SpaceWorks-HQ/SpaceWorks-Design/tree/main/mascot), cut
 from the two approved concept sheets
 ([pose and sneeze](https://github.com/SpaceWorks-HQ/SpaceWorks-Design/blob/main/mascot/concept/patch-concept-sheet.webp),
-[walk](https://github.com/SpaceWorks-HQ/SpaceWorks-Design/blob/main/mascot/concept/patch-walk-sheet.webp))
-and traced to colour vector SVGs, so Patch stays sharp at any size. The PNGs and WebPs are rendered from
-those vectors.
+[walk](https://github.com/SpaceWorks-HQ/SpaceWorks-Design/blob/main/mascot/concept/patch-walk-sheet.webp)).
+Nothing was redrawn. Each piece comes three ways:
 
-| File | Use it for | Size |
+| Folder | What it is | Use it for |
 |---|---|---|
-| `patch.svg` / `.png` | The hero pose | SVG any size; PNG 2560 px |
-| `patch-animated.webp` / `.svg` | The 7-second sneeze loop | WebP 544 px; SVG any size (about 10 MB) |
-| `frames/` | The eight sneeze-loop frames, SVG and PNG | PNG 1088 px |
-| `walk/patch-walk.svg` / `.png` | Patch trotting with the wrench | PNG 1920 × 1440 |
-| `walk/patch-walk-animated.webp` / `.svg` | The walk cycle, 0.96 s per loop | WebP 512 × 352; SVG any size (about 4.5 MB) |
-| `walk/frames/` | The eight walk frames, SVG and PNG | PNG 1024 × 704 |
+| `mascot/` | **Full vectors**: traced at the most faithful settings measured, plus large PNGs and WebPs rendered from them | Big screens, print, merch, anything scaled up |
+| `mascot/original/` | **The original pixels**, cut from the sheet exactly and saved losslessly | Editing, retouching, new exports: nothing is lost |
+| `mascot/compressed/` | **Compressed copies**: a lighter SVG, the full SVG gzipped as `.svgz`, and a small animated WebP | Product UI and anywhere size matters |
 
-Prefer the WebPs in product UI; they're far lighter. Use the SVGs for big moments and print. To rebuild
-everything after replacing a sheet, run `node scripts/cut-mascot.mjs` from `site/`.
+| Piece | Files |
+|---|---|
+| Hero pose | `patch.svg`, `patch.png` |
+| Sneeze loop | `patch-animated.svg`, `patch-animated.webp`, and eight frames in `frames/` |
+| Walking pose | `walk/patch-walk.svg`, `walk/patch-walk.png` |
+| Walk cycle | `walk/patch-walk-animated.svg`, `walk/patch-walk-animated.webp`, and eight frames in `walk/frames/` |
+
+The same names sit in `original/` and `compressed/`. In product UI, use the animated WebPs; they're far
+lighter than the animated SVGs. Browsers only show `.svgz` when the server sends it gzip-encoded, so use
+the plain `.svg` on web pages.
+
+A vector is made of flat colour shapes, so it can't hold soft shading: the subtle brown iris inside each
+eye merges into the pupil. That detail is kept in `original/`. To rebuild everything after replacing a
+sheet, run `node scripts/cut-mascot.mjs` from `site/`.
 
 ## Why a painted wolf
 
@@ -99,7 +107,7 @@ symbol as a combined mark.
 2. **Don't stretch, skew or mirror** Patch. The coat is asymmetric on purpose.
 3. **Don't add effects** such as shadows, glows, gradients or outlines.
 4. **Don't make Patch fierce.** No bared teeth, angry brows or hunting poses.
-5. **Don't scale up the PNGs or WebPs.** Use the SVGs when you need bigger.
+5. **Don't scale up the PNGs or WebPs.** Use the full SVGs when you need bigger.
 6. **Keep clear space** of a quarter of the badge height on every side.
 7. **Check dark surfaces.** Patch's dark ear rims sit close to Deep Ink; light surfaces and Workshop
    Orange work best.

@@ -1,13 +1,14 @@
 ---
 // Patch from mascot/: the hero, both loops and the concept sheets, then the frames of each loop.
-// Cards preview the light PNG/WebP; the vector SVGs are offered as downloads (some are several MB).
+// Cards preview the light PNG/WebP. Downloads: the full vector SVG and PNG, the original pixels from the
+// sheet (lossless), and the compressed (lite) SVG.
 import { kitUrl } from './kit-url';
 
 const files = [
-  { show: 'patch.png', name: 'Patch', use: 'Hero pose', surface: 'cream', downloads: ['patch.svg', 'patch.png'] },
-  { show: 'patch-animated.webp', name: 'Patch, sneeze loop', use: '7-second loop', surface: 'white', downloads: ['patch-animated.webp', 'patch-animated.svg'] },
-  { show: 'walk/patch-walk.png', name: 'Patch, walking', use: 'On its way', surface: 'cream', downloads: ['walk/patch-walk.svg', 'walk/patch-walk.png'] },
-  { show: 'walk/patch-walk-animated.webp', name: 'Patch, walk cycle', use: '8 frames, 0.96 s', surface: 'sky', downloads: ['walk/patch-walk-animated.webp', 'walk/patch-walk-animated.svg'] },
+  { show: 'patch.png', name: 'Patch', use: 'Hero pose', surface: 'cream', downloads: ['patch.svg', 'patch.png', 'original/patch.png', 'compressed/patch.svg'] },
+  { show: 'patch-animated.webp', name: 'Patch, sneeze loop', use: '7-second loop', surface: 'white', downloads: ['patch-animated.webp', 'patch-animated.svg', 'original/patch-animated.webp', 'compressed/patch-animated.svg'] },
+  { show: 'walk/patch-walk.png', name: 'Patch, walking', use: 'On its way', surface: 'cream', downloads: ['walk/patch-walk.svg', 'walk/patch-walk.png', 'original/walk/patch-walk.png', 'compressed/walk/patch-walk.svg'] },
+  { show: 'walk/patch-walk-animated.webp', name: 'Patch, walk cycle', use: '8 frames, 0.96 s', surface: 'sky', downloads: ['walk/patch-walk-animated.webp', 'walk/patch-walk-animated.svg', 'original/walk/patch-walk-animated.webp', 'compressed/walk/patch-walk-animated.svg'] },
   { show: 'concept/patch-concept-sheet.webp', name: 'Concept sheet', use: 'Pose and sneeze loop', surface: 'cream', downloads: ['concept/patch-concept-sheet.webp'] },
   { show: 'concept/patch-walk-sheet.webp', name: 'Walk sheet', use: 'Walk cycle', surface: 'cream', downloads: ['concept/patch-walk-sheet.webp'] },
 ];
@@ -31,13 +32,17 @@ const loops = [
     frames: [1, 2, 3, 4, 5, 6, 7, 8].map((n) => [`walk/frames/patch-walk-0${n}`, `${((n - 1) * 0.12).toFixed(2)} s`, `Step ${n}`]),
   },
 ];
-const ext = (f: string) => f.split('.').pop()!.toUpperCase();
+// "SVG", "PNG", "Original PNG", "Lite SVG".
+const label = (f: string) => {
+  const type = f.split('.').pop()!.toUpperCase();
+  return f.startsWith('original/') ? `Original ${type}` : f.startsWith('compressed/') ? `Lite ${type}` : type;
+};
 ---
 
 <div class="sw-logos not-content">
   {
     files.map((f) => (
-      <figure class="sw-logo">
+      <figure class="sw-logo sw-logo--mascot">
         <div class={`sw-logo__stage sw-logo__stage--mascot sw-surface--${f.surface}`}>
           <img src={kitUrl(`mascot/${f.show}`)} alt={`${f.name}, the Space Works mascot`} loading="lazy" />
         </div>
@@ -47,7 +52,7 @@ const ext = (f: string) => f.split('.').pop()!.toUpperCase();
             <span class="sw-logo__use">{f.use}</span>
           </span>
           <span class="sw-logo__links">
-            {f.downloads.map((d) => <a href={kitUrl(`mascot/${d}`)} download>{ext(d)}</a>)}
+            {f.downloads.map((d) => <a href={kitUrl(`mascot/${d}`)} download>{label(d)}</a>)}
           </span>
         </figcaption>
       </figure>
