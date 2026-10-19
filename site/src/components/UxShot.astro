@@ -1,0 +1,36 @@
+---
+// One Space Works UX screen: desktop light and dark side by side, plus the phone view when captured.
+// Each image opens at full size. Files live in screenshots/ux/ at the repository root.
+import { kitUrl } from './kit-url';
+
+interface Props {
+  name: string;
+  alt: string;
+  phone?: boolean;
+  caption?: string;
+}
+const { name, alt, phone = false, caption } = Astro.props;
+const src = (size: string, mode: string) => kitUrl(`screenshots/ux/${name}-${size}-${mode}.webp`);
+---
+
+<figure class="sw-shot not-content">
+  <div class:list={['sw-shot-row', { 'has-phone': phone }]}>
+    <a href={src('desktop', 'light')}>
+      <img src={src('desktop', 'light')} alt={`${alt}, light theme`} width="1280" height="800" loading="lazy" decoding="async" />
+      <span>Light · desktop</span>
+    </a>
+    <a class="sw-shot-dark" href={src('desktop', 'dark')}>
+      <img src={src('desktop', 'dark')} alt={`${alt}, dark theme`} width="1280" height="800" loading="lazy" decoding="async" />
+      <span>Dark · desktop</span>
+    </a>
+    {
+      phone && (
+        <a class="sw-shot-phone" href={src('phone', 'light')}>
+          <img src={src('phone', 'light')} alt={`${alt}, phone`} width="390" height="844" loading="lazy" decoding="async" />
+          <span>Phone</span>
+        </a>
+      )
+    }
+  </div>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>

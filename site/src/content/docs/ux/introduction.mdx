@@ -4,9 +4,12 @@ description: Our interaction system. The patterns, layouts and quality bar every
 ---
 
 import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+import UxShot from '../../../components/UxShot.astro';
 
 **Space Works UX** sets how every Space Works screen works: where things go, how you move between them, and
 what happens when you act. The brand decides how a screen looks. Space Works UX decides how it behaves.
+
+<UxShot name="workspace-dashboard" alt="A Space Works dashboard built on Space Works UX" phone caption="Space Works Events, built on Space Works UX: the app shell, a callout that names the next step, and real numbers." />
 
 ## The rules to remember
 
@@ -47,6 +50,8 @@ what happens when you act. The brand decides how a screen looks. Space Works UX 
 - **A quality bar** that every screen has to pass before it ships.
 
 <CardGrid>
+  <LinkCard title="Patterns in practice" description="Each core pattern in a real screen, in light, dark and phone views." href="/ux/patterns/" />
+  <LinkCard title="Screen gallery" description="Every captured screen, grouped by the layout it uses." href="/ux/gallery/" />
   <LinkCard title="Space Works UX spec" description="Patterns, layouts, navigation, core screens and the quality bar." href="/specs/ux-patterns/" />
   <LinkCard title="Long-tail screens" description="The remaining screens, each composed from the same patterns and layouts." href="/specs/ux-long-tail-screens/" />
   <LinkCard title="UI brand spec" description="How the brand becomes interface: tokens, states, pills and the type scale." href="/specs/ui-brand-spec/" />
@@ -57,4 +62,5 @@ what happens when you act. The brand decides how a screen looks. Space Works UX 
 Space Works UX is our own. It was inspired by [Yuyu](https://github.com/twilighty-abhi/yuyu), whose screens we
 studied as reference boards (R1–R28 in the spec) and then adapted for Space Works: bigger tables, guided
 flows, payments, kiosks and many roles. The visual identity comes only from the
-[Space Works brand guidelines](/brand/guidelines/). See [Credits and licences](/about/credits/).
+[Space Works brand guidelines](/brand/guidelines/). See [Inspired by Yuyu](/ux/inspiration/) and
+[Credits and licences](/about/credits/).

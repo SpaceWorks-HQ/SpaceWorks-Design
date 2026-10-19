@@ -1,0 +1,19 @@
+---
+// The four reference boards from Yuyu that inspired Space Works UX. Files live in references/yuyu/.
+import { kitUrl } from './kit-url';
+
+const boards = ['Organiser workspace', 'Managing an event', 'Sign in, invites & account', 'Attending an event'];
+const slug = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const src = (name: string) => kitUrl(`references/yuyu/${slug(name)}.png`);
+---
+
+<div class="sw-boards not-content">
+  {
+    boards.map((name) => (
+      <a href={src(name)}>
+        <img src={src(name)} alt={`Yuyu reference board: ${name}`} loading="lazy" decoding="async" />
+        <span>{name} · Yuyu</span>
+      </a>
+    ))
+  }
+</div>

@@ -61,7 +61,7 @@ export default defineConfig({
           ],
         },
         { label: 'Tokens', items: ['tokens/using-the-kit', 'tokens/reference'] },
-        { label: 'UX', items: ['ux/introduction'] },
+        { label: 'UX', items: ['ux/introduction', 'ux/patterns', 'ux/gallery', 'ux/inspiration'] },
         { label: 'Specs', items: [{ autogenerate: { directory: 'specs' } }] },
         { label: 'About', items: ['about/credits'] },
       ],
