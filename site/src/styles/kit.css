@@ -84,6 +84,28 @@
   padding: 1.5rem;
 }
 .sw-logo__stage img { width: auto; max-width: 100%; height: auto; max-height: 7rem; }
+.sw-logo__stage--mascot { height: 14rem; }
+.sw-logo__stage--mascot img { max-height: 11rem; }
+
+/* Mascot animation frames */
+.sw-frames {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: 1rem;
+  margin-block: 1.5rem;
+}
+.sw-frame {
+  margin: 0;
+  padding: 0.75rem;
+  border: 1px solid var(--sl-color-hairline);
+  border-radius: 16px;
+  background: var(--sw-cream);
+  color: var(--sw-ink);
+  text-align: center;
+}
+.sw-frame img { width: 100%; max-width: 136px; height: auto; }
+.sw-frame figcaption { display: grid; font-size: 0.8125rem; }
+.sw-frame strong { font-weight: 600; }
 .sw-logo figcaption {
   display: flex;
   justify-content: space-between;

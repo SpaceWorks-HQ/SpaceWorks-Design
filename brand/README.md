@@ -8,6 +8,7 @@ Exported from the connected Figma file on 15 October 2026 using Figma MCP Go+.
 - `figma-styles.json`: source node IDs, component bounds, seven paint styles and ten text styles.
 - `../logo/`: ten SVG masters and matching 4× PNGs, including primary, horizontal, symbol and app-tile variants.
 - `../icons/`: favicon, app icons and social preview.
+- `../mascot/`: Patch, the painted wolf mascot, cut from its concept sheet (hero PNG, animated WebP and SVG, eight frames). Added after the Figma export; see `../mascot/README.md`.
 - `../tokens/`: reusable CSS and JSON tokens. `../fonts/`: web fonts and provenance.
 
 Use full color on light surfaces, reversed cream on dark surfaces, and the dedicated ink mark for single-color use. Monochrome versions preserve a hollow opening and transparent folds; do not create them by recoloring the full-color logo. Keep a quarter of the symbol height clear on every side.

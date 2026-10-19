@@ -53,6 +53,7 @@ export default defineConfig({
           items: [
             'brand/introduction',
             'brand/logo',
+            'brand/mascot',
             'brand/colour',
             'brand/typography',
             'brand/graphics',
