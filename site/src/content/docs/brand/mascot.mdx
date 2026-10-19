@@ -30,6 +30,10 @@ Nothing was redrawn. Each piece comes three ways:
 | Sneeze loop | `patch-animated.svg`, `patch-animated.webp`, and eight frames in `frames/` |
 | Walking pose | `walk/patch-walk.svg`, `walk/patch-walk.png` |
 | Walk cycle | `walk/patch-walk-animated.svg`, `walk/patch-walk-animated.webp`, and eight frames in `walk/frames/` |
+| Walking left | `walk-left/patch-walk-left.svg`, `walk-left/patch-walk-left-animated.webp`, and eight frames in `walk-left/frames/` |
+
+**Walking left** is the approved way to move Patch to the left. The script mirrors the walk cycle
+exactly, so it shows Patch's other side; frame N lines up with walk frame N for a mid-stride turn.
 
 The same names sit in `original/` and `compressed/`. In product UI, use the animated WebPs; they're far
 lighter than the animated SVGs. Browsers only show `.svgz` when the server sends it gzip-encoded, so use
@@ -104,7 +108,8 @@ symbol as a combined mark.
 ## Keep Patch intact
 
 1. **Don't recolour, filter or redraw** Patch. Use these files as they are.
-2. **Don't stretch, skew or mirror** Patch. The coat is asymmetric on purpose.
+2. **Don't stretch, skew or mirror** Patch. The coat is asymmetric on purpose. To head left, use the
+   `walk-left/` files; never flip the others with CSS.
 3. **Don't add effects** such as shadows, glows, gradients or outlines.
 4. **Don't make Patch fierce.** No bared teeth, angry brows or hunting poses.
 5. **Don't scale up the PNGs or WebPs.** Use the full SVGs when you need bigger.
