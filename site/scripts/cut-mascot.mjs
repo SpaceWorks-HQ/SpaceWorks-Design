@@ -4,13 +4,20 @@
 //   patch-walk-sheet.webp     ->  the walking pose and the eight-frame walk cycle
 //
 // Each piece is cut out (the sheet's cream is flood-filled away from the edges, so cream fur inside
-// the artwork stays), traced to a colour vector SVG at the highest settings, and rendered back to a
-// high-resolution PNG from that vector. The loops are built from the traced frames as an animated SVG
-// (CSS only, plays in <img>) and an animated WebP.
+// the artwork stays) and written three ways:
+//
+//   mascot/<file>             the full vector SVG, traced at the most faithful settings measured, and a
+//                             high-resolution PNG rendered from it
+//   mascot/original/<file>    the cut-out's exact pixels from the sheet, lossless: nothing is lost
+//   mascot/compressed/<file>  a lighter traced SVG that renders anywhere, the full SVG gzipped as
+//                             .svgz (lossless), and a smaller animated WebP
+//
+// The loops are built from the frames as animated SVGs (CSS only, plays in <img>) and animated WebPs.
 //
 // Run from site/ after replacing a sheet: node scripts/cut-mascot.mjs [concept|walk]
 // (no argument rebuilds both sheets; tracing the concept sheet takes a few minutes)
 import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { gzipSync } from 'node:zlib';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
@@ -18,21 +25,12 @@ import { ColorMode, Hierarchical, PathSimplifyMode, optimizeSync, vectorize } fr
 
 const mascot = join(dirname(fileURLToPath(import.meta.url)), '..', '..', 'mascot');
 
-// Tracing: upscale 4x, smooth JPEG-style noise, then trace with fine colour layers.
-const UPSCALE = 4;
-const TRACE = {
-  colorMode: ColorMode.Color,
-  hierarchical: Hierarchical.Stacked,
-  filterSpeckle: 6,
-  colorPrecision: 8,
-  layerDifference: 10,
-  mode: PathSimplifyMode.Spline,
-  cornerThreshold: 60,
-  lengthThreshold: 4,
-  maxIterations: 10,
-  spliceThreshold: 45,
-  pathPrecision: 1,
-};
+// Two traces. "full" was picked by scoring renders against the sheet pixel by pixel: finer colour
+// layers and tighter curve fitting stopped improving the score here, and a bigger upscale or
+// sharpening made it worse. "lite" is several times smaller and still close at normal sizes.
+const base = { colorMode: ColorMode.Color, hierarchical: Hierarchical.Stacked, colorPrecision: 8, mode: PathSimplifyMode.Spline, maxIterations: 10 };
+const FULL = { upscale: 4, median: 0, trace: { ...base, filterSpeckle: 2, layerDifference: 4, cornerThreshold: 40, lengthThreshold: 3, spliceThreshold: 30, pathPrecision: 2 } };
+const LITE = { upscale: 3, median: 3, trace: { ...base, filterSpeckle: 8, layerDifference: 12, cornerThreshold: 60, lengthThreshold: 4, spliceThreshold: 45, pathPrecision: 0 } };
 const PAD = 6; // keeps twitch marks and puffs; label text on the sheet starts further away
 
 const SHEETS = [
@@ -188,94 +186,111 @@ async function place(piece, [w, h], [ax, ay], [tx, ty]) {
   return { canvas, left, top };
 }
 
-// Traces a canvas to SVG markup (paths only, in canvas units x UPSCALE).
+// Traces a canvas to SVG markup (paths only, in canvas units x the variant's upscale).
 // The edge is made hard (alpha in or out) after upscaling: soft edge pixels would otherwise be traced
 // as a pale ring around the outline. The renderer anti-aliases the vector edge instead.
-async function trace(canvas, [w, h]) {
-  const { data, info } = await sharp(canvas)
-    .resize(w * UPSCALE, h * UPSCALE, { kernel: 'lanczos3' })
-    .median(3)
-    .raw()
-    .toBuffer({ resolveWithObject: true });
+async function trace(canvas, [w, h], v) {
+  let pipe = sharp(canvas).resize(w * v.upscale, h * v.upscale, { kernel: 'lanczos3' });
+  if (v.median) pipe = pipe.median(v.median);
+  const { data, info } = await pipe.raw().toBuffer({ resolveWithObject: true });
   for (let p = 3; p < data.length; p += 4) data[p] = data[p] >= 235 ? 255 : 0;
   const up = await sharp(data, { raw: info }).png().toBuffer();
-  const svg = optimizeSync(await vectorize(up, TRACE));
+  const svg = optimizeSync(await vectorize(up, v.trace));
   return svg.replace(/^[\s\S]*?<svg[^>]*>/, '').replace(/<\/svg>\s*$/, '');
 }
 
-function shadowShape(s, left, top) {
+function shadowShape(s, left, top, k) {
   if (!s) return '';
   const tint = s.bg.map((b, c) => Math.max(0, Math.min(255, Math.round(b - (b - s.rgb[c]) / SHADOW_OPACITY))));
-  const x = (left + s.x0) * UPSCALE, y = (top + s.y0) * UPSCALE;
-  const w = (s.x1 - s.x0 + 1) * UPSCALE, h = (s.y1 - s.y0 + 1) * UPSCALE;
+  const x = (left + s.x0) * k, y = (top + s.y0) * k;
+  const w = (s.x1 - s.x0 + 1) * k, h = (s.y1 - s.y0 + 1) * k;
   return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${h / 2}" fill="rgb(${tint.join(' ')})" fill-opacity="${SHADOW_OPACITY}"/>`;
 }
 
-const svgDoc = ([w, h], body, title, extra = '') =>
-  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w * UPSCALE} ${h * UPSCALE}" width="${w}" height="${h}" role="img" aria-labelledby="t"><title id="t">${title}</title>${extra}${body}</svg>\n`;
+const svgDoc = ([w, h], k, body, title, extra = '') =>
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w * k} ${h * k}" width="${w}" height="${h}" role="img" aria-labelledby="t"><title id="t">${title}</title>${extra}${body}</svg>\n`;
 
-async function writeVector(out, size, body, title) {
-  const svg = svgDoc(size, body, title);
-  writeFileSync(join(mascot, `${out}.svg`), svg);
-  // High-resolution PNG rendered from the vector (4x the nominal size).
-  await sharp(Buffer.from(svg), { density: 72 * UPSCALE }).png({ compressionLevel: 9 }).toFile(join(mascot, `${out}.png`));
-  return svg;
-}
-
-const only = process.argv[2];
-for (const s of SHEETS.filter((s) => !only || s.sheet.includes(only))) {
-  const frameDir = join(mascot, dirname(s.frames[0][0]));
-  rmSync(frameDir, { recursive: true, force: true });
-  mkdirSync(frameDir, { recursive: true });
-  const src = await load(s.sheet);
-
-  // Hero pose, centred on its canvas.
-  const walk = s.align === 'shadow';
-  const hero = cut(src, s.hero.box, s.near, s.far, walk);
-  const [hw, hh] = s.hero.size;
-  const hp = await place(hero, s.hero.size, [hero.width / 2, hero.height / 2], [hw / 2, hh / 2]);
-  await writeVector(s.hero.out, s.hero.size, shadowShape(hero.shadow, hp.left, hp.top) + (await trace(hp.canvas, s.hero.size)), 'Patch, the Space Works mascot');
-
-  // Frames, aligned on the same anchor so they can be swapped without jumping.
-  const [fw, fh] = s.frameSize;
-  const target = walk ? [fw / 2, fh - PAD - 4] : [fw / 2, fh / 2];
-  const bodies = [];
-  for (const [out, box] of s.frames) {
-    const piece = cut(src, box, s.near, s.far, walk);
-    const placed = await place(piece, s.frameSize, anchor(piece, s.align), target);
-    const body = shadowShape(piece.shadow, placed.left, placed.top) + (await trace(placed.canvas, s.frameSize));
-    await writeVector(out, s.frameSize, body, 'Patch, the Space Works mascot');
-    bodies.push({ out, body });
-  }
-
-  // Animated SVG: every traced frame, shown on the timeline with CSS visibility steps.
-  const total = s.timeline.reduce((t, [, ms]) => t + ms, 0);
+// Every traced frame in one SVG, each shown on the timeline with CSS visibility steps.
+function animatedDoc(size, k, bodies, timeline, title) {
+  const total = timeline.reduce((t, [, ms]) => t + ms, 0);
   const keyframes = bodies.map((_, f) => {
     const stops = new Map([[0, 'hidden']]);
     let t = 0;
-    for (const [frame, ms] of s.timeline) {
+    for (const [frame, ms] of timeline) {
       if (frame === f) {
         stops.set(t, 'visible');
         if (!stops.has(t + ms)) stops.set(t + ms, 'hidden');
       }
       t += ms;
     }
-    const body = [...stops].map(([ms, v]) => `${+((ms / total) * 100).toFixed(3)}%{visibility:${v}}`).join('');
-    return `@keyframes f${f}{${body}}`;
+    return `@keyframes f${f}{${[...stops].map(([ms, v]) => `${+((ms / total) * 100).toFixed(3)}%{visibility:${v}}`).join('')}}`;
   });
   const style = `<style>.f{visibility:hidden;animation:${total}ms step-end infinite}${bodies
     .map((_, f) => `.f${f}{animation-name:f${f}}`)
     .join('')}${keyframes.join('')}@media (prefers-reduced-motion:reduce){.f{animation:none}.f0{visibility:visible}}</style>`;
-  const groups = bodies.map(({ body }, f) => `<g class="f f${f}">${body}</g>`).join('');
-  writeFileSync(join(mascot, `${s.animated}.svg`), svgDoc(s.frameSize, groups, s.title, style));
+  return svgDoc(size, k, bodies.map((b, f) => `<g class="f f${f}">${b}</g>`).join(''), title, style);
+}
 
-  // Animated WebP at 2x, from PNGs rendered off the traced frames.
-  const pngs = await Promise.all(
-    s.timeline.map(([f]) => sharp(join(mascot, `${bodies[f].out}.png`)).resize(fw * 2, fh * 2).png().toBuffer()),
-  );
-  await sharp(pngs, { join: { animated: true } })
-    .webp({ loop: 0, delay: s.timeline.map(([, ms]) => ms), quality: 92, alphaQuality: 100, effort: 6 })
-    .toFile(join(mascot, `${s.animated}.webp`));
+const at = (...parts) => join(mascot, ...parts);
+const write = (file, data) => {
+  mkdirSync(dirname(file), { recursive: true });
+  writeFileSync(file, data);
+};
+// The paths of a single-piece SVG, without its root element and title.
+const strip = (svg) => svg.replace(/^[\s\S]*?<\/title>/, '').replace(/<\/svg>\s*$/, '');
+
+// Writes one piece: full SVG + PNG, the original pixels, and the compressed SVG and SVGZ.
+async function writePiece(out, size, placed, shadow, title) {
+  const body = async (v) => shadowShape(shadow, placed.left, placed.top, v.upscale) + (await trace(placed.canvas, size, v));
+  const full = svgDoc(size, FULL.upscale, await body(FULL), title);
+  const lite = svgDoc(size, LITE.upscale, await body(LITE), title);
+  write(at(`${out}.svg`), full);
+  await sharp(Buffer.from(full), { density: 72 * FULL.upscale }).png({ compressionLevel: 9 }).toFile(at(`${out}.png`));
+  write(at('original', `${out}.png`), await sharp(placed.canvas).png({ compressionLevel: 9 }).toBuffer());
+  write(at('compressed', `${out}.svg`), lite);
+  write(at('compressed', `${out}.svgz`), gzipSync(full, { level: 9 }));
+  return { full, lite };
+}
+
+const only = process.argv[2];
+for (const s of SHEETS.filter((s) => !only || s.sheet.includes(only))) {
+  for (const root of [[], ['original'], ['compressed']]) rmSync(at(...root, dirname(s.frames[0][0])), { recursive: true, force: true });
+  const src = await load(s.sheet);
+  const walk = s.align === 'shadow';
+  const title = 'Patch, the Space Works mascot';
+
+  // Hero pose, centred on its canvas.
+  const hero = cut(src, s.hero.box, s.near, s.far, walk);
+  const [hw, hh] = s.hero.size;
+  const heroPlaced = await place(hero, s.hero.size, [hero.width / 2, hero.height / 2], [hw / 2, hh / 2]);
+  await writePiece(s.hero.out, s.hero.size, heroPlaced, hero.shadow, title);
+
+  // Frames, aligned on the same anchor so they can be swapped without jumping.
+  const [fw, fh] = s.frameSize;
+  const target = walk ? [fw / 2, fh - PAD - 4] : [fw / 2, fh / 2];
+  const frames = [];
+  for (const [out, box] of s.frames) {
+    const piece = cut(src, box, s.near, s.far, walk);
+    const placed = await place(piece, s.frameSize, anchor(piece, s.align), target);
+    frames.push({ out, placed, ...(await writePiece(out, s.frameSize, placed, piece.shadow, title)) });
+  }
+
+  // Animated SVGs (full and lite, plus the full one gzipped) and animated WebPs: 2x from the
+  // vectors, the original pixels losslessly, and a small compressed one.
+  const full = animatedDoc(s.frameSize, FULL.upscale, frames.map((f) => strip(f.full)), s.timeline, s.title);
+  write(at(`${s.animated}.svg`), full);
+  write(at('compressed', `${s.animated}.svg`), animatedDoc(s.frameSize, LITE.upscale, frames.map((f) => strip(f.lite)), s.timeline, s.title));
+  write(at('compressed', `${s.animated}.svgz`), gzipSync(full, { level: 9 }));
+  const delay = s.timeline.map(([, ms]) => ms);
+  const sequence = (pick) => Promise.all(s.timeline.map(([f]) => pick(frames[f])));
+  const rendered = (scale) => sequence((f) => sharp(at(`${f.out}.png`)).resize(fw * scale, fh * scale).png().toBuffer());
+  const webp = async (inputs, opts, file) => {
+    mkdirSync(dirname(file), { recursive: true });
+    await sharp(inputs, { join: { animated: true } }).webp({ loop: 0, delay, effort: 6, ...opts }).toFile(file);
+  };
+  await webp(await rendered(2), { quality: 92, alphaQuality: 100 }, at(`${s.animated}.webp`));
+  await webp(await sequence((f) => f.placed.canvas), { lossless: true }, at('original', `${s.animated}.webp`));
+  await webp(await rendered(1), { quality: 80, alphaQuality: 90 }, at('compressed', `${s.animated}.webp`));
 
   console.log(`cut-mascot: ${s.sheet} -> ${s.hero.out}, ${s.frames.length} frames, ${s.animated}`);
 }
