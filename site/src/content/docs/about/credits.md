@@ -14,8 +14,11 @@ paint styles and the ten text styles.
 [Space Works UX](/ux/introduction/) is our own interaction system: the patterns, layouts and
 interaction details in the specs. It was inspired by [Yuyu](https://github.com/twilighty-abhi/yuyu), whose
 screens we studied as reference boards. The reference boards are kept in
-[`references/yuyu/`](https://github.com/SpaceWorks-HQ/SpaceWorks-Design/tree/main/references/yuyu) and are not
-republished on this site.
+[`references/yuyu/`](https://github.com/SpaceWorks-HQ/SpaceWorks-Design/tree/main/references/yuyu) and are shown,
+with attribution, on [Inspired by Yuyu](/ux/inspiration/). They remain Yuyu's work and are not relicensed.
+
+The screenshots on the UX pages are of Space Works Events, run with demo data. They are in
+[`screenshots/ux/`](https://github.com/SpaceWorks-HQ/SpaceWorks-Design/tree/main/screenshots/ux).
 
 ## Fonts
 

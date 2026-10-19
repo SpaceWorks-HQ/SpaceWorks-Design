@@ -2,6 +2,7 @@
 // so the site always shows the real masters and never a hand-maintained copy of them.
 //
 //   logo/ icons/ fonts/ tokens/ brand/  ->  public/kit/...      (served for preview and download)
+//   screenshots/ references/yuyu/       ->  public/kit/...      (UX screenshots and reference boards)
 //   logo/*.svg                          ->  src/assets/kit/     (header logo and hero art)
 //   docs/*.md                           ->  src/content/docs/specs/  (rendered spec pages)
 //
@@ -21,11 +22,17 @@ for (const dir of [kit, assets, specs]) {
   mkdirSync(dir, { recursive: true });
 }
 
-for (const folder of ['logo', 'icons', 'fonts', 'tokens']) {
+for (const folder of ['logo', 'icons', 'fonts', 'tokens', 'screenshots']) {
   cpSync(join(root, folder), join(kit, folder), { recursive: true });
 }
 cpSync(join(root, 'brand', 'space-works-brand-guidelines-v1.pdf'), join(kit, 'brand', 'space-works-brand-guidelines-v1.pdf'));
 cpSync(join(root, 'brand', 'guidelines', 'png'), join(kit, 'brand', 'guidelines'), { recursive: true });
+// Reference boards get URL-safe names ("Sign in, invites & account.png" -> "sign-in-invites-account.png").
+mkdirSync(join(kit, 'references', 'yuyu'), { recursive: true });
+for (const file of readdirSync(join(root, 'references', 'yuyu')).filter((f) => f.endsWith('.png'))) {
+  const slug = file.replace(/\.png$/, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  cpSync(join(root, 'references', 'yuyu', file), join(kit, 'references', 'yuyu', `${slug}.png`));
+}
 
 for (const file of readdirSync(join(root, 'logo')).filter((f) => f.endsWith('.svg'))) {
   cpSync(join(root, 'logo', file), join(assets, file));
@@ -56,4 +63,4 @@ for (const { file, slug, order, label } of specPages) {
   writeFileSync(join(specs, `${slug}.md`), frontmatter + source.slice(match[0].length));
 }
 
-console.log('sync-kit: copied logo, icons, fonts, tokens, brand pages and 3 specs');
+console.log('sync-kit: copied logo, icons, fonts, tokens, screenshots, brand pages, reference boards and 3 specs');

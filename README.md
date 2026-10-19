@@ -21,6 +21,7 @@ masters, colours, type, voice, every design token and the UI specs, published fr
 | `fonts/` | Gilroy Regular, Medium, Semibold and Bold (WOFF), plus Unbounded (WOFF2). Legacy faces retained for existing consumers. See `fonts/README.md`. |
 | `tokens/` | `tokens.css` (`@font-face` + light/dark colour variables as RGB triplets) and `tokens.json` (the same colours as hex, plus the seven brand colours) |
 | `docs/` | `ui-brand-spec.md` (token derivations, contrast ratios, states, status pills, type scale, logo use), `ux-spec.md` (**Space Works UX**: our interaction patterns, reusable layouts, navigation and screen specs), `ux-screens-longtail.md` (remaining screens) |
+| `screenshots/ux/` | Screenshots of Space Works UX in Space Works Events (light, dark and phone), used by the site's UX pages |
 | `site/` | The Starlight website published to GitHub Pages; `scripts/sync-kit.mjs` copies the kit in at build time |
 | `references/yuyu/` | The reference boards from [Yuyu](https://github.com/twilighty-abhi/yuyu) that inspired Space Works UX |
 

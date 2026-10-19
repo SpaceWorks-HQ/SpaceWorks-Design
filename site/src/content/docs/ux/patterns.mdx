@@ -1,0 +1,99 @@
+---
+title: Patterns in practice
+description: The core Space Works UX patterns, each shown in a real Space Works screen in light, dark and phone views.
+---
+
+import UxShot from '../../../components/UxShot.astro';
+
+These are real screens from **Space Works Events**, built on Space Works UX and run with demo data. Each pattern
+links back to its number in the [Space Works UX spec](/specs/ux-patterns/). Select any image to open it at full
+size.
+
+## App shell and sidebar (P1)
+
+A Citron sidebar with the workspace switcher on top, a text-only nav with one filled active item, then "View
+public page ↗" and the account chip at the bottom. On a phone it folds into a top bar and sheet.
+
+<UxShot name="workspace-dashboard" alt="Organisation dashboard in the app shell" phone caption="The dashboard answers “what needs me?” first: the callout links straight to the approvals and the draft." />
+
+## Page header, callout and stats (P2, P4, P5)
+
+One identity block per page: name, meta and at most one filled primary action. A contextual callout carries the
+next step, and stat cards show real numbers.
+
+<UxShot name="detail-overview" alt="Event detail with header, stat cards and readiness callout" phone caption="Detail header with a date tile, status chips, underline tabs and a readiness checklist where every gap links to its fix." />
+
+## Lists with filter chips and bulk actions (P6, P8, P10)
+
+Filter chips carry their counts. Selecting rows turns on the bulk bar. Every status is a word in a pill, never
+colour alone.
+
+<UxShot name="list-member-ids" alt="Member list with filter chips, search and status pills" phone caption="Member IDs: All 10 · Waiting 2 · Approved 6 · Rejected 1 · Revoked 1, with a reason shown under a rejection." />
+
+<UxShot name="list-guests" alt="Guest list with status chips and inline actions" phone caption="Guests: the next step is inline in the row; rare actions sit in the row menu." />
+
+## Tables inside a card (P14)
+
+Dense data keeps the card chrome: a bordered card, sentence-case column labels and a hairline between rows.
+
+<UxShot name="table-team" alt="Team table with roles and an invite card" caption="Team members with roles, and the invite card on top." />
+
+## Settings rows, live preview and sticky save (P15, P16)
+
+Settings are labelled rows with helper text beside each field. Changes collect in a sticky Discard / Save bar,
+and the danger zone sits at the very end.
+
+<UxShot name="settings-organisation" alt="Organisation settings with live public-page preview" phone caption="The public-page preview updates as you type. Nothing is saved until you choose Save changes." />
+
+## Create with a live preview (P18)
+
+Create forms stay short, mark optional fields inline, and check the web address as you type.
+
+<UxShot name="form-new-organisation" alt="Create an organisation form" />
+
+## Empty states and first-run (P17)
+
+An empty workspace never just says "nothing here". It names the next step, and the first-run checklist shows only
+one call to action at a time.
+
+<UxShot name="workspace-empty-state" alt="New organisation with the first-run checklist" />
+
+## Work in a focused flow (P21, P30)
+
+High-frequency work gets its own focused surface: the scanner, search, live progress and an offline callout.
+Reversible actions offer Undo in place instead of asking "Are you sure?".
+
+<UxShot name="flow-check-in" alt="Check-in desk with scanner and progress" phone />
+
+## Auth split screen and centred task card (P22, P23)
+
+Sign-in is a split screen: the form on one side, one bold brand moment on the other. Single tasks, like resetting
+a password, get one centred card.
+
+<UxShot name="auth-sign-in" alt="Sign-in split screen" phone />
+
+<UxShot name="auth-reset-password" alt="Reset password centred card" />
+
+## Account (P24)
+
+One header card with the person and their verification chips, then tabs, each a column of cards.
+
+<UxShot name="account-profile" alt="Account profile settings" />
+
+## Public pages (P25)
+
+Public pages use the organisation's identity and a sticky card with the one action that matters.
+
+<UxShot name="public-organisation" alt="Public organisation page" phone />
+
+<UxShot name="public-event" alt="Public event page with the Join this event card" phone />
+
+## Mobile ticket and card checks (P27)
+
+Things people show at a door are built for a phone first: large type, high contrast and a clear state.
+
+<UxShot name="public-ticket" alt="Mobile ticket with QR code" phone />
+
+<UxShot name="public-verify-card" alt="Member card check showing a valid card" phone caption="A valid card shows only what is needed to confirm it." />
+
+<UxShot name="public-verify-not-found" alt="Member card check with no match" phone caption="Errors are calm and specific, and say what to try next." />
