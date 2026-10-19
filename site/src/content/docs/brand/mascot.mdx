@@ -13,20 +13,23 @@ carries a wrench in its mouth, like a dog bringing back a stick: borrow it, use 
 <MascotGallery />
 
 Every file is in [`mascot/`](https://github.com/SpaceWorks-HQ/SpaceWorks-Design/tree/main/mascot), cut
-straight out of the approved
-[concept sheet](https://github.com/SpaceWorks-HQ/SpaceWorks-Design/blob/main/mascot/concept/patch-concept-sheet.webp)
-on transparent backgrounds. Nothing was redrawn.
+from the two approved concept sheets
+([pose and sneeze](https://github.com/SpaceWorks-HQ/SpaceWorks-Design/blob/main/mascot/concept/patch-concept-sheet.webp),
+[walk](https://github.com/SpaceWorks-HQ/SpaceWorks-Design/blob/main/mascot/concept/patch-walk-sheet.webp))
+and traced to colour vector SVGs, so Patch stays sharp at any size. The PNGs and WebPs are rendered from
+those vectors.
 
 | File | Use it for | Size |
 |---|---|---|
-| `patch.png` | The hero pose | 640 × 640 |
-| `patch-animated.webp` | The 7-second loop, anywhere an image goes | 272 × 272 |
-| `patch-animated.svg` | The same loop as an SVG, timed with CSS; respects reduced motion | 272 × 272 |
-| `frames/` | The eight frames, for app animation code or a Lottie | 272 × 272 each |
+| `patch.svg` / `.png` | The hero pose | SVG any size; PNG 2560 px |
+| `patch-animated.webp` / `.svg` | The 7-second sneeze loop | WebP 544 px; SVG any size (about 10 MB) |
+| `frames/` | The eight sneeze-loop frames, SVG and PNG | PNG 1088 px |
+| `walk/patch-walk.svg` / `.png` | Patch trotting with the wrench | PNG 1920 × 1440 |
+| `walk/patch-walk-animated.webp` / `.svg` | The walk cycle, 0.96 s per loop | WebP 512 × 352; SVG any size (about 4.5 MB) |
+| `walk/frames/` | The eight walk frames, SVG and PNG | PNG 1024 × 704 |
 
-They're raster at the sheet's own resolution: use the hero up to about 320 px wide and the animation up to
-about 136 px. For bigger or print use, export the original artwork larger, replace the sheet and run
-`node scripts/cut-mascot.mjs` from `site/`.
+Prefer the WebPs in product UI; they're far lighter. Use the SVGs for big moments and print. To rebuild
+everything after replacing a sheet, run `node scripts/cut-mascot.mjs` from `site/`.
 
 ## Why a painted wolf
 
@@ -59,7 +62,8 @@ wrench belong to the artwork; don't reuse them as UI colours.
 
 ## Animation
 
-The concept sheet's 7-second loop, frame by frame. Between moments Patch holds the idle frame.
+The concept sheet's 7-second loop, frame by frame. Between moments Patch holds the idle frame. The walk
+cycle plays its eight frames at 120 ms each.
 
 | Time | Frame |
 |---|---|
@@ -91,11 +95,11 @@ symbol as a combined mark.
 
 ## Keep Patch intact
 
-1. **Don't recolour, filter or redraw** Patch. Use the cut-outs as they are.
+1. **Don't recolour, filter or redraw** Patch. Use these files as they are.
 2. **Don't stretch, skew or mirror** Patch. The coat is asymmetric on purpose.
 3. **Don't add effects** such as shadows, glows, gradients or outlines.
 4. **Don't make Patch fierce.** No bared teeth, angry brows or hunting poses.
-5. **Don't enlarge the files** past the sizes above. Re-export from the original instead.
+5. **Don't scale up the PNGs or WebPs.** Use the SVGs when you need bigger.
 6. **Keep clear space** of a quarter of the badge height on every side.
 7. **Check dark surfaces.** Patch's dark ear rims sit close to Deep Ink; light surfaces and Workshop
    Orange work best.

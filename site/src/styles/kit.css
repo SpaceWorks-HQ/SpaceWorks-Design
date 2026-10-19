@@ -104,8 +104,20 @@
   text-align: center;
 }
 .sw-frame img { width: 100%; max-width: 136px; height: auto; }
-.sw-frame figcaption { display: grid; font-size: 0.8125rem; }
+.sw-frame figcaption { display: grid; justify-items: center; gap: 0.15rem; font-size: 0.8125rem; }
 .sw-frame strong { font-weight: 600; }
+/* Same pill as .sw-logo__links, fixed to ink because the frame card is always cream. */
+.sw-frame a {
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgb(20 44 42 / 0.18);
+  color: var(--sw-ink);
+}
+.sw-frame a:hover { border-color: var(--sw-teal); color: var(--sw-teal); }
 .sw-logo figcaption {
   display: flex;
   justify-content: space-between;
