@@ -41,7 +41,7 @@ by hand. Every piece comes in three forms:
 
 | Folder | What it is | Detail |
 |---|---|---|
-| `mascot/` (this folder) | **Full vectors**: each piece traced to a colour SVG at the most faithful settings measured, plus high-resolution PNGs and animated WebPs rendered from those vectors | Sharp at any size |
+| `mascot/` (this folder) | **Full vectors**: each piece traced to a colour SVG at the most faithful settings measured, plus high-resolution PNGs and animated WebPs rendered from those vectors, and GIFs of the loops | Sharp at any size |
 | [`original/`](original/) | **The original pixels**: each piece cut from the sheet exactly, lossless PNG and WebP | Nothing lost, at the sheet's own size |
 | [`compressed/`](compressed/) | **Compressed copies**: a lighter traced SVG that renders anywhere, the full SVG gzipped as `.svgz` (lossless), and a small animated WebP | Lite SVG is close at normal sizes; SVGZ is identical to the full SVG |
 
@@ -50,7 +50,7 @@ by hand. Every piece comes in three forms:
 | File | Full | Original | Compressed |
 |---|---|---|---|
 | `patch` (hero pose) | `patch.svg` (6.5 MB), `patch.png` 2560 px | `original/patch.png` 640 px | `compressed/patch.svg` (956 KB), `.svgz` (2.4 MB) |
-| `patch-animated` (7-second loop) | `.svg` (16.5 MB), `.webp` 544 px | `original/patch-animated.webp` 272 px | `compressed/patch-animated.svg` (2.7 MB), `.svgz` (6.1 MB), `.webp` 272 px |
+| `patch-animated` (7-second loop) | `.svg` (16.5 MB), `.webp` 544 px, `.gif` 272 px | `original/patch-animated.webp` 272 px | `compressed/patch-animated.svg` (2.7 MB), `.svgz` (6.1 MB), `.webp` 272 px |
 | `frames/patch-0N-*` (eight frames) | `.svg` and `.png` 1088 px | `.png` 272 px | `.svg` and `.svgz` |
 
 ### Walk cycle (from `concept/patch-walk-sheet.webp`)
@@ -58,7 +58,7 @@ by hand. Every piece comes in three forms:
 | File | Full | Original | Compressed |
 |---|---|---|---|
 | `walk/patch-walk` (walking pose) | `.svg` (2.2 MB), `.png` 1920 × 1440 | `.png` 480 × 360 | `.svg` (359 KB), `.svgz` (814 KB) |
-| `walk/patch-walk-animated` (0.96 s loop) | `.svg` (6.9 MB), `.webp` 512 × 352 | `.webp` 256 × 176 | `.svg` (1.2 MB), `.svgz` (2.6 MB), `.webp` 256 × 176 |
+| `walk/patch-walk-animated` (0.96 s loop) | `.svg` (6.9 MB), `.webp` 512 × 352, `.gif` 256 × 176 | `.webp` 256 × 176 | `.svg` (1.2 MB), `.svgz` (2.6 MB), `.webp` 256 × 176 |
 | `walk/frames/patch-walk-0N` (eight frames) | `.svg` and `.png` 1024 × 704 | `.png` 256 × 176 | `.svg` and `.svgz` |
 
 ### Walking left (from the walk cycle)
@@ -70,15 +70,46 @@ it shows Patch's other side. Same sizes, frames and timing as the walk cycle:
 | File | Full | Original | Compressed |
 |---|---|---|---|
 | `walk-left/patch-walk-left` (walking pose) | `.svg`, `.png` 1920 × 1440 | `.png` 480 × 360 | `.svg`, `.svgz` |
-| `walk-left/patch-walk-left-animated` (0.96 s loop) | `.svg`, `.webp` 512 × 352 | `.webp` 256 × 176 | `.svg`, `.svgz`, `.webp` 256 × 176 |
+| `walk-left/patch-walk-left-animated` (0.96 s loop) | `.svg`, `.webp` 512 × 352, `.gif` 256 × 176 | `.webp` 256 × 176 | `.svg`, `.svgz`, `.webp` 256 × 176 |
 | `walk-left/frames/patch-walk-left-0N` (eight frames) | `.svg` and `.png` 1024 × 704 | `.png` 256 × 176 | `.svg` and `.svgz` |
 
 Frame N of `walk-left/` is frame N of `walk/` facing the other way, on the same ground line, so you
 can switch direction mid-stride without a jump.
 
+### On dark surfaces (`dark/`)
+
+Patch's thick dark outline almost disappears on Deep Ink: it measures about 1.0–2.3:1 against it,
+against 6–14.5:1 on Warm Cream. So `dark/` has every piece with a **thin Warm Cream (#FFF4E8) die-cut
+sticker border**, about 4 px at the walk frame's 256 px width and scaled with the image. The art inside
+is untouched: same pixels, colours, frames and timing. **Use `dark/` on dark surfaces only** (Deep Ink
+and the dark theme's panels); on Warm Cream, white and the light brand colours use the plain files.
+This border is the one approved exception to the "no outlines" rule below.
+
+| File | `dark/` (full vectors and original pixels) | `dark/compressed/` (product UI) |
+|---|---|---|
+| `patch` (hero pose) | `.svg` (6.5 MB), `.png` 642 × 642 | `.svg` (0.9 MB), `.svgz` (2.4 MB), `.webp` 321 px |
+| `patch-animated` (7-second loop) | `.svg` (16.5 MB), `.webp` and `.gif` 272 px | `.svg` (2.7 MB), `.svgz` (6.2 MB), `.webp` 272 px |
+| `frames/patch-0N-*` (eight frames) | `.svg`, `.png` 272 px | `.svg`, `.svgz`, `.webp` 272 px |
+| `walk/patch-walk`, `walk-left/patch-walk-left` (walking poses) | `.svg` (2.2 MB), `.png` 484 × 364 | `.svg` (0.4 MB), `.svgz` (0.8 MB), `.webp` 484 × 364 |
+| `walk/patch-walk-animated`, `walk-left/patch-walk-left-animated` (0.96 s loops) | `.svg` (7.0 MB), `.webp` and `.gif` 256 × 176 | `.svg` (1.2 MB), `.svgz` (2.6 MB), `.webp` 256 × 176 |
+| `walk/frames/patch-walk-0N`, `walk-left/frames/patch-walk-left-0N` (eight frames each) | `.svg`, `.png` 256 × 176 | `.svg`, `.svgz`, `.webp` 256 × 176 |
+
+Frames and loops keep their canvas, so a dark file drops in for its light twin and frames still line up.
+The hero and the walking poses are padded by 1–2 px per side so the border is never clipped; their SVGs
+are padded the same, so a dark SVG and its PNG are the same size. The dark SVGs are the light SVGs with
+the border added as Warm Cream vector paths under the art, which is unchanged; in a loop, each frame has
+its own border. The PNGs and WebPs are built from `original/`, so they stop at the sheet's own size: for
+bigger, use the SVG.
+
+**GIFs.** Each loop also comes as a GIF, light (`patch-animated.gif`, `walk/…`, `walk-left/…`) and dark
+(`dark/…`), for email and chat tools that can't play an animated WebP. They have the original pixels,
+frames and timing, but GIF has only 256 colours and hard-edged transparency (no soft edges), so prefer the
+WebP or SVG wherever they work.
+
 **Which one to use:**
 
-- **Product UI** (apps, the web, chat): the animated **WebP**, or `compressed/` for the lightest.
+- **Product UI** (apps, the web, chat): the animated **WebP**, or `compressed/` for the lightest. On a
+  dark surface, the same file from `dark/compressed/`.
 - **Big screens, print, merch, anything scaled up:** the full **SVG**.
 - **When every pixel matters** (editing, retouching, a new export): `original/`, Patch exactly as drawn.
 - **Storage or transfer of the full vectors:** the `.svgz`. Browsers only show `.svgz` when the server
@@ -113,6 +144,19 @@ Pass `concept` or `walk` to rebuild just one sheet. If a new sheet has a differe
 boxes in `SHEETS` at the top of the script first. A higher-resolution sheet gives finer vectors.
 Rebuilding the walk also rebuilds `walk-left/`; pass `walk-left` to rebuild only that, from the current
 walk files, in a few seconds and without tracing.
+
+`site/scripts/dark-mascot.mjs` builds `dark/` from `original/` and the light SVGs in about a minute; run
+it after `cut-mascot.mjs`. The border is three passes, each its own sharp pipeline: blur the alpha (sigma =
+0.6 × radius, radius = 4 × width ÷ 256, in 16 bits so the edge stays smooth) to grow the silhouette,
+threshold at 6 for a crisp edge, then blur 0.6 to anti-alias. The shape is filled Warm Cream and Patch is
+laid on top. For the SVGs the same passes run at 4×, and the shape, cut at half, is traced to vector
+paths; the lite SVGs reuse that trace scaled to their 3×, so every dark file has the same border. `site/scripts/gif-mascot.mjs` then builds the six
+GIFs from the lossless loops in a few seconds.
+
+```bash
+node scripts/dark-mascot.mjs
+node scripts/gif-mascot.mjs
+```
 
 **How faithful the vectors are.** The trace settings were chosen by rendering each candidate and scoring
 it against the sheet pixel by pixel. At the chosen settings about 0.27% of pixels differ visibly. Going
@@ -179,12 +223,13 @@ Patch is the friendly face of the product. **The box symbol is still the logo.**
 1. **Don't** recolour, filter or redraw Patch. Use these files as they are.
 2. **Don't** stretch, skew or mirror Patch. The coat is asymmetric on purpose. To show Patch heading
    left, use the approved `walk-left/` files; never flip the other files with CSS or an editor.
-3. **Don't** add shadows, glows, gradients or outlines.
+3. **Don't** add shadows, glows, gradients or outlines. The one exception is the Warm Cream sticker
+   border of the approved `dark/` files; don't draw your own.
 4. **Don't** make Patch fierce: no bared teeth, angry brows or hunting poses.
 5. **Don't** scale up the PNGs or WebPs past their size. Use the full SVGs when you need bigger.
 6. **Do** keep clear space of a quarter of the badge's height around Patch.
-7. **Do** check contrast on dark surfaces: Patch's dark ear rims sit close to Deep Ink. Warm Cream,
-   white, Citron, Sky Blue and Workshop Orange surfaces all work.
+7. **Do** use the `dark/` files on dark surfaces: Patch's dark ear rims sit close to Deep Ink. Warm
+   Cream, white, Citron, Sky Blue and Workshop Orange surfaces all work with the plain files.
 
 New poses (waving, sleeping, holding other tools) should come from the same artwork and style, and be
 added here when approved.

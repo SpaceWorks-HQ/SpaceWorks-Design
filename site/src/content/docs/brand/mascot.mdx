@@ -16,32 +16,43 @@ Every file is in [`mascot/`](https://github.com/SpaceWorks-HQ/SpaceWorks-Design/
 from the two approved concept sheets
 ([pose and sneeze](https://github.com/SpaceWorks-HQ/SpaceWorks-Design/blob/main/mascot/concept/patch-concept-sheet.webp),
 [walk](https://github.com/SpaceWorks-HQ/SpaceWorks-Design/blob/main/mascot/concept/patch-walk-sheet.webp)).
-Nothing was redrawn. Each piece comes three ways:
+Nothing was redrawn. Each piece comes three ways, and again for dark surfaces:
 
 | Folder | What it is | Use it for |
 |---|---|---|
-| `mascot/` | **Full vectors**: traced at the most faithful settings measured, plus large PNGs and WebPs rendered from them | Big screens, print, merch, anything scaled up |
+| `mascot/` | **Full vectors**: traced at the most faithful settings measured, plus large PNGs and WebPs rendered from them, and GIFs of the loops | Big screens, print, merch, anything scaled up |
 | `mascot/original/` | **The original pixels**, cut from the sheet exactly and saved losslessly | Editing, retouching, new exports: nothing is lost |
 | `mascot/compressed/` | **Compressed copies**: a lighter SVG, the full SVG gzipped as `.svgz`, and a small animated WebP | Product UI and anywhere size matters |
+| `mascot/dark/` | **Patch for dark surfaces**: every piece with a thin Warm Cream sticker border, as full SVGs, lossless PNGs and WebPs, and GIFs of the loops | Deep Ink and the dark theme's panels only |
+| `mascot/dark/compressed/` | **Compressed dark copies**: lite SVGs, `.svgz` and small WebPs | Product UI on dark surfaces |
 
 | Piece | Files |
 |---|---|
 | Hero pose | `patch.svg`, `patch.png` |
-| Sneeze loop | `patch-animated.svg`, `patch-animated.webp`, and eight frames in `frames/` |
+| Sneeze loop | `patch-animated.svg`, `patch-animated.webp`, `patch-animated.gif`, and eight frames in `frames/` |
 | Walking pose | `walk/patch-walk.svg`, `walk/patch-walk.png` |
-| Walk cycle | `walk/patch-walk-animated.svg`, `walk/patch-walk-animated.webp`, and eight frames in `walk/frames/` |
-| Walking left | `walk-left/patch-walk-left.svg`, `walk-left/patch-walk-left-animated.webp`, and eight frames in `walk-left/frames/` |
+| Walk cycle | `walk/patch-walk-animated.svg`, `walk/patch-walk-animated.webp`, `walk/patch-walk-animated.gif`, and eight frames in `walk/frames/` |
+| Walking left | `walk-left/patch-walk-left.svg`, `walk-left/patch-walk-left-animated.webp`, `walk-left/patch-walk-left-animated.gif`, and eight frames in `walk-left/frames/` |
+| On dark surfaces | Every file above under the same name in `dark/`, for example `dark/patch.svg`, `dark/patch-animated.gif` and `dark/walk-left/frames/` |
 
 **Walking left** is the approved way to move Patch to the left. The script mirrors the walk cycle
 exactly, so it shows Patch's other side; frame N lines up with walk frame N for a mid-stride turn.
 
-The same names sit in `original/` and `compressed/`. In product UI, use the animated WebPs; they're far
-lighter than the animated SVGs. Browsers only show `.svgz` when the server sends it gzip-encoded, so use
-the plain `.svg` on web pages.
+The same names sit in `original/`, `compressed/` and `dark/`. In product UI, use the animated WebPs;
+they're far lighter than the animated SVGs. Browsers only show `.svgz` when the server sends it
+gzip-encoded, so use the plain `.svg` on web pages. The GIFs are for email and chat tools that can't play
+an animated WebP: GIF has only 256 colours and hard-edged transparency, so use the WebP or SVG wherever
+they work.
+
+**On dark surfaces**, Patch's thick dark outline almost disappears against Deep Ink, so use the same file
+from `dark/`: its thin Warm Cream die-cut border keeps Patch readable, and the art inside is untouched.
+Frames and loops keep their canvas, so a dark file drops in for its light twin. On Warm Cream, white and
+the light brand colours, use the plain files.
 
 A vector is made of flat colour shapes, so it can't hold soft shading: the subtle brown iris inside each
 eye merges into the pupil. That detail is kept in `original/`. To rebuild everything after replacing a
-sheet, run `node scripts/cut-mascot.mjs` from `site/`.
+sheet, run `node scripts/cut-mascot.mjs`, then `node scripts/dark-mascot.mjs` and
+`node scripts/gif-mascot.mjs`, from `site/`.
 
 ## Why a painted wolf
 
@@ -110,9 +121,10 @@ symbol as a combined mark.
 1. **Don't recolour, filter or redraw** Patch. Use these files as they are.
 2. **Don't stretch, skew or mirror** Patch. The coat is asymmetric on purpose. To head left, use the
    `walk-left/` files; never flip the others with CSS.
-3. **Don't add effects** such as shadows, glows, gradients or outlines.
+3. **Don't add effects** such as shadows, glows, gradients or outlines. The one exception is the Warm
+   Cream sticker border of the approved `dark/` files; don't draw your own.
 4. **Don't make Patch fierce.** No bared teeth, angry brows or hunting poses.
 5. **Don't scale up the PNGs or WebPs.** Use the full SVGs when you need bigger.
 6. **Keep clear space** of a quarter of the badge height on every side.
-7. **Check dark surfaces.** Patch's dark ear rims sit close to Deep Ink; light surfaces and Workshop
-   Orange work best.
+7. **Use the `dark/` files on dark surfaces.** Patch's dark ear rims sit close to Deep Ink. Warm Cream,
+   white, Citron, Sky Blue and Workshop Orange surfaces all work with the plain files.
