@@ -9,6 +9,7 @@ const files = [
   { show: 'patch-animated.webp', name: 'Patch, sneeze loop', use: '7-second loop', surface: 'white', downloads: ['patch-animated.webp', 'patch-animated.svg', 'original/patch-animated.webp', 'compressed/patch-animated.svg'] },
   { show: 'walk/patch-walk.png', name: 'Patch, walking', use: 'On its way', surface: 'cream', downloads: ['walk/patch-walk.svg', 'walk/patch-walk.png', 'original/walk/patch-walk.png', 'compressed/walk/patch-walk.svg'] },
   { show: 'walk/patch-walk-animated.webp', name: 'Patch, walk cycle', use: '8 frames, 0.96 s', surface: 'sky', downloads: ['walk/patch-walk-animated.webp', 'walk/patch-walk-animated.svg', 'original/walk/patch-walk-animated.webp', 'compressed/walk/patch-walk-animated.svg'] },
+  { show: 'walk-left/patch-walk-left-animated.webp', name: 'Patch, walking left', use: 'Heading left', surface: 'sky', downloads: ['walk-left/patch-walk-left-animated.webp', 'walk-left/patch-walk-left-animated.svg', 'original/walk-left/patch-walk-left-animated.webp', 'compressed/walk-left/patch-walk-left-animated.svg'] },
   { show: 'concept/patch-concept-sheet.webp', name: 'Concept sheet', use: 'Pose and sneeze loop', surface: 'cream', downloads: ['concept/patch-concept-sheet.webp'] },
   { show: 'concept/patch-walk-sheet.webp', name: 'Walk sheet', use: 'Walk cycle', surface: 'cream', downloads: ['concept/patch-walk-sheet.webp'] },
 ];
@@ -30,6 +31,10 @@ const loops = [
   {
     label: 'Walk cycle frames',
     frames: [1, 2, 3, 4, 5, 6, 7, 8].map((n) => [`walk/frames/patch-walk-0${n}`, `${((n - 1) * 0.12).toFixed(2)} s`, `Step ${n}`]),
+  },
+  {
+    label: 'Walking left frames',
+    frames: [1, 2, 3, 4, 5, 6, 7, 8].map((n) => [`walk-left/frames/patch-walk-left-0${n}`, `${((n - 1) * 0.12).toFixed(2)} s`, `Step ${n}`]),
   },
 ];
 // "SVG", "PNG", "Original PNG", "Lite SVG".

@@ -14,9 +14,13 @@
 //
 // The loops are built from the frames as animated SVGs (CSS only, plays in <img>) and animated WebPs.
 //
-// Run from site/ after replacing a sheet: node scripts/cut-mascot.mjs [concept|walk]
+// walk-left/ is the approved left-facing walk: every walk file mirrored exactly (vectors, pixels and
+// loops), so Patch can head left without anyone flipping the artwork by hand. It is rebuilt with the
+// walk sheet, or on its own from the current walk files.
+//
+// Run from site/ after replacing a sheet: node scripts/cut-mascot.mjs [concept|walk|walk-left]
 // (no argument rebuilds both sheets; tracing the concept sheet takes a few minutes)
-import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { gzipSync } from 'node:zlib';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -294,3 +298,42 @@ for (const s of SHEETS.filter((s) => !only || s.sheet.includes(only))) {
 
   console.log(`cut-mascot: ${s.sheet} -> ${s.hero.out}, ${s.frames.length} frames, ${s.animated}`);
 }
+
+// walk-left/: the walk files mirrored. SVGs get one mirroring group around their artwork, PNGs are
+// flopped, and the loops are rebuilt from the flopped frames with the walk's own encoder settings.
+const left = (out) => out.replace(/^walk\//, 'walk-left/').replace('patch-walk', 'patch-walk-left');
+const mirrorSvg = (svg, title) =>
+  svg.replace(/^([\s\S]*?viewBox="0 0 (\d+) \d+"[\s\S]*?<title id="t">)[\s\S]*?(<\/title>(?:<style>[\s\S]*?<\/style>)?)([\s\S]*)<\/svg>\s*$/,
+    (_, head, width, close, body) => `${head}${title}${close}<g transform="matrix(-1 0 0 1 ${width} 0)">${body}</g></svg>\n`);
+
+async function mirrorWalk(s) {
+  for (const root of [[], ['original'], ['compressed']]) rmSync(at(...root, 'walk-left'), { recursive: true, force: true });
+  const title = 'Patch, the Space Works mascot, walking left';
+  for (const out of [s.hero.out, ...s.frames.map(([f]) => f)]) {
+    const full = mirrorSvg(readFileSync(at(`${out}.svg`), 'utf8'), title);
+    write(at(`${left(out)}.svg`), full);
+    write(at(`${left(out)}.png`), await sharp(at(`${out}.png`)).flop().png({ compressionLevel: 9 }).toBuffer());
+    write(at('original', `${left(out)}.png`), await sharp(at('original', `${out}.png`)).flop().png({ compressionLevel: 9 }).toBuffer());
+    write(at('compressed', `${left(out)}.svg`), mirrorSvg(readFileSync(at('compressed', `${out}.svg`), 'utf8'), title));
+    write(at('compressed', `${left(out)}.svgz`), gzipSync(full, { level: 9 }));
+  }
+  const loopTitle = 'Patch, the Space Works mascot, walking left with a wrench';
+  const full = mirrorSvg(readFileSync(at(`${s.animated}.svg`), 'utf8'), loopTitle);
+  write(at(`${left(s.animated)}.svg`), full);
+  write(at('compressed', `${left(s.animated)}.svg`), mirrorSvg(readFileSync(at('compressed', `${s.animated}.svg`), 'utf8'), loopTitle));
+  write(at('compressed', `${left(s.animated)}.svgz`), gzipSync(full, { level: 9 }));
+  const [fw, fh] = s.frameSize;
+  const delay = s.timeline.map(([, ms]) => ms);
+  const sequence = (file) => Promise.all(s.timeline.map(([f]) => file(s.frames[f][0])));
+  const flopped = (scale) => sequence((out) => sharp(at(`${out}.png`)).flop().resize(fw * scale, fh * scale).png().toBuffer());
+  const webp = async (inputs, opts, file) => {
+    mkdirSync(dirname(file), { recursive: true });
+    await sharp(inputs, { join: { animated: true } }).webp({ loop: 0, delay, effort: 6, ...opts }).toFile(file);
+  };
+  await webp(await flopped(2), { quality: 92, alphaQuality: 100 }, at(`${left(s.animated)}.webp`));
+  await webp(await sequence((out) => sharp(at('original', `${out}.png`)).flop().png().toBuffer()), { lossless: true }, at('original', `${left(s.animated)}.webp`));
+  await webp(await flopped(1), { quality: 80, alphaQuality: 90 }, at('compressed', `${left(s.animated)}.webp`));
+  console.log(`cut-mascot: walk -> walk-left, ${s.frames.length} frames, ${left(s.animated)}`);
+}
+
+if (!only || only === 'walk' || only === 'walk-left') await mirrorWalk(SHEETS.find((s) => s.align === 'shadow'));
