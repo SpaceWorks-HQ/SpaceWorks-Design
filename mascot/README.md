@@ -76,9 +76,33 @@ it shows Patch's other side. Same sizes, frames and timing as the walk cycle:
 Frame N of `walk-left/` is frame N of `walk/` facing the other way, on the same ground line, so you
 can switch direction mid-stride without a jump.
 
+### On dark surfaces (`dark/`)
+
+Patch's thick dark outline almost disappears on Deep Ink: it measures about 1.0–2.3:1 against it,
+against 6–14.5:1 on Warm Cream. So `dark/` has every piece with a **thin Warm Cream (#FFF4E8) die-cut
+sticker border**, about 4 px at the walk frame's 256 px width and scaled with the image. The art inside
+is untouched: same pixels, colours, frames and timing. **Use `dark/` on dark surfaces only** (Deep Ink
+and the dark theme's panels); on Warm Cream, white and the light brand colours use the plain files.
+This border is the one approved exception to the "no outlines" rule below.
+
+| File | `dark/` (original pixels, lossless) | `dark/compressed/` (product UI) |
+|---|---|---|
+| `patch` (hero pose) | `.png` 642 × 642 | `.webp` 321 px |
+| `patch-animated` (7-second loop) | `.webp` 272 px | `.webp` 272 px |
+| `frames/patch-0N-*` (eight frames) | `.png` 272 px | `.webp` 272 px |
+| `walk/patch-walk`, `walk-left/patch-walk-left` (walking poses) | `.png` 484 × 364 | `.webp` 484 × 364 |
+| `walk/patch-walk-animated`, `walk-left/patch-walk-left-animated` (0.96 s loops) | `.webp` 256 × 176 | `.webp` 256 × 176 |
+| `walk/frames/patch-walk-0N`, `walk-left/frames/patch-walk-left-0N` (eight frames each) | `.png` 256 × 176 | `.webp` 256 × 176 |
+
+Frames and loops keep their canvas, so a dark file drops in for its light twin and frames still line up.
+The hero and the walking poses are padded by 1–2 px per side so the border is never clipped. There are
+no dark SVGs or high-resolution PNGs: `dark/` is built from `original/`, so it stops at the sheet's own
+size.
+
 **Which one to use:**
 
-- **Product UI** (apps, the web, chat): the animated **WebP**, or `compressed/` for the lightest.
+- **Product UI** (apps, the web, chat): the animated **WebP**, or `compressed/` for the lightest. On a
+  dark surface, the same file from `dark/compressed/`.
 - **Big screens, print, merch, anything scaled up:** the full **SVG**.
 - **When every pixel matters** (editing, retouching, a new export): `original/`, Patch exactly as drawn.
 - **Storage or transfer of the full vectors:** the `.svgz`. Browsers only show `.svgz` when the server
@@ -113,6 +137,15 @@ Pass `concept` or `walk` to rebuild just one sheet. If a new sheet has a differe
 boxes in `SHEETS` at the top of the script first. A higher-resolution sheet gives finer vectors.
 Rebuilding the walk also rebuilds `walk-left/`; pass `walk-left` to rebuild only that, from the current
 walk files, in a few seconds and without tracing.
+
+`site/scripts/dark-mascot.mjs` builds `dark/` from `original/` in under a minute; run it after
+`cut-mascot.mjs`. The border is three passes, each its own sharp pipeline: blur the alpha (sigma =
+0.6 × radius, radius = 4 × width ÷ 256) to grow the silhouette, threshold at 6 for a crisp edge, then
+blur 0.6 to anti-alias. The shape is filled Warm Cream and Patch is laid on top.
+
+```bash
+node scripts/dark-mascot.mjs
+```
 
 **How faithful the vectors are.** The trace settings were chosen by rendering each candidate and scoring
 it against the sheet pixel by pixel. At the chosen settings about 0.27% of pixels differ visibly. Going
@@ -179,12 +212,13 @@ Patch is the friendly face of the product. **The box symbol is still the logo.**
 1. **Don't** recolour, filter or redraw Patch. Use these files as they are.
 2. **Don't** stretch, skew or mirror Patch. The coat is asymmetric on purpose. To show Patch heading
    left, use the approved `walk-left/` files; never flip the other files with CSS or an editor.
-3. **Don't** add shadows, glows, gradients or outlines.
+3. **Don't** add shadows, glows, gradients or outlines. The one exception is the Warm Cream sticker
+   border of the approved `dark/` files; don't draw your own.
 4. **Don't** make Patch fierce: no bared teeth, angry brows or hunting poses.
 5. **Don't** scale up the PNGs or WebPs past their size. Use the full SVGs when you need bigger.
 6. **Do** keep clear space of a quarter of the badge's height around Patch.
-7. **Do** check contrast on dark surfaces: Patch's dark ear rims sit close to Deep Ink. Warm Cream,
-   white, Citron, Sky Blue and Workshop Orange surfaces all work.
+7. **Do** use the `dark/` files on dark surfaces: Patch's dark ear rims sit close to Deep Ink. Warm
+   Cream, white, Citron, Sky Blue and Workshop Orange surfaces all work with the plain files.
 
 New poses (waving, sleeping, holding other tools) should come from the same artwork and style, and be
 added here when approved.
